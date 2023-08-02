@@ -720,7 +720,7 @@ button:disabled {
     font-size: 14px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 6px) {
   .intro-visual {
     background-position-y: 7px;
     min-width: 374px;

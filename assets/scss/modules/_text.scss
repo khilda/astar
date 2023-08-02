@@ -45,5 +45,7 @@
 //# Font color
 //************************************
 .c-primary {
+  font-size: inherit;
+  font-weight: inherit;
   color: $c-primary;
 }

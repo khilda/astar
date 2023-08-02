@@ -46,6 +46,16 @@ button {
   font-size: inherit;
   font-weight: 400;
 }
+
+///************************************
+//# FLEX optional
+//************************************
+.flex-direction-column {
+  flex-direction: column;
+}
+.flex-direction-row {
+  flex-direction: row;
+}
 //************************************
 //# Responsive - desctop
 //************************************

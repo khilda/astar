@@ -172,7 +172,7 @@ body {
   font-weight: 300;
   font-size: 16px;
   color: #fff;
-  line-height: 28px;
+  line-height: 1.75;
   word-break: keep-all;
   transition: color 0.3s;
   transition-delay: 0s;
@@ -224,6 +224,14 @@ button:disabled {
   font-weight: 400;
 }
 
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
 @media (min-width: 1221px) {
   br.mobile {
     display: none;
@@ -240,8 +248,9 @@ button:disabled {
   }
 }
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100vw;
   z-index: 9;
 }
 .header > .w-section {
@@ -374,6 +383,14 @@ button:disabled {
 ################################*/
 .container {
   position: relative;
+  padding-top: 90px;
+}
+.container .w-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 50px);
 }
 
 .w-section {
@@ -507,6 +524,54 @@ button:disabled {
     background-position: 10000px 0;
   }
 }
+.title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-align: center;
+}
+.title-group .t-summary {
+  font-size: 18px;
+  color: #54fad2;
+  font-weight: 500;
+}
+.title-group .t-title {
+  line-height: 1.2;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.h1 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.h2 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.c-primary {
+  color: #54fad2;
+}
+
 /* ##############################
 # components - button
 ################################*/
@@ -546,7 +611,7 @@ button:disabled {
   margin-top: 55px;
   font-size: 20px;
   font-weight: 500;
-  color: #54FAD2;
+  color: #54fad2;
 }
 .intro-visual .animate-logo {
   font-size: 0;
@@ -566,7 +631,7 @@ button:disabled {
 .intro-link .txt {
   display: block;
   font-size: inherit;
-  color: #54FAD2;
+  color: #54fad2;
 }
 .intro-link .link-animate {
   display: flex;
@@ -608,8 +673,8 @@ button:disabled {
   gap: 0;
 }
 .intro-link .link-animate > i {
-  border-right: 1px solid #54FAD2;
-  border-bottom: 1px solid #54FAD2;
+  border-right: 1px solid #54fad2;
+  border-bottom: 1px solid #54fad2;
   transform: rotate(-45deg);
   width: 12px;
   height: 12px;

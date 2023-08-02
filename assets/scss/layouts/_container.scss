@@ -3,6 +3,14 @@
 ################################*/
 .container {
   position: relative;
+  padding-top: 90px;
+  .w-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: $h-full;
+  }
 }
 .w-section {
   width: $w-content;

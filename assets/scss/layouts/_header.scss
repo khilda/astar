@@ -2,8 +2,9 @@
 //# layout - Header
 //************************************
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100vw;
   z-index: $z-layout;
   > .w-section {
     position: relative;

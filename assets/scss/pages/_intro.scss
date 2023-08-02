@@ -1,0 +1,157 @@
+//************************************
+//# pages - intro
+//************************************
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: 18px;
+  overflow: hidden;
+}
+.intro-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent url("../images/intro_visual.png") no-repeat 50% 50% /
+    cover;
+  width: 1055px;
+  height: 440px;
+  text-align: center;
+  .visual-text {
+    margin-top: 55px;
+    font-size: 20px;
+    font-weight: 500;
+    color: $c-primary;
+  }
+  .animate-logo {
+    @include hidden-txt;
+    height: 32vw;
+  }
+  .visual-desc {
+    line-height: inherit;
+    font-size: inherit;
+    margin-bottom: 60px;
+  }
+}
+
+.intro-link {
+  margin-top: 46px;
+  font-size: inherit;
+  .txt {
+    display: block;
+    font-size: inherit;
+    color: $c-primary;
+  }
+  .link-animate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 14px;
+    > i {
+      display: block;
+      width: 12px;
+      height: 16px;
+    }
+  }
+}
+//************************************
+//# arrow animate - design
+//************************************
+/*
+.intro-link .link-animate > i {
+  background: url("../images/intro_ico_arrow.svg") no-repeat 50% 50%;
+  animation: moveArrow 2s ease infinite; // design
+  &:nth-child(1) {
+    animation-delay: -0.2s;
+  }
+}
+@keyframes moveArrow {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+} 
+*/
+//************************************
+//# arrow animate - suggest
+//************************************
+.intro-link .link-animate {
+  gap: 0;
+  > i {
+    border-right: 1px solid $c-primary;
+    border-bottom: 1px solid $c-primary;
+    transform: rotate(-45deg);
+    width: 12px;
+    height: 12px;
+    animation: animate 2s infinite;
+    &:nth-child(2) {
+      animation-delay: -0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.4s;
+    }
+  }
+}
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(-45deg) translate(-10px, -10px);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-45deg) translate(0, 0);
+  }
+}
+//************************************
+//# Response tablet
+//************************************
+@include tablet {
+  .intro-visual {
+    width: 100vw;
+    max-width: 1055px;
+    height: 41.7061vw;
+    max-height: 440px;
+    font-size: 14px;
+    line-height: 20px;
+    .visual-text {
+      margin-top: 30px;
+      font-size: inherit;
+    }
+  }
+  .intro-link {
+    font-size: 14px;
+  }
+}
+@include mobile {
+  .intro-visual {
+    background-position-y: 7px;
+    min-width: 374px;
+    min-height: 216px;
+    .visual-text {
+      margin-top: 0;
+    }
+    .visual-desc {
+      margin-bottom: 0;
+    }
+  }
+  .intro-link {
+    margin-top: 60px;
+  }
+}

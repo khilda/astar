@@ -1,0 +1,15 @@
+/* ##############################
+# components - button
+################################*/
+.btn {
+  &-txt {
+    font-size: inherit;
+  }
+  &-fill {
+    background-color: #383838;
+    border-radius: 8px;
+    padding: 8px 15px;
+    color: #c7c7c7;
+    font-size: inherit;
+  }
+}

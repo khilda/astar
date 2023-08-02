@@ -1,0 +1,67 @@
+//************************************
+//# text eillipse
+//************************************
+@mixin ellipsis($line-cnt: 1) {
+  @if ($line-cnt == 1) {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line-cnt; /* 라인수 */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+//************************************
+//# hide font
+//************************************
+@mixin hidden-txt {
+  font-size: 0;
+  color: transparent;
+  @content;
+}
+//************************************
+//# 미디어 쿼리
+//************************************
+$w-mobile: 375px; // 375 ~ 767
+$w-tablet: 768px; // 768 ~ 1220
+$w-desktop: 1221px; // 1221 ~
+@mixin mobile {
+  @media (max-width: ($w-tablet - 1)) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: ($w-desktop)) {
+    @content;
+  }
+}
+@mixin tablet-only {
+  @media (min-width: $w-tablet) and (max-width: ($w-desktop - 1)) {
+    @content;
+  }
+}
+@mixin desktop-only {
+  @media (min-width: ($w-desktop)) {
+    @content;
+  }
+}
+
+//************************************
+//#
+//************************************
+@mixin transform($property) {
+  transform: $property;
+  -webkit-transform: $property;
+  -moz-transform: $property;
+  -ms-trasform: $property;
+}
+
+@mixin transition($property) {
+  transition: $property;
+  -webkit-transition: $property;
+  -moz-transition: $property;
+  -ms-transition: $property;
+}

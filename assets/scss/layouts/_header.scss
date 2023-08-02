@@ -1,0 +1,147 @@
+//************************************
+//# layout - Header
+//************************************
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-layout;
+  > .w-section {
+    position: relative;
+    height: 90px;
+    padding: 16px 0;
+  }
+  .logo {
+    display: block;
+    background: transparent url("../images/logo_horizontal.svg") no-repeat 50%
+      50%;
+    width: 73px;
+    height: 58px;
+    margin: 0 auto;
+    @include hidden-txt;
+  }
+}
+//************************************
+//# Hamburger Animation
+//************************************
+.gnb-toggle-btn {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 70px;
+  height: 70px;
+  padding: 25px;
+  z-index: $z-toggle-layer;
+  span {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+    transition: top 0.2s ease-in-out 0.4s, transform 0.4s ease-in-out,
+      opacity 0.2s ease-in-out 0.2s, left 0.2s ease-in-out;
+    -webkit-transition: top 0.2s ease-in-out 0.4s, transform 0.4s ease-in-out,
+      opacity 0.2s ease-in-out 0.2s, left 0.2s ease-in-out;
+    -moz-transition: top 0.2s ease-in-out 0.4s, transform 0.4s ease-in-out,
+      opacity 0.2s ease-in-out 0.2s, left 0.2s ease-in-out;
+    -ms-transition: top 0.2s ease-in-out 0.4s, transform 0.4s ease-in-out,
+      opacity 0.2s ease-in-out 0.2s, left 0.2s ease-in-out;
+    &:nth-child(1) {
+      top: 27px;
+    }
+    &:nth-child(2),
+    &:nth-child(4) {
+      top: 35px;
+      width: 13px;
+    }
+    &:nth-child(3) {
+      top: 43px;
+    }
+  }
+  // active
+  &.is-active span {
+    transition: top 0.2s ease-in-out, transform 0.4s ease-in-out 0.2s,
+      opacity 0.1s ease-in-out 0.2s;
+    -webkit-transition: top 0.2s ease-in-out, transform 0.4s ease-in-out 0.2s,
+      opacity 0.1s ease-in-out 0.2s;
+    -moz-transition: top 0.2s ease-in-out, transform 0.4s ease-in-out 0.2s,
+      opacity 0.1s ease-in-out 0.2s;
+    -ms-transition: top 0.2s ease-in-out, transform 0.4s ease-in-out 0.2s,
+      opacity 0.1s ease-in-out 0.2s;
+    &:nth-child(1) {
+      top: 35px;
+      @include transform(rotate(45deg));
+    }
+    &:nth-child(2) {
+      top: 35px;
+      opacity: 0;
+    }
+    &:nth-child(3) {
+      top: 35px;
+      @include transform(rotate(-45deg));
+    }
+  }
+}
+
+//************************************
+//# gnb menu layer
+//************************************
+.gnb-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: $z-layer;
+  will-change: transform;
+  transform: translateY(-100vh);
+  transition: transform 1.2s ease-in-out;
+  .w-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &.is-show {
+    transform: translateY(0vh);
+  }
+}
+.gnb-menu {
+  flex: 0 0 282px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 241px 0 0 40px;
+  .name {
+    display: inline-flex;
+    align-items: center;
+    height: 70px;
+    line-height: 34px;
+    font-size: 26px;
+    font-weight: inherit;
+  }
+  .desc {
+    display: block;
+    min-height: 84px;
+    margin-top: 34px;
+    font-weight: inherit;
+  }
+  .icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-top: 32px;
+  }
+  &:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(84, 249, 210, 0.61) -17.24%,
+      rgba(84, 249, 210, 0.31) -6.86%,
+      rgba(84, 249, 210, 0.23) 3.52%,
+      rgba(84, 249, 210, 0.08) 29.78%,
+      rgba(84, 249, 210, 0) 93.28%
+    );
+    font-weight: 600;
+  }
+}

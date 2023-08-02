@@ -1,0 +1,24 @@
+/* ##############################
+# layout - container
+################################*/
+.container {
+  position: relative;
+}
+.w-section {
+  width: $w-content;
+  margin: 0 auto;
+}
+///************************************
+//# Responsive - tablet & mobile
+//************************************
+@include tablet {
+  .w-section {
+    width: $w-full;
+    padding: 0 21px;
+  }
+}
+///************************************
+//# Responsive - mobile
+//************************************
+@include mobile {
+}

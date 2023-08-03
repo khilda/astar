@@ -11,8 +11,19 @@
       url("../fonts/#{$file}.woff2") format("woff2");
     font-weight: $weight;
     font-style: $style;
+    @content;
   }
 }
-@include fontFace("gmarket", "GmarketSansLight", 300);
-@include fontFace("gmarket", "GmarketSansMedium", 500);
-@include fontFace("gmarket", "GmarketSansBold", 700);
+@include fontFace("gmarket", "GmarketSansLight", 400) {
+  unicode-range: U+AC00-D7A3; // 한글만
+}
+@include fontFace("gmarket", "GmarketSansMedium", 600) {
+  unicode-range: U+AC00-D7A3; // 한글만
+}
+@include fontFace("gmarket", "GmarketSansBold", 800) {
+  unicode-range: U+AC00-D7A3; // 한글만
+}
+// 기본폰트
+@include fontFace("montserrat", "Montserrat-Medium", 400);
+@include fontFace("montserrat", "Montserrat-SemiBold", 600);
+@include fontFace("montserrat", "Montserrat-Bold", 700);

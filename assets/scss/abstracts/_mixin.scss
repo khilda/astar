@@ -36,11 +36,11 @@
 //************************************
 //# 미디어 쿼리
 //************************************
-$w-mobile: 375px; // 375 ~ 767
-$w-tablet: 7px; // 768 ~ 1179
+$w-mobile: 375px; // 375 ~ 720
+$w-tablet: 721px; // 721 ~ 1179
 $w-desktop: 1180px; // 1180 ~
-@mixin mobile {
-  @media (max-width: ($w-tablet - 1)) {
+@mixin desktop-only {
+  @media (min-width: ($w-desktop)) {
     @content;
   }
 }
@@ -54,8 +54,8 @@ $w-desktop: 1180px; // 1180 ~
     @content;
   }
 }
-@mixin desktop-only {
-  @media (min-width: ($w-desktop)) {
+@mixin mobile {
+  @media (max-width: ($w-tablet - 1)) {
     @content;
   }
 }

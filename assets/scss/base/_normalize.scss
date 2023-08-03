@@ -7,8 +7,6 @@ body {
   color: $font-color;
   line-height: $line-height;
   word-break: keep-all;
-  transition: color 0.3s;
-  transition-delay: 0s;
 }
 
 dt {
@@ -46,7 +44,10 @@ button {
   font-size: inherit;
   font-weight: 400;
 }
-
+* {
+  transition: all 0.15s;
+  transition-delay: 0s;
+}
 ///************************************
 //# FLEX optional
 //************************************

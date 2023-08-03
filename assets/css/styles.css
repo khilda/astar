@@ -195,8 +195,6 @@ body {
   color: #fff;
   line-height: 1.75;
   word-break: keep-all;
-  transition: color 0.3s;
-  transition-delay: 0s;
 }
 
 dt {
@@ -243,6 +241,11 @@ button:disabled {
   color: #969696;
   font-size: inherit;
   font-weight: 400;
+}
+
+* {
+  transition: all 0.15s;
+  transition-delay: 0s;
 }
 
 .flex-direction-column {
@@ -669,35 +672,12 @@ button:disabled {
   height: 16px;
 }
 
-/*
-.intro-link .link-animate > i {
-  background: url("../images/intro_ico_arrow.svg") no-repeat 50% 50%;
-  animation: moveArrow 2s ease infinite; // design
-  &:nth-child(1) {
-    animation-delay: -0.2s;
-  }
-}
-@keyframes moveArrow {
-  0% {
-    opacity: 0;
-  }
-  45% {
-    opacity: 1;
-  }
-  55% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-} 
-*/
 .intro-link .link-animate {
   gap: 0;
 }
 .intro-link .link-animate > i {
-  border-right: 1px solid #54fad2;
-  border-bottom: 1px solid #54fad2;
+  border-right: 2px solid #54fad2;
+  border-bottom: 2px solid #54fad2;
   transform: rotate(-45deg);
   width: 12px;
   height: 12px;
@@ -741,7 +721,7 @@ button:disabled {
     font-size: 14px;
   }
 }
-@media (max-width: 6px) {
+@media (max-width: 720px) {
   .intro-visual {
     background-position-y: 7px;
     min-width: 374px;

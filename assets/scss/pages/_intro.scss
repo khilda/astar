@@ -60,39 +60,13 @@
   }
 }
 //************************************
-//# arrow animate - design
-//************************************
-/*
-.intro-link .link-animate > i {
-  background: url("../images/intro_ico_arrow.svg") no-repeat 50% 50%;
-  animation: moveArrow 2s ease infinite; // design
-  &:nth-child(1) {
-    animation-delay: -0.2s;
-  }
-}
-@keyframes moveArrow {
-  0% {
-    opacity: 0;
-  }
-  45% {
-    opacity: 1;
-  }
-  55% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-} 
-*/
-//************************************
-//# arrow animate - suggest
+//# arrow animate
 //************************************
 .intro-link .link-animate {
   gap: 0;
   > i {
-    border-right: 1px solid $c-primary;
-    border-bottom: 1px solid $c-primary;
+    border-right: 2px solid $c-primary;
+    border-bottom: 2px solid $c-primary;
     transform: rotate(-45deg);
     width: 12px;
     height: 12px;

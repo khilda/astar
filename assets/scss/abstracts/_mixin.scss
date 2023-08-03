@@ -33,6 +33,9 @@
   height: 24px;
   margin-right: 10px;
 }
+@mixin plantImg($type) {
+  background-image: url("../images/img_star_#{$type}.png");
+}
 //************************************
 //# 미디어 쿼리
 //************************************

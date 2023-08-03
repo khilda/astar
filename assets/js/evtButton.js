@@ -1,7 +1,9 @@
 const onClickBtn = (targetClass, evt) => {
-  const _target = document.querySelector(targetClass);
-  _target.addEventListener("click", (e) => {
-    evt(e, _target);
+  const _target = document.querySelectorAll(targetClass);
+  _target.forEach((_t) => {
+    _t.addEventListener("click", (e) => {
+      evt(e, _t);
+    });
   });
 };
 

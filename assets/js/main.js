@@ -17,13 +17,21 @@ const fnIntro = () => {
 
 const fnComm = () => {
   onClickBtn(".gnb-toggle-btn", (e, _target) => {
-    const _layer = document.querySelector(".gnb-layer");
+    const _header = document.querySelector(".header");
     if (_target.classList.contains("is-active")) {
       _target.classList.remove("is-active");
-      _layer.classList.remove("is-show");
+      _header.classList.remove("is-show");
     } else {
       _target.classList.add("is-active");
-      _layer.classList.add("is-show");
+      _header.classList.add("is-show");
     }
+  });
+
+  // gnb-menu link
+
+  onClickBtn(".gnb-menu", (e, _target) => {
+    console.log(_target);
+    const menu = _target.dataset.link;
+    window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
   });
 };

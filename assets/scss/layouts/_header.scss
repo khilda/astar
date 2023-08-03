@@ -14,11 +14,32 @@
   .logo {
     display: block;
     background: transparent url("../images/logo_horizontal.svg") no-repeat 50%
-      50%;
+      50% / cover;
     width: 73px;
     height: 58px;
     margin: 0 auto;
     @include hidden-txt;
+  }
+  &.is-show .gnb-layer {
+    transform: translateY(0vh);
+  }
+}
+@include tablet {
+  .header {
+    > .w-section {
+      height: 70px;
+      padding: 13px 0;
+    }
+    .logo {
+      width: 55px;
+      height: 44px;
+    }
+    .gnb-toggle-btn {
+      top: 0;
+    }
+    &.is-show {
+      background-color: #000;
+    }
   }
 }
 //************************************
@@ -92,9 +113,9 @@
   position: fixed;
   top: 0;
   left: 0;
+  background-color: #000;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
   z-index: $z-layer;
   will-change: transform;
   transform: translateY(-100vh);
@@ -104,16 +125,15 @@
     align-items: center;
     justify-content: center;
   }
-  &.is-show {
-    transform: translateY(0vh);
-  }
 }
 .gnb-menu {
+  position: relative;
   flex: 0 0 282px;
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding: 241px 0 0 40px;
+  overflow: hidden;
   .name {
     display: inline-flex;
     align-items: center;
@@ -134,15 +154,63 @@
     height: 32px;
     margin-top: 32px;
   }
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 358px;
+    background: transparent no-repeat 0 0 / 500px 500px;
+  }
   &:hover {
-    background: linear-gradient(
-      180deg,
-      rgba(84, 249, 210, 0.61) -17.24%,
-      rgba(84, 249, 210, 0.31) -6.86%,
-      rgba(84, 249, 210, 0.23) 3.52%,
-      rgba(84, 249, 210, 0.08) 29.78%,
-      rgba(84, 249, 210, 0) 93.28%
-    );
+    background: transparent url("../images/bg_gnb_active.png") no-repeat 0 0 /
+      cover;
     font-weight: 600;
+  }
+  // icon
+  &[data-link="main"]::before {
+    @include plantImg("main");
+  }
+  &[data-link="about"]::before {
+    @include plantImg("about");
+  }
+  &[data-link="business"]::before {
+    @include plantImg("business");
+  }
+  &[data-link="company"]::before {
+    @include plantImg("company");
+  }
+}
+@include tablet {
+  .gnb-layer {
+    top: 70px;
+    height: calc(100vh - 70px);
+    .w-section {
+      flex-direction: column;
+    }
+  }
+  .gnb-menu {
+    flex: 1 1 auto;
+    height: calc(25vh - 17.5px);
+    width: 100vw;
+    padding: 0 37px;
+    .name {
+      flex: 1;
+      font-size: 18px;
+    }
+    .desc,
+    .icon {
+      display: none;
+    }
+    &::before {
+      background-size: 215px;
+      width: 160px;
+      height: 110px;
+    }
+    &:hover {
+      background-image: url("../images/bg_gnb_active_m.png");
+      font-weight: 600;
+    }
   }
 }

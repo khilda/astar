@@ -284,14 +284,33 @@ button:disabled {
 }
 .header .logo {
   display: block;
-  background: transparent url("../images/logo_horizontal.svg") no-repeat 50% 50%;
+  background: transparent url("../images/logo_horizontal.svg") no-repeat 50% 50%/cover;
   width: 73px;
   height: 58px;
   margin: 0 auto;
   font-size: 0;
   color: transparent;
 }
+.header.is-show .gnb-layer {
+  transform: translateY(0vh);
+}
 
+@media (max-width: 1180px) {
+  .header > .w-section {
+    height: 70px;
+    padding: 13px 0;
+  }
+  .header .logo {
+    width: 55px;
+    height: 44px;
+  }
+  .header .gnb-toggle-btn {
+    top: 0;
+  }
+  .header.is-show {
+    background-color: #000;
+  }
+}
 .gnb-toggle-btn {
   display: block;
   position: absolute;
@@ -353,9 +372,9 @@ button:disabled {
   position: fixed;
   top: 0;
   left: 0;
+  background-color: #000;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
   z-index: 99;
   will-change: transform;
   transform: translateY(-100vh);
@@ -366,16 +385,15 @@ button:disabled {
   align-items: center;
   justify-content: center;
 }
-.gnb-layer.is-show {
-  transform: translateY(0vh);
-}
 
 .gnb-menu {
+  position: relative;
   flex: 0 0 282px;
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding: 241px 0 0 40px;
+  overflow: hidden;
 }
 .gnb-menu .name {
   display: inline-flex;
@@ -397,11 +415,64 @@ button:disabled {
   height: 32px;
   margin-top: 32px;
 }
+.gnb-menu::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 358px;
+  background: transparent no-repeat 0 0/500px 500px;
+}
 .gnb-menu:hover {
-  background: linear-gradient(180deg, rgba(84, 249, 210, 0.61) -17.24%, rgba(84, 249, 210, 0.31) -6.86%, rgba(84, 249, 210, 0.23) 3.52%, rgba(84, 249, 210, 0.08) 29.78%, rgba(84, 249, 210, 0) 93.28%);
+  background: transparent url("../images/bg_gnb_active.png") no-repeat 0 0/cover;
   font-weight: 600;
 }
+.gnb-menu[data-link=main]::before {
+  background-image: url("../images/img_star_main.png");
+}
+.gnb-menu[data-link=about]::before {
+  background-image: url("../images/img_star_about.png");
+}
+.gnb-menu[data-link=business]::before {
+  background-image: url("../images/img_star_business.png");
+}
+.gnb-menu[data-link=company]::before {
+  background-image: url("../images/img_star_company.png");
+}
 
+@media (max-width: 1180px) {
+  .gnb-layer {
+    top: 70px;
+    height: calc(100vh - 70px);
+  }
+  .gnb-layer .w-section {
+    flex-direction: column;
+  }
+  .gnb-menu {
+    flex: 1 1 auto;
+    height: calc(25vh - 17.5px);
+    width: 100vw;
+    padding: 0 37px;
+  }
+  .gnb-menu .name {
+    flex: 1;
+    font-size: 18px;
+  }
+  .gnb-menu .desc,
+  .gnb-menu .icon {
+    display: none;
+  }
+  .gnb-menu::before {
+    background-size: 215px;
+    width: 160px;
+    height: 110px;
+  }
+  .gnb-menu:hover {
+    background-image: url("../images/bg_gnb_active_m.png");
+    font-weight: 600;
+  }
+}
 /* ##############################
 # layout - container
 ################################*/

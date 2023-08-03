@@ -845,3 +845,201 @@ button:disabled {
   margin-right: 10px;
   background-image: url("");
 }
+
+.page {
+  width: 100%;
+  padding: 144px 0;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.content.about .logo-about {
+  width: 212px;
+  margin-top: 80px;
+}
+.content.about .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 280px;
+  height: 280px;
+  border-radius: 16px;
+  padding: 40px 22px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1607843137);
+  background: linear-gradient(180deg, rgba(86, 88, 96, 0.26) 0%, rgba(88, 90, 97, 0.08) 73.44%, rgba(69, 70, 74, 0) 100%);
+}
+.content.about .card .num {
+  font-size: 36px;
+}
+.content.about .card .txt {
+  margin-top: 32px;
+}
+.content.about .card:nth-child(odd) {
+  top: -180px;
+}
+.content.bussiness .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
+  height: 360px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1607843137);
+  background: linear-gradient(180deg, rgba(116, 119, 129, 0.6) 0%, rgba(88, 90, 97, 0.08) 73.44%, rgba(69, 70, 74, 0) 100%);
+  padding-top: 45px;
+}
+.content.bussiness .card .name {
+  position: absolute;
+  top: -25px;
+  padding: 15px 30px;
+  background: #38FACC;
+  box-shadow: 0px 0px 15px 0px rgba(114, 252, 230, 0.3019607843);
+  color: #111;
+  font-weight: 700;
+  border-radius: 80px;
+}
+.content.bussiness .card .txt {
+  margin-top: 24px;
+  text-align: center;
+}
+.content.bussiness .card .title {
+  margin-top: 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.content.contact {
+  display: flex;
+}
+.content.contact .title {
+  font-size: 36px;
+  line-height: 72px;
+}
+.content.contact .title-detail {
+  margin-top: 28px;
+  font-size: 18px;
+  line-height: 28px;
+}
+.content.contact .txt {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 28px;
+}
+
+.card-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0 50px;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.figure {
+  position: relative;
+  width: 960px;
+  margin-top: 60px;
+}
+.figure .cylinder {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 680px;
+  height: 263px;
+  border-radius: 132px;
+  background: linear-gradient(89.97deg, rgba(84, 250, 210, 0) 0.03%, rgba(84, 250, 210, 0.1) 99.97%);
+}
+.figure .cylinder .ellipse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 263px;
+  height: 263px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #53F7CA 0%, rgba(83, 247, 208, 0.33) 54.17%, rgba(83, 247, 208, 0) 100%);
+  border: 3px solid;
+  border-image-source: linear-gradient(180deg, #53F7CA 0%, rgba(83, 247, 208, 0.33) 54.17%, rgba(83, 247, 208, 0) 100%);
+  box-shadow: 0px -1px 40px 0px rgb(0, 255, 193);
+}
+.figure .cylinder .ellipse .title {
+  font-size: 28px;
+  font-weight: 600;
+}
+.figure .cylinder .txt {
+  margin-top: 60px;
+  margin-right: 100px;
+  color: #6f6f6f;
+}
+.figure .cylinder .txt strong {
+  font-weight: 500;
+  color: #e4e4e4;
+}
+.figure .cylinder.right {
+  margin-top: -123px;
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
+.figure .cylinder.right .txt {
+  position: absolute;
+  left: 100px;
+  bottom: 60px;
+}
+.figure .logo-vision {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  transform: translate(-50%, -50%);
+}
+
+.txt-wrap {
+  width: 100%;
+  margin-top: 80px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 32px;
+}
+
+.company-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 96px;
+  gap: 40px;
+}
+.company-wrap .row-company {
+  display: flex;
+  gap: 0 28px;
+}
+.company-wrap .row-company.left {
+  flex-direction: row;
+}
+.company-wrap .row-company.right {
+  flex-direction: row-reverse;
+}
+.company-wrap .row-company.center {
+  justify-content: center;
+}
+.company-wrap .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 242px;
+  height: 120px;
+  border-radius: 16px;
+  background: #fff;
+  color: #111;
+}
+
+.btn {
+  padding: 15px 20px;
+  border-radius: 80px;
+  background-color: #38facc;
+  font-size: 14px;
+  color: #111;
+  font-weight: 500;
+}

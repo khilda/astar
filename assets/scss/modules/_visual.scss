@@ -1,0 +1,238 @@
+//************************************
+//# Visual Area
+//************************************
+.visual-area {
+  position: relative;
+  overflow-x: hidden;
+}
+.visual-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: $w-full;
+  height: $h-full;
+}
+
+.v-prev,
+.v-next {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  .img-plant {
+    flex: none;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 140px;
+    height: 280px;
+  }
+  .btn-link {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    &:hover {
+      .animate-arrow {
+        animation-name: plant-arrow;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+    }
+  }
+  .animate-arrow {
+    position: relative;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 30px;
+    height: 2px;
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      border: 2px solid transparent;
+      border-radius: 2px;
+      width: 15px;
+      height: 15px;
+      transform: translateY((calc(-50% + 1px))) rotate(45deg);
+    }
+  }
+}
+.v-prev {
+  .img-plant {
+    background-image: url($img-company);
+    background-position-x: 100%;
+  }
+  .animate-arrow {
+    align-self: flex-start;
+    &::before {
+      left: 2px;
+      border-left-color: #fff;
+      border-bottom-color: #fff;
+    }
+  }
+}
+.v-next {
+  text-align: right;
+  .img-plant {
+    background-image: url($img-about);
+    background-position-x: 0;
+  }
+  .animate-arrow {
+    animation-direction: reverse;
+    align-self: flex-end;
+    &::before {
+      right: 0;
+      border-right-color: #fff;
+      border-top-color: #fff;
+    }
+  }
+}
+.v-crnt {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  .img-plant {
+    display: block;
+    background: transparent no-repeat 50% 50% / contain;
+    background-image: url($img-main);
+    width: 494px;
+    height: 499px;
+  }
+  .v-info {
+    .title-group {
+      align-items: flex-start;
+      text-align: left;
+      gap: 20px;
+    }
+    .v-info-text {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 400;
+      > strong {
+        font-size: inherit;
+        font-weight: 600;
+      }
+    }
+  }
+  .v-desc {
+    position: absolute;
+    bottom: 10vh;
+    width: 100vw;
+    text-align: center;
+    .txt {
+      display: block;
+      margin-bottom: 5px;
+      font-size: inherit;
+      color: $c-primary;
+    }
+    .animate-scroll-down {
+      display: block;
+      width: 20px;
+      height: 30px;
+      margin: 0 auto;
+      border: 1px solid #fff;
+      border-radius: 60px;
+      position: relative;
+      &::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        border-radius: 50%;
+        opacity: 1;
+        animation: wheel 1.5s infinite;
+        -webkit-animation: wheel 1.5s infinite;
+      }
+    }
+  }
+}
+@keyframes plant-arrow {
+  0% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  52% {
+    transform: translateX(20px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes wheel {
+  to {
+    opacity: 0;
+    top: 20px;
+  }
+}
+
+///************************************
+//# Responsive - tablet
+//************************************
+@include tablet {
+  .visual-section {
+    padding-top: 242px;
+  }
+  .v-prev,
+  .v-next {
+    width: auto;
+    height: 340px;
+    .img-plant {
+      width: 115px;
+      height: 230px;
+    }
+    .animate-arrow {
+      width: 25x;
+      &::before {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+  .v-crnt {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+    .img-plant {
+      width: 340px;
+      height: 340px;
+    }
+    // tablet 사이즈일때 하단 콘텐츠 여백이 너무 많이 남음
+    .v-info {
+      position: absolute;
+      top: 622px; // visual-section 기준
+      left: 0;
+      width: 100vw;
+      .title-group,
+      .v-info-text {
+        align-items: center;
+        text-align: center;
+      }
+    }
+    .v-desc {
+      bottom: 3vh;
+      .txt {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

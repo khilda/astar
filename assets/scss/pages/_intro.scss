@@ -46,7 +46,7 @@
     font-size: inherit;
     color: $c-primary;
   }
-  .link-animate {
+  .animate-link {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +62,7 @@
 //************************************
 //# arrow animate
 //************************************
-.intro-link .link-animate {
+.intro-link .animate-link {
   gap: 0;
   > i {
     border-right: 2px solid $c-primary;

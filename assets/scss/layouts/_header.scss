@@ -5,6 +5,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
+  background-color: rgba(0, 0, 0, 0.15);
   z-index: $z-layout;
   > .w-section {
     position: relative;

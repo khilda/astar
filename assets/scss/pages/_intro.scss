@@ -53,9 +53,7 @@
     gap: 5px;
     margin-top: 14px;
     > i {
-      display: block;
-      width: 12px;
-      height: 16px;
+      @include line-arrow;
     }
   }
 }
@@ -65,32 +63,12 @@
 .intro-link .animate-link {
   gap: 0;
   > i {
-    border-right: 2px solid $c-primary;
-    border-bottom: 2px solid $c-primary;
-    transform: rotate(-45deg);
-    width: 12px;
-    height: 12px;
-    animation: animate 2s infinite;
     &:nth-child(2) {
       animation-delay: -0.2s;
     }
     &:nth-child(3) {
       animation-delay: -0.4s;
     }
-  }
-}
-@keyframes animate {
-  0% {
-    opacity: 0;
-    transform: rotate(-45deg) translate(-10px, -10px);
-  }
-  50% {
-    opacity: 1;
-    transform: rotate(-45deg) translate(0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(-45deg) translate(0, 0);
   }
 }
 //************************************

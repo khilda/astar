@@ -123,6 +123,9 @@
     position: absolute;
     left: 0;
     bottom: 10vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100vw;
     text-align: center;
     .txt {
@@ -132,27 +135,8 @@
       color: $c-primary;
     }
     .animate-scroll-down {
-      display: block;
-      width: 20px;
-      height: 30px;
-      margin: 0 auto;
-      border: 1px solid #fff;
-      border-radius: 60px;
-      position: relative;
-      &::before {
-        content: "";
-        width: 3px;
-        height: 3px;
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #fff;
-        border-radius: 50%;
-        opacity: 1;
-        animation: wheel 1.5s infinite;
-        -webkit-animation: wheel 1.5s infinite;
-      }
+      // @include mouse-wheel;
+      @include fill-arrow
     }
   }
   .m-desc {
@@ -183,14 +167,7 @@
         font-weight: 600;
       }
       .animate-scroll-down {
-        display: block;
-        border: 6px solid transparent;
-        border-radius: 3px;
-        border-bottom-color: $c-primary;
-        border-right-color: $c-primary;
-        width: 11px;
-        height: 11px;
-        transform: rotate(45deg);
+        @include fill-arrow;
       }
     }
   }
@@ -283,13 +260,6 @@
   100% {
     transform: translateX(0px);
     opacity: 1;
-  }
-}
-
-@keyframes wheel {
-  to {
-    opacity: 0;
-    top: 20px;
   }
 }
 

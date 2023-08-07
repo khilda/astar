@@ -1,4 +1,5 @@
 import { onClickBtn } from "./evtButton.js";
+import { Planet } from "./mPlanetAnimation.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   const _container = document.querySelector(".container");
@@ -35,3 +36,18 @@ const fnComm = () => {
     window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
   });
 };
+
+const fnMobile = () => {};
+const planetAnimate = () => {
+  if (!document.querySelector(".visual-area")) return;
+
+  const planet = new Planet();
+  planet.init();
+  onClickBtn(".v-prev .btn-link", (e, _target) => {
+    planet.moveToDir("prev");
+  });
+  onClickBtn(".v-next .btn-link", (e, _target) => {
+    planet.moveToDir("next");
+  });
+};
+planetAnimate();

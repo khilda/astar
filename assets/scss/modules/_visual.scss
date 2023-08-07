@@ -121,7 +121,8 @@
   }
   .v-desc {
     position: absolute;
-    bottom: 10vh;
+    left: 0;
+    bottom: 10vmin;
     width: 100vw;
     text-align: center;
     .txt {
@@ -151,6 +152,113 @@
         opacity: 1;
         animation: wheel 1.5s infinite;
         -webkit-animation: wheel 1.5s infinite;
+      }
+    }
+  }
+  .m-desc {
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 170px;
+    padding-top: 65px;
+    margin: auto;
+    overflow: hidden;
+    .desc-text {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      .txt {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .animate-scroll-down {
+        display: block;
+        border: 6px solid transparent;
+        border-radius: 3px;
+        border-bottom-color: $c-primary;
+        border-right-color: $c-primary;
+        width: 11px;
+        height: 11px;
+        transform: rotate(45deg);
+      }
+    }
+  }
+  // 모바일 전용 인터렉션
+  .p-container {
+    border: 3px solid #eee;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    transition: transform 0.7s ease-in;
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      background-color: #f00;
+      width: 30px;
+      height: 30px;
+      transition: transform 0.4s linear;
+      will-change: transform;
+    }
+    .is-active {
+      transition: transform 0.4s ease-in;
+      transform: scale(1.5);
+      will-change: transform;
+    }
+    .planet {
+      &:nth-child(1) {
+        background: #3399ff;
+        top: -15px;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      &:nth-child(2) {
+        background: #fdb05e;
+        right: 28px;
+        top: 26px;
+      }
+      &:nth-child(3) {
+        background: #996633;
+        right: -16px;
+        bottom: 132px;
+      }
+      &:nth-child(4) {
+        background: #8a8975;
+        right: 28px;
+        bottom: 26px;
+      }
+      &:nth-child(5) {
+        background: #3399ff;
+        bottom: -15px;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      &:nth-child(6) {
+        background: #fdb05e;
+        left: 28px;
+        bottom: 26px;
+      }
+      &:nth-child(7) {
+        background: #996633;
+        left: -16px;
+        top: 132px;
+      }
+      &:nth-child(8) {
+        background: #8a8975;
+        left: 28px;
+        top: 26px;
       }
     }
   }
@@ -190,7 +298,7 @@
 //************************************
 @include tablet {
   .visual-section {
-    padding-top: 242px;
+    padding-top: 30vmin;
   }
   .v-prev,
   .v-next {
@@ -219,7 +327,7 @@
     // tablet 사이즈일때 하단 콘텐츠 여백이 너무 많이 남음
     .v-info {
       position: absolute;
-      top: 622px; // visual-section 기준
+      top: calc(30vmin + 380px); // visual-section 기준
       left: 0;
       width: 100vw;
       .title-group,
@@ -229,10 +337,84 @@
       }
     }
     .v-desc {
-      bottom: 3vh;
+      bottom: 50px;
       .txt {
         margin-bottom: 10px;
       }
+    }
+  }
+}
+///************************************
+//# Responsive - mobile
+//************************************
+@include mobile {
+  .visual-section {
+    padding-top: 16vmin;
+  }
+  .v-prev,
+  .v-next {
+    width: auto;
+    height: 220px;
+    .img-plant {
+      display: none;
+    }
+    .btn-link {
+      font-size: 0;
+      height: 220px;
+    }
+    .animate-arrow {
+      background-color: transparent;
+      width: 15px;
+      height: 100%;
+      margin: 0 20px;
+      &::before {
+        top: 50%;
+        width: 25px;
+        height: 25px;
+        transform: translateY(calc(-50% - 15px)) rotate(45deg);
+      }
+    }
+  }
+  .v-crnt {
+    .img-plant {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 27px;
+        left: 36px;
+        display: block;
+        border-radius: 50%;
+        background: transparent;
+        width: 157px;
+        height: 157px;
+        box-shadow: 0 0 50px 11px #50ffeb;
+        opacity: 0.6;
+      }
+    }
+    .v-info {
+      top: calc(16vmin + 240px); // visual-section 기준
+      .title-group {
+        .t-summary {
+          font-size: 14px;
+        }
+        .t-title {
+          font-size: 20px;
+        }
+      }
+      .v-info-text {
+        margin-top: 20px;
+        line-height: 20px;
+        font-size: 12px;
+      }
+    }
+    .v-desc {
+      display: none;
+    }
+    .m-desc {
+      display: flex;
     }
   }
 }

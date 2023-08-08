@@ -51,3 +51,21 @@ const planetAnimate = () => {
   });
 };
 planetAnimate();
+
+export const animateionIntro = () => {
+  starRotate();
+  setTimeout(() => {
+    document.querySelector(".container").classList.add("is-animate");
+  }, 3000);
+};
+const starRotate = () => {
+  const _visualCont = document.querySelector(".visual-background.type2");
+  const _wrap = `<div class="origin"><div class="control"><ul class="galaxy"></ul></div></div>`;
+
+  _visualCont.innerHTML = _wrap;
+  let star = "";
+  for (let i = 0; i <= 200; i++) {
+    star += `<li class="star"></li>`;
+  }
+  _visualCont.querySelector(".galaxy").innerHTML = star;
+};

@@ -9,10 +9,12 @@
 @import "layouts/container";
 @import "layouts/footer";
 
-@import "modules/animation";
 @import "modules/text";
 @import "modules/button";
 @import "modules/visual";
+
+@import "animate/_bg_star_shining";
+@import "animate/_bg_star_rotate";
 
 @import "pages/intro";
 @import "pages/company";

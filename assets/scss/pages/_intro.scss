@@ -12,12 +12,11 @@
   overflow: hidden;
 }
 .intro-visual {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: transparent url("../images/intro_visual.png") no-repeat 50% 50% /
-    cover;
   width: 1055px;
   height: 440px;
   text-align: center;
@@ -28,8 +27,45 @@
     color: $c-primary;
   }
   .animate-logo {
-    @include hidden-txt;
-    height: 32vw;
+    height: 230px;
+    .img-roket {
+      position: absolute;
+      left: 419px;
+      top: 99px;
+      width: 101px;
+      height: 95px;
+      background: transparent url("../images/intro_visual_roket.png") no-repeat
+        0 0;
+      z-index: 1;
+    }
+    .logo {
+      position: absolute;
+      left: 50%;
+      top: 117px;
+      width: 571px;
+      height: 102px;
+      overflow: hidden;
+      transform: translateX(-50%);
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        background: transparent url("../images/logo_letter.svg") no-repeat 50%
+          50% / cover;
+      }
+      &::before {
+        height: 100%;
+        z-index: 0;
+      }
+      &::after {
+        height: 30%;
+        z-index: 2;
+      }
+    }
   }
   .visual-desc {
     line-height: inherit;
@@ -69,6 +105,142 @@
     &:nth-child(3) {
       animation-delay: -0.4s;
     }
+  }
+}
+//************************************
+//# animation type1
+//************************************
+.type1 {
+  .visual-text {
+    opacity: 0;
+    transform: translate(0, 10px);
+    letter-spacing: 4px;
+  }
+  .animate-logo .img-roket,
+  .animate-logo .logo {
+    opacity: 0;
+  }
+  .visual-desc {
+    opacity: 0;
+    transform: translate(0, 10px);
+    transition: all 0.5s 0.7s;
+  }
+  .intro-link {
+    .txt,
+    .animate-link {
+      opacity: 0;
+      transform: translate(0, 10px);
+      transition: all 0.5s 1.5s;
+    }
+    .animate-link {
+      transition-delay: 1.75s;
+    }
+  }
+}
+.type1.is-animate {
+  .visual-text {
+    opacity: 0;
+    transform: translate(0, 0);
+    letter-spacing: 0px;
+    animation: type1-intro-text 40s infinite;
+    @keyframes type1-intro-text {
+      0% {
+        opacity: 0;
+        letter-spacing: 0px;
+      }
+      15% {
+        // 6s
+        opacity: 1;
+        letter-spacing: 4px;
+      }
+      75% {
+        // 30s
+        opacity: 1;
+        letter-spacing: 0px;
+      }
+      100% {
+        opacity: 1;
+        letter-spacing: 4px;
+      }
+    }
+  }
+  .animate-logo .logo {
+    opacity: 1;
+  }
+  .animate-logo .img-roket {
+    animation: type1-intro-roket 25s 1.5s ease-in-out infinite;
+    @keyframes type1-intro-roket {
+      0% {
+        opacity: 0;
+        transform: translate(-45px, 43px);
+      }
+      10% {
+        // 2.4
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      16% {
+        // 4
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      24% {
+        // 6.4
+        opacity: 0;
+        transform: translate(45px, -43px);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-45px, 43px);
+      }
+    }
+  }
+  .visual-desc {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  .intro-link {
+    .txt,
+    .animate-link {
+      opacity: 1;
+    }
+  }
+  .intro-link .animate-link > i {
+    @include line-arrow;
+  }
+}
+//************************************
+//# animation type2
+//************************************
+.type2 {
+  .visual-text {
+    animation: intro-text 2s ease-in-out;
+    @keyframes intro-text {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  .animate-logo .img-roket {
+    animation: intro-roket 2s ease-in-out;
+    @keyframes intro-roket {
+      from {
+        opacity: 0;
+        transform: translate(-45px, 43px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+  }
+  .visual-desc {
+  }
+  .intro-link .animate-link > i {
+    @include fill-arrow(6px, right);
   }
 }
 //************************************

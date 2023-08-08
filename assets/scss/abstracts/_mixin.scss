@@ -76,8 +76,8 @@
   width: 11px;
   height: 11px;
   transform: rotate(-45deg);
-  animation: $dir 1.5s infinite;
-  -webkit-animation: $dir 1.5s infinite;
+  animation: $dir 2s infinite;
+  -webkit-animation: $dir 2s infinite;
   @keyframes down {
     to {
       opacity: 0;
@@ -85,12 +85,16 @@
     }
   }
   @keyframes right {
-    from {
+    0% {
       opacity: 0;
       transform: rotate(-45deg) translate(-10px, -10px);
     }
-    to {
+    50% {
       opacity: 1;
+      transform: rotate(-45deg) translate(0, 0);
+    }
+    100% {
+      opacity: 0;
       transform: rotate(-45deg) translate(0, 0);
     }
   }

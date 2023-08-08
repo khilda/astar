@@ -1,0 +1,146 @@
+$stars: 200; // SYNC WITH HTML
+
+$min-dist: 65vmin;
+$max-dist: 90vmin;
+$min-size: 1px;
+$max-size: 3px;
+$perspective: 100vmin;
+$origin: (0vw, 0vh, 0vmin);
+$rotation: (1, 1, 1);
+$time: 3s;
+$galaxy-time: 60s;
+
+$colors: (
+  #cdccff,
+  #ffd5e0,
+  #daffeb,
+  #fffbdf,
+  #dff6ff,
+  #cafff8,
+  #e7e4c2,
+  #daffff,
+  #fff
+);
+
+@function lightness($color, $percent: 5) {
+  @return adjust-color($color, $lightness: $percent * 1%);
+}
+
+@mixin galaxy(
+  $stars: $stars,
+  $colors: $colors,
+  $min-dist: $min-dist,
+  $max-dist: $max-dist,
+  $min-size: $min-size,
+  $max-size: $max-size
+) {
+  $length: length($colors);
+  $dif-size: abs($max-size - $min-size);
+  $dif-dist: abs($max-dist - $min-dist);
+
+  @for $star from 1 through $stars {
+    $random: random(5);
+
+    $dist: $min-dist + $dif-dist * random();
+    $size: $min-size + $dif-size * random();
+    $half: $size / 2;
+
+    $color: nth($colors, random($length));
+
+    $background: lightness($color, $random * if(random(2) == 1, 1, -1));
+
+    $blur: $half + random() * $size;
+    $spread: random() * $half;
+    $shadow: lightness($color, $random);
+    $box-shadow: 0 0 $blur $spread $shadow;
+
+    $rotate: rotate3d(1, 0, 0, random(360) - 1deg)
+      rotate3d(0, 1, 0, random(360) - 1deg)
+      rotate3d(0, 0, 1, random(360) - 1deg);
+
+    .star:nth-of-type(#{ $star }) {
+      --size: #{$size};
+      --background: #{$background};
+      --shadow: #{$box-shadow};
+      --transform: #{$rotate translate3d(0, 0, $dist)};
+    }
+  }
+}
+
+.visual-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  perspective: $perspective;
+}
+
+.origin {
+  &,
+  .control,
+  .galaxy,
+  .star {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+}
+
+.origin {
+  transform: translate3d($origin);
+  .control {
+    transform: scale3d(0, 0, 0);
+    animation: star-appear $time linear forwards;
+  }
+
+  .galaxy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: star-rotation $galaxy-time linear infinite;
+  }
+  .star {
+    &,
+    &::before,
+    &::after {
+      position: absolute;
+      transform-style: preserve-3d;
+    }
+
+    &::before,
+    &::after {
+      background: var(--background);
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      content: "";
+      height: var(--size);
+      width: var(--size);
+    }
+
+    &::before {
+      transform: var(--transform);
+    }
+
+    &::after {
+      transform: scale3d(-1, -1, -1) var(--transform);
+    }
+  }
+}
+
+@include galaxy();
+
+@keyframes star-rotation {
+  100% {
+    transform: rotate3d($rotation, 360deg);
+  }
+}
+
+@keyframes star-appear {
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}

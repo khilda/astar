@@ -58,7 +58,7 @@ $colors: (
       rotate3d(0, 1, 0, random(360) - 1deg)
       rotate3d(0, 0, 1, random(360) - 1deg);
 
-    .star:nth-of-type(#{ $star }) {
+    .galaxy .star:nth-of-type(#{ $star }) {
       --size: #{$size};
       --background: #{$background};
       --shadow: #{$box-shadow};

@@ -1,7 +1,17 @@
+@function multiple-box-shadow($i) {
+  $n:(700, 200, 100);
+  $value: "#{random(1920)}px #{random(20000)}px #FFF";
+  @for $i from 2 through nth($n, $i) {
+    $value: "#{$value} , #{random(1920)}px #{random(2000)}px #FFF";
+  }
+  @return unquote($value);
+}
+
 .visual-background.type1 {
   position: fixed;
   top: 0;
   left: 0;
+  display: block;
   background: url("../images/bg_star.png") repeat top center;
   width: 100vw;
   height: 100vh;
@@ -28,6 +38,24 @@
     background: transparent url("../images/bg_clouds.png") repeat top center;
     animation: move-clouds-back 200s linear infinite;
   }
+  @for $i from 1 through 3 {
+    .star:nth-of-type(#{ $i }) {
+      width: #{$i}px;
+      height: #{$i}px;
+      background: transparent;
+      box-shadow: multiple-box-shadow($i);
+      animation: animStar 50s linear infinite;
+      &:after {
+        content: " ";
+        position: absolute;
+        top: 2000px;
+        width: #{$i}px;
+        height: #{$i}px;
+        background: transparent;
+        box-shadow: multiple-box-shadow($i);
+      }
+    }
+  }
 }
 
 @keyframes move-twink-back {
@@ -45,5 +73,14 @@
   }
   to {
     background-position: 10000px 0;
+  }
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
   }
 }

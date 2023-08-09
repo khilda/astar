@@ -76,6 +76,8 @@ export const introType01 = () => {
 
 export const introType02 = () => {
   descAnimation();
+  const _visualCont = document.querySelector(".visual-background.type1");
+  _visualCont.innerHTML = `<div class="star"></div><div class="star"></div><div class="star"></div>`
   setTimeout(() => {
     document.querySelector(".container").classList.add("is-animate");
   }, 1000);

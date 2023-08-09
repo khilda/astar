@@ -16,55 +16,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  background: transparent url("../images/intro_visual_bg.png") no-repeat 0 0;
   width: 1055px;
   height: 440px;
   text-align: center;
   .visual-text {
-    margin-top: 55px;
     font-size: 20px;
     font-weight: 500;
     color: $c-primary;
   }
   .animate-logo {
-    height: 230px;
+    width: 100%;
+    height: 100%;
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 100%;
+      background: transparent no-repeat 50% 50% / cover;
+    }
+    &::before {
+      background-image: url("../images/intro_visual_letter.png");
+      z-index: 0;
+    }
+    &::after {
+      background-image: url("../images/intro_visual_letter_cover.png");
+      z-index: 2;
+    }
     .img-roket {
       position: absolute;
       left: 419px;
       top: 99px;
       width: 101px;
-      height: 95px;
+      height: 109px;
       background: transparent url("../images/intro_visual_roket.png") no-repeat
         0 0;
       z-index: 1;
-    }
-    .logo {
-      position: absolute;
-      left: 50%;
-      top: 117px;
-      width: 571px;
-      height: 102px;
-      overflow: hidden;
-      transform: translateX(-50%);
-      &::before,
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-        background: transparent url("../images/logo_letter.svg") no-repeat 50%
-          50% / cover;
-      }
-      &::before {
-        height: 100%;
-        z-index: 0;
-      }
-      &::after {
-        height: 30%;
-        z-index: 2;
-      }
     }
   }
   .visual-desc {
@@ -111,19 +104,26 @@
 //# animation type1
 //************************************
 .type1 {
+  .intro-visual {
+    opacity: 0;
+    transition: all 1.5s 0.3s;
+  }
   .visual-text {
     opacity: 0;
     transform: translate(0, 10px);
     letter-spacing: 4px;
   }
-  .animate-logo .img-roket,
-  .animate-logo .logo {
+  .animate-logo {
     opacity: 0;
+    transition: all 1.7s 0.7s;
+    .img-roket{
+      opacity: 0;
+    }
   }
   .visual-desc {
     opacity: 0;
     transform: translate(0, 10px);
-    transition: all 0.5s 0.7s;
+    transition: all 0.5s 1.2s;
   }
   .intro-link {
     .txt,
@@ -138,6 +138,9 @@
   }
 }
 .type1.is-animate {
+  .intro-visual {
+    opacity: 1;
+  }
   .visual-text {
     opacity: 0;
     transform: translate(0, 0);
@@ -164,7 +167,7 @@
       }
     }
   }
-  .animate-logo .logo {
+  .animate-logo {
     opacity: 1;
   }
   .animate-logo .img-roket {
@@ -214,19 +217,58 @@
 //************************************
 .type2 {
   .visual-text {
-    animation: intro-text 2s ease-in-out;
-    @keyframes intro-text {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
+    opacity: 0;
+    transform: translate(0, 10px);
+    letter-spacing: 4px;
+  }
+  .animate-logo {
+    opacity: 0;
+  }
+  .visual-desc {
+    opacity: 0;
+    transform: translate(0, 10px);
+    transition: all 0.5s 0.7s;
+  }
+  .intro-link {
+    .txt,
+    .animate-link {
+      opacity: 0;
+      transform: translate(0, 10px);
+      transition: all 0.5s 1.5s;
+    }
+    .animate-link {
+      transition-delay: 1.75s;
+    }
+  }
+}
+.type2.is-animate {
+  .visual-text {
+    opacity: 1;
+    span {
+      display: inline-block;
+      animation: spin-letters 3s linear;
+      @keyframes spin-letters {
+        0%,
+        10% {
+          margin: 0 2px;
+          transform: rotateY(90deg) scale(1.3);
+        }
+        30% {
+        }
+        70%,
+        86% {
+          margin: 0;
+          transform: rotateY(0) scale(1);
+        }
       }
     }
   }
+  .animate-logo {
+    opacity: 1;
+  }
   .animate-logo .img-roket {
-    animation: intro-roket 2s ease-in-out;
-    @keyframes intro-roket {
+    animation: type2-intro-roket 2s forwards ease-in-out;
+    @keyframes type2-intro-roket {
       from {
         opacity: 0;
         transform: translate(-45px, 43px);
@@ -238,6 +280,14 @@
     }
   }
   .visual-desc {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  .intro-link {
+    .txt,
+    .animate-link {
+      opacity: 1;
+    }
   }
   .intro-link .animate-link > i {
     @include fill-arrow(6px, right);
@@ -257,6 +307,13 @@
     .visual-text {
       margin-top: 30px;
       font-size: inherit;
+    }
+    .animate-logo {
+      height: 41vmin;
+      .img-roket {
+        width: 9vmin;
+        height: 9vmin;
+      }
     }
   }
   .intro-link {

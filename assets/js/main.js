@@ -52,12 +52,9 @@ const planetAnimate = () => {
 };
 planetAnimate();
 
-export const animateionIntro = () => {
-  starRotate();
-  setTimeout(() => {
-    document.querySelector(".container").classList.add("is-animate");
-  }, 3000);
-};
+/**
+ * Intro background animation
+ */
 const starRotate = () => {
   const _visualCont = document.querySelector(".visual-background.type2");
   const _wrap = `<div class="origin"><div class="control"><ul class="galaxy"></ul></div></div>`;
@@ -68,4 +65,40 @@ const starRotate = () => {
     star += `<li class="star"></li>`;
   }
   _visualCont.querySelector(".galaxy").innerHTML = star;
+};
+
+export const introType01 = () => {
+  starRotate();
+  setTimeout(() => {
+    document.querySelector(".container").classList.add("is-animate");
+  }, 3000);
+};
+
+export const introType02 = () => {
+  descAnimation();
+  setTimeout(() => {
+    document.querySelector(".container").classList.add("is-animate");
+  }, 3000);
+};
+const descAnimation = () => {
+  const desc = document.querySelector(".visual-text"); // Find the H2
+  const descText = desc.innerHTML; // Get the content of the H2
+  const descArr = descText.split(""); // Split content into array
+  desc.innerHTML = ""; // Empty current content
+
+  let span; // Create variables to create elements
+  let letter;
+
+  for (let i = 0; i < descArr.length; i++) {
+    // Loop for every letter
+    span = document.createElement("span"); // Create a <span> element
+    letter = document.createTextNode(descArr[i]); // Create the letter
+    if (descArr[i] == " ") {
+      // If the letter is a space...
+      desc.appendChild(letter); // ...Add the space without a span
+    } else {
+      span.appendChild(letter); // Add the letter to the span
+      desc.appendChild(span); // Add the span to the h2
+    }
+  }
 };

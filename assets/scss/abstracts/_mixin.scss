@@ -46,7 +46,9 @@
   transform: rotate(-45deg);
   width: $size;
   height: $size;
-  animation: animate 2s infinite;
+  animation-name: animate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
   @keyframes animate {
     0% {
       opacity: 0;
@@ -62,6 +64,7 @@
     }
   }
 }
+
 @mixin fill-arrow($size: 6px, $dir: down) {
   display: block;
   border: $size solid transparent;
@@ -76,8 +79,9 @@
   width: 11px;
   height: 11px;
   transform: rotate(-45deg);
-  animation: $dir 2s infinite;
-  -webkit-animation: $dir 2s infinite;
+  animation-name: $dir;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
   @keyframes down {
     to {
       opacity: 0;

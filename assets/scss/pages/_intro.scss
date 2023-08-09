@@ -84,7 +84,7 @@
     gap: 5px;
     margin-top: 14px;
     > i {
-      @include line-arrow;
+      @include fill-arrow(6px, right);
     }
   }
 }
@@ -211,7 +211,7 @@
     }
   }
   .intro-link .animate-link > i {
-    @include line-arrow;
+    @include fill-arrow(6px, right);
   }
 }
 //************************************
@@ -307,7 +307,7 @@
     }
   }
   .intro-link .animate-link > i {
-    @include fill-arrow(6px, right);
+    @include line-arrow();
   }
 }
 //************************************

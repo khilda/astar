@@ -17,7 +17,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: transparent url("../images/intro_visual_bg.png") no-repeat 0 0;
+  background: transparent url("../images/intro_visual_bg.png") no-repeat 50% 50% /
+    cover;
   width: 1055px;
   height: 440px;
   text-align: center;
@@ -25,6 +26,7 @@
     font-size: 20px;
     font-weight: 500;
     color: $c-primary;
+    white-space: nowrap;
   }
   .animate-logo {
     width: 100%;
@@ -39,7 +41,7 @@
       transform: translateY(-50%);
       width: 100%;
       height: 100%;
-      background: transparent no-repeat 50% 50% / cover;
+      background: transparent no-repeat 50% 50% / 100% auto;
     }
     &::before {
       background-image: url("../images/intro_visual_letter.png");
@@ -51,12 +53,12 @@
     }
     .img-roket {
       position: absolute;
-      left: 419px;
-      top: 99px;
+      top: 22.5%;
+      left: 39.8%;
       width: 101px;
       height: 109px;
       background: transparent url("../images/intro_visual_roket.png") no-repeat
-        0 0;
+        0 0 / cover;
       z-index: 1;
     }
   }
@@ -116,7 +118,7 @@
   .animate-logo {
     opacity: 0;
     transition: all 1.7s 0.7s;
-    .img-roket{
+    .img-roket {
       opacity: 0;
     }
   }
@@ -216,34 +218,49 @@
 //# animation type2
 //************************************
 .type2 {
+  .intro-visual {
+    opacity: 0;
+    transition-duration: 3s;
+  }
   .visual-text {
     opacity: 0;
     transform: translate(0, 10px);
     letter-spacing: 4px;
+    transition-duration: 10s;
   }
   .animate-logo {
     opacity: 0;
+    transition-delay: 2.3s;
+    transition-duration: 3s;
+    .img-roket {
+      opacity: 0;
+    }
   }
   .visual-desc {
     opacity: 0;
     transform: translate(0, 10px);
-    transition: all 0.5s 0.7s;
+    transition: all 0.5s 3s;
   }
   .intro-link {
     .txt,
     .animate-link {
       opacity: 0;
       transform: translate(0, 10px);
-      transition: all 0.5s 1.5s;
+      transition: all 0.5s 4.5s;
     }
     .animate-link {
-      transition-delay: 1.75s;
+      transition-delay: 5s;
     }
   }
 }
 .type2.is-animate {
+  .intro-visual {
+    opacity: 1;
+  }
   .visual-text {
     opacity: 1;
+    letter-spacing: 0px;
+    transition-delay: 0.5s;
     span {
       display: inline-block;
       animation: spin-letters 3s linear;
@@ -267,7 +284,7 @@
     opacity: 1;
   }
   .animate-logo .img-roket {
-    animation: type2-intro-roket 2s forwards ease-in-out;
+    animation: type2-intro-roket 2s 2.3s forwards ease-in-out;
     @keyframes type2-intro-roket {
       from {
         opacity: 0;
@@ -327,6 +344,14 @@
     min-height: 216px;
     .visual-text {
       margin-top: 0;
+    }
+    .animate-logo .img-roket {
+      top: 17.3vw;
+      left: 38.2vw;
+      width: 10vmin;
+      height: 11vmin;
+      min-width: 37px;
+      min-height: 40px;
     }
     .visual-desc {
       margin-bottom: 0;

@@ -78,7 +78,7 @@ export const introType02 = () => {
   descAnimation();
   setTimeout(() => {
     document.querySelector(".container").classList.add("is-animate");
-  }, 3000);
+  }, 1000);
 };
 const descAnimation = () => {
   const desc = document.querySelector(".visual-text"); // Find the H2

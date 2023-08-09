@@ -76,14 +76,18 @@ export const introType01 = () => {
 
 export const introType02 = () => {
   descAnimation();
-  const _visualCont = document.querySelector(".visual-background.type1");
-  _visualCont.innerHTML = `<div class="star"></div><div class="star"></div><div class="star"></div>`
+  bgAnimation();
   setTimeout(() => {
     document.querySelector(".container").classList.add("is-animate");
   }, 1000);
 };
+export const bgAnimation = () => {
+  const _visualCont = document.querySelector(".visual-background.type1");
+  _visualCont.innerHTML = `<div class="star"></div><div class="star"></div><div class="star"></div>`;
+};
 const descAnimation = () => {
   const desc = document.querySelector(".visual-text"); // Find the H2
+  if (!desc) return;
   const descText = desc.innerHTML; // Get the content of the H2
   const descArr = descText.split(""); // Split content into array
   desc.innerHTML = ""; // Empty current content

@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASTAR</title>
-    <link rel="stylesheet" href="./../assets/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./../../dist/fullpage.css" />
+    <link rel="stylesheet" href="./../../assets/css/styles.css" />
   </head>
   <body>
     <div class="wrap">
-      <aside class="visual-background"></aside>
+      <aside class="visual-background type1"></aside>
       <header class="header">
         <div class="w-section">
           <a href="#" class="logo">ASTAR</a>
@@ -54,7 +55,7 @@
         </div>
       </header>
       <main class="container about">
-        <section class="visual-area">
+        <section class="section visual-area">
           <div class="visual-section">
             <aside class="v-prev">
               <div class="img-plant"></div>
@@ -100,7 +101,7 @@
             </aside>
           </div>
         </section>
-        <section class="w-section">
+        <section class="section w-section">
           <hgroup class="title-group">
             <h3 class="t-title">ABOUT ASTAR</h3>
             <h5 class="t-summary">The brightest star, ASTAR</h5>
@@ -133,7 +134,14 @@
         </div>
       </footer>
     </div>
-    <script type="module" src="./../assets/js/main.js">
+    <script type="text/javascript" src="./../../dist/fullpage.js"></script>
+    <script type="text/javascript">
+      var myFullpage = new fullpage(".container");
+    </script>
+    <script type="module" src="../../assets/js/main.js"></script>
+    <script type="module">
+      import { bgAnimation } from "../../assets/js/main.js";
+      bgAnimation();
     </script>
   </body>
 </html>

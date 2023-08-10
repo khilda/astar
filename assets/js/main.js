@@ -82,15 +82,26 @@ export const introType02 = () => {
   }, 1000);
 };
 export const commLayout = () => {
-  // bgAnimation();
-  starRotate()
+  bgAnimation();
+  // starRotate();
   setTimeout(() => {
     document.querySelector(".container").classList.add("is-animate");
-  }, 3000);
+  }, 2000);
 };
 export const bgAnimation = () => {
-  const _visualCont = document.querySelector(".visual-background.type1");
-  _visualCont.innerHTML = `<div class="star"></div><div class="star"></div><div class="star"></div>`;
+  const _visualCont = document.querySelector(".visual-background");
+  const cls = Array.from(_visualCont.classList);
+  if (cls.includes("type1")) {
+    _visualCont.innerHTML = `<div class="star"></div><div class="star"></div><div class="star"></div>`;
+  } else if (cls.includes("type2")) {
+    const _wrap = `<div class="origin"><div class="control"><ul class="galaxy"></ul></div></div>`;
+    _visualCont.innerHTML = _wrap;
+    let star = "";
+    for (let i = 0; i <= 200; i++) {
+      star += `<li class="star"></li>`;
+    }
+    _visualCont.querySelector(".galaxy").innerHTML = star;
+  }
 };
 const descAnimation = () => {
   const desc = document.querySelector(".visual-text"); // Find the H2

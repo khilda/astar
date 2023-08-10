@@ -81,6 +81,13 @@ export const introType02 = () => {
     document.querySelector(".container").classList.add("is-animate");
   }, 1000);
 };
+export const commLayout = () => {
+  // bgAnimation();
+  starRotate()
+  setTimeout(() => {
+    document.querySelector(".container").classList.add("is-animate");
+  }, 3000);
+};
 export const bgAnimation = () => {
   const _visualCont = document.querySelector(".visual-background.type1");
   _visualCont.innerHTML = `<div class="star"></div><div class="star"></div><div class="star"></div>`;

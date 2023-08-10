@@ -262,13 +262,24 @@
     opacity: 1;
   }
 }
+//************************************
+//# Visual animation
+//************************************
+.visual-area{
+  opacity: 0;
+  transition: opacity 1.5s .7s;
+}
+.is-animate .visual-area{
+  opacity: 1;
+}
 
 ///************************************
 //# Responsive - tablet
 //************************************
 @include tablet {
   .visual-section {
-    padding-top: 30vmin;
+    position: relative;
+    padding-top: 20vmin;
   }
   .v-prev,
   .v-next {
@@ -297,7 +308,7 @@
     // tablet 사이즈일때 하단 콘텐츠 여백이 너무 많이 남음
     .v-info {
       position: absolute;
-      top: calc(30vmin + 380px); // visual-section 기준
+      top: calc(20vmin + 380px); // visual-section 기준
       left: 0;
       width: 100vw;
       .title-group,

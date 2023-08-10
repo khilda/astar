@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASTAR</title>
-    <link rel="stylesheet" type="text/css" href="./../../assets/css/lib/fullpage.css" />
     <link rel="stylesheet" href="./../../assets/css/styles.css" />
   </head>
   <body>
@@ -55,7 +54,7 @@
         </div>
       </header>
       <main class="container about">
-        <section class="section visual-area">
+        <section class="visual-area" data-page>
           <div class="visual-section">
             <aside class="v-prev">
               <div class="img-plant"></div>
@@ -101,19 +100,19 @@
             </aside>
           </div>
         </section>
-        <section class="section w-section">
+        <section class="w-section" data-page>
           <hgroup class="title-group">
             <h3 class="t-summary">ABOUT ASTAR</h3>
             <h5 class="t-title">The brightest star, ASTAR</h5>
           </hgroup>
         </section>
-        <section class="section w-section">
+        <section class="w-section" data-page>
           <hgroup class="title-group">
             <h3 class="t-summary">VISION</h3>
             <h5 class="t-title">Stars of ASTAR Galaxy</h5>
           </hgroup>
         </section>
-        <section class="section w-section">
+        <section class="w-section" data-page>
           <hgroup class="title-group">
             <h3 class="t-summary">BUSINESS</h3>
             <h5 class="t-title">The Big Bang in the Age of AI</h5>
@@ -146,24 +145,12 @@
         </div>
       </footer>
     </div>
-    <script type="text/javascript" src="./../../assets/js/lib/fullpage.js"></script>
     <script type="module" src="../../assets/js/main.js"></script>
     <script type="module">
       import { commLayout } from "../../assets/js/main.js";
+      import { PageAnimation } from "../../assets/js/scrollAnimation.js";
       commLayout();
-      let fullpage_api;
-      const evtResizeFullPage = () => {
-        if(!fullpage_api)  fullpage_api = new fullpage(".container");
-        if(document.documentElement.getBoundingClientRect().width > 720){
-          // fullpage.js
-          fullpage_api.setResponsive(false);
-        } else{
-          // auto scroll
-          fullpage_api.setResponsive(true);
-        }
-      }
-      evtResizeFullPage()
-      window.addEventListener("resize", ()=>evtResizeFullPage());
+      new PageAnimation()
     </script>
   </body>
 </html>

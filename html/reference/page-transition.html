@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background</title>
+    <link rel="stylesheet" href="./../../assets/css/styles.css" />
+    <link rel="stylesheet" href="./../../assets/css/refer.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="page" data-transition="fromTop">
+        <p>#1</p>
+      </div>
+
+      <div class="page" data-transition="fromRight">
+        <p>#2</p>
+      </div>
+
+      <div class="page" data-transition="fromBottom">
+        <p>#3</p>
+      </div>
+
+      <div class="page" data-transition="fromLeft">
+        <p>#4</p>
+      </div>
+
+      <div class="arrows">
+        <p class="arrow arrow--left">&#8610;</p>
+        <p class="arrow arrow--right">&#8611;</p>
+      </div>
+    </div>
+    <script>
+      function $(selector, context) {
+        context = arguments.length > 1 ? context : document;
+        return context ? context.querySelectorAll(selector) : null;
+      }
+      var pageTransition = {
+        currentPageIndex: 0,
+
+        pages: [],
+
+        transitions: {
+          fromTop: {
+            reverse: "toTop",
+            oppositeOut: "toBottom",
+            oppositeIn: "fromBottom",
+          },
+          fromRight: {
+            reverse: "toRight",
+            oppositeOut: "toLeft",
+            oppositeIn: "fromLeft",
+          },
+          fromBottom: {
+            reverse: "toBottom",
+            oppositeOut: "toTop",
+            oppositeIn: "fromTop",
+          },
+          fromLeft: {
+            reverse: "toLeft",
+            oppositeOut: "toRight",
+            oppositeIn: "fromRight",
+          },
+        },
+
+        transitionEndEventName: {
+          WebkitAnimation: "webkitAnimationEnd",
+          OAnimation: "oAnimationEnd",
+          msAnimation: "MSAnimationEnd",
+          animation: "animationend",
+        },
+
+        addPage: function (pageSelector, transitionName) {
+          var page = {
+            selector: pageSelector,
+            transitionName: transitionName,
+          };
+          this.pages.push(page);
+        },
+
+        getCurrentPage: function () {
+          return this.pages[this.currentPageIndex]
+            ? this.pages[this.currentPageIndex]
+            : false;
+        },
+
+        getPreviousPage: function () {
+          return this.pages[this.currentPageIndex - 1]
+            ? this.pages[this.currentPageIndex - 1]
+            : false;
+        },
+
+        getNextPage: function () {
+          return this.pages[this.currentPageIndex + 1]
+            ? this.pages[this.currentPageIndex + 1]
+            : false;
+        },
+
+        first: function () {
+          this.transitionEvent = this.transitionEndEventName.animation;
+
+          if (!this.getCurrentPage()) return false;
+
+          this.transitionPageIn(
+            this.getCurrentPage(),
+            this.getCurrentPage().transitionName
+          );
+        },
+
+        next: function () {
+          if (!this.getNextPage()) return false;
+
+          if (this.getCurrentPage()) {
+            this.transitionPageOut(
+              this.getCurrentPage(),
+              this.transitions[this.getNextPage().transitionName].oppositeOut
+            );
+          }
+
+          this.transitionPageIn(
+            this.getNextPage(),
+            this.getNextPage().transitionName
+          );
+          this.currentPageIndex++;
+        },
+
+        previous: function () {
+          if (!this.getPreviousPage()) return false;
+
+          this.transitionPageOut(
+            this.getCurrentPage(),
+            this.transitions[this.getCurrentPage().transitionName].reverse
+          );
+          this.transitionPageIn(
+            this.getPreviousPage(),
+            this.transitions[this.getCurrentPage().transitionName].oppositeIn
+          );
+          this.currentPageIndex--;
+        },
+
+        transitionPageIn: function (page, pageTransitionName) {
+          var _this = document.querySelector(page.selector);
+          const removeClass = Array.from(_this.classList).filter((x) =>
+            x.includes("page--animation")
+          );
+          if (removeClass.length) _this.classList.remove(...removeClass);
+          _this.classList.add("page--animation-" + pageTransitionName);
+          _this.classList.add(
+            "page--animation-" + pageTransitionName + "--animate"
+          );
+          _this.classList.add("page--current");
+        },
+
+        transitionPageOut: function (page, pageTransitionName) {
+          var context = this;
+          var _this = document.querySelector(page.selector);
+          _this.addEventListener(this.transitionEvent, () => {
+            document.documentElement.removeEventListener(
+              context.transitionEvent,
+              () => {
+                [...document.documentElement.attributes].forEach(
+                  (att) =>
+                    att.name.startsWith("on") && _this.removeAttribute(att.name)
+                );
+              }
+            );
+            const removeClass = Array.from(_this.classList).filter((x) =>
+              x.includes("page--animation")
+            );
+            if (removeClass.length) _this.classList.remove(...removeClass);
+            _this.classList.remove("page--current");
+          });
+
+          const removeClass = Array.from(_this.classList).filter((x) =>
+            x.includes("page--animation")
+          );
+          if (removeClass.length) _this.classList.remove(...removeClass);
+          _this.classList.add("page--animation-" + pageTransitionName);
+          _this.classList.add(
+            "page--animation-" + pageTransitionName + "--animate"
+          );
+          _this.classList.add("page--current");
+        },
+      };
+
+      // First, add all pages to pageTransition
+      $(".page").forEach(function (el, index) {
+        var className = "number-" + index;
+        el.classList.add(className);
+        pageTransition.addPage("." + className, el.dataset.transition);
+      });
+
+      pageTransition.first();
+      $(".arrow--left").forEach((el) => {
+        el.addEventListener("click", function () {
+          pageTransition.previous();
+        });
+      });
+
+      $(".arrow--right").forEach((el) => {
+        el.addEventListener("click", function () {
+          pageTransition.next();
+        });
+      });
+    </script>
+  </body>
+</html>

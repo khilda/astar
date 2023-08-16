@@ -23,8 +23,21 @@
       height: 280px;
       border-radius: 16px;
       padding: 40px 22px 0;
-      border: 1px solid #ffffff29;
-      background: linear-gradient(180deg, rgba(86, 88, 96, 0.26) 0%, rgba(88, 90, 97, 0.08) 73.44%, rgba(69, 70, 74, 0) 100%);
+      border-width: 1px;
+      border-style: solid;
+      border-top-color: rgba(255, 255, 255, 0.4);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      border-image: linear-gradient(
+          rgba(255, 255, 255, 0.4),
+          rgba(255, 255, 255, 0.08)
+        )
+        1 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(86, 88, 96, 0.26) 0%,
+        rgba(88, 90, 97, 0.08) 73.44%,
+        rgba(69, 70, 74, 0) 100%
+      );
       .num {
         font-size: 36px;
       }
@@ -46,14 +59,19 @@
       height: 360px;
       border-radius: 16px;
       border: 1px solid #ffffff29;
-      background: linear-gradient(180deg, rgba(116, 119, 129, 0.6) 0%, rgba(88, 90, 97, 0.08) 73.44%, rgba(69, 70, 74, 0) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(116, 119, 129, 0.6) 0%,
+        rgba(88, 90, 97, 0.08) 73.44%,
+        rgba(69, 70, 74, 0) 100%
+      );
       padding-top: 45px;
       .name {
         position: absolute;
         top: -25px;
         padding: 15px 30px;
-        background: #38FACC;
-        box-shadow: 0px 0px 15px 0px #72FCE64D;
+        background: #38facc;
+        box-shadow: 0px 0px 15px 0px #72fce64d;
         color: #111;
         font-weight: 700;
         border-radius: 80px;
@@ -95,7 +113,6 @@
   gap: 0 50px;
   width: 100%;
   margin-top: 100px;
-  
 }
 
 .figure {
@@ -109,7 +126,11 @@
     width: 680px;
     height: 263px;
     border-radius: 132px;
-    background: linear-gradient(89.97deg, rgba(84, 250, 210, 0) 0.03%, rgba(84, 250, 210, 0.1) 99.97%);
+    background: linear-gradient(
+      89.97deg,
+      rgba(84, 250, 210, 0) 0.03%,
+      rgba(84, 250, 210, 0.1) 99.97%
+    );
     .ellipse {
       display: flex;
       justify-content: center;
@@ -117,9 +138,19 @@
       width: 263px;
       height: 263px;
       border-radius: 50%;
-      background: linear-gradient(180deg, #53F7CA 0%, rgba(83, 247, 208, 0.33) 54.17%, rgba(83, 247, 208, 0) 100%);
+      background: linear-gradient(
+        180deg,
+        #53f7ca 0%,
+        rgba(83, 247, 208, 0.33) 54.17%,
+        rgba(83, 247, 208, 0) 100%
+      );
       border: 3px solid;
-      border-image-source: linear-gradient(180deg, #53F7CA 0%, rgba(83, 247, 208, 0.33) 54.17%, rgba(83, 247, 208, 0) 100%);
+      border-image-source: linear-gradient(
+        180deg,
+        #53f7ca 0%,
+        rgba(83, 247, 208, 0.33) 54.17%,
+        rgba(83, 247, 208, 0) 100%
+      );
       box-shadow: 0px -1px 40px 0px rgba(0, 255, 193, 1);
       .title {
         font-size: 28px;

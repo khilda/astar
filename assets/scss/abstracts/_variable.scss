@@ -11,7 +11,8 @@ $w-content: 1180px;
 $h-full: 100vh;
 $h-content: calc(100vh - 90px);
 
-$section-margin: 73px;
+$m-section-full: 73px;
+$m-section-scroll: 96px;
 
 // z-index
 $z-hide: -1;
@@ -23,7 +24,7 @@ $z-toggle-layer: 999;
 $c-primary: #54fad2;
 
 // img
-$img-main:'../images/img_star_main.png';
-$img-about:'../images/img_star_about.png';
-$img-business:'../images/img_star_business.png';
-$img-company:'../images/img_star_company.png';
+$img-main: "../images/img_star_main.png";
+$img-about: "../images/img_star_about.png";
+$img-business: "../images/img_star_business.png";
+$img-company: "../images/img_star_company.png";

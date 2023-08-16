@@ -2,9 +2,8 @@
 //# pages - about
 //************************************
 .about {
-  .img-desc-group,
-  .vision-icon-group {
-    margin-top: $section-margin;
+  .w-section .title-group {
+    margin-bottom: $m-section-full;
   }
 }
 .img-desc-group {
@@ -14,9 +13,10 @@
       display: flex;
       justify-content: center;
       background: transparent url("../images/about_img_vision_01.png") no-repeat
-        0 0;
+        50% 0;
       width: 350px;
       height: 265px;
+      margin: 0 auto 10px;
       .outline-circle {
         position: absolute;
         top: 10px;
@@ -40,12 +40,15 @@
       font-size: 16px;
       color: $c-primary;
       font-weight: 500;
+      text-align: center;
+      margin-bottom: 10px;
     }
     .img-logo {
       background: transparent url("../images/logo_letter.svg") no-repeat 50% 50% /
         cover;
       width: 110px;
       height: 20px;
+      margin: 0 auto;
       font-size: 0;
     }
   }
@@ -111,10 +114,11 @@
 
 .vision-icon-group {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: space-between;
   gap: 40px;
   .icon-item {
+    flex: 1;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -140,6 +144,252 @@
     @include gradient-box(desc-txt) {
       padding: 70px 47px 54px;
       text-align: center;
+      word-break: keep-all;
+    }
+  }
+}
+
+.timeline-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    bottom: 40px;
+    display: block;
+    background: linear-gradient(0deg, #38facc 0%, rgba(56, 250, 204, 0) 100%);
+    width: 3px;
+  }
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    width: 50%;
+    padding: 4px 50px;
+    &:nth-child(odd) {
+      align-items: flex-start;
+      margin-left: auto;
+      .tl-date::before,
+      .tl-date::after {
+        left: -10px;
+      }
+    }
+    &:nth-child(even) {
+      align-items: flex-end;
+      margin-right: auto;
+      text-align: right;
+      .tl-date::before,
+      .tl-date::after {
+        right: -9px;
+      }
+    }
+    &:hover .tl-date::before {
+      animation: timeline-bounce 1.6s 0.4s infinite;
+    }
+  }
+  .tl-date {
+    line-height: 1.2;
+    font-size: 16px;
+    color: $c-primary;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      display: block;
+      background-color: $c-primary;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+    }
+  }
+  .tl-desc {
+    font-size: 18px;
+    line-height: 1.7;
+    text-align: inherit;
+  }
+}
+
+@keyframes timeline-bounce {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.crew-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  .crew {
+    display: grid;
+    grid-template-columns: minmax(0, 180px) minmax(200px, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    .crew-img {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    .crew-name {
+      margin-bottom: 5px;
+      font-size: 24px;
+      font-weight: 600;
+      > em {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+    }
+    .crew-copy {
+      font-size: 15px;
+      word-break: keep-all;
+    }
+  }
+}
+
+//************************************
+//# Response
+//************************************
+@include tablet {
+  .img-desc-group {
+    .img-visual {
+      .visual-box {
+        background-size: 280px;
+        background-position-y: -8px;
+        width: 240px;
+        height: 200px;
+        margin-bottom: 30px;
+        .outline-circle {
+          top: 0;
+          width: 200px;
+          height: 200px;
+          filter: none;
+          &::before {
+            background-size: 280px;
+            background-position-y: -8px;
+            width: 194px;
+            height: 194px;
+          }
+          &::after {
+            filter: blur(40px);
+          }
+        }
+        .logo-icon {
+          right: 20px;
+          background-size: 120%;
+          width: 56px;
+          height: 56px;
+        }
+      }
+    }
+  }
+  .vision-icon-group .icon-item .desc-txt > .desc-txt-content {
+    padding: 48px 20px 40px;
+    line-height: 1.5;
+  }
+}
+@include mobile {
+  .about .w-section {
+    margin-bottom: 96px;
+    .title-group {
+      margin-bottom: 50px;
+    }
+  }
+  .img-desc-group {
+    flex-direction: column;
+    .img-visual {
+      .visual-box {
+        background-size: contain;
+        width: 150px;
+        height: 115px;
+        margin-bottom: 20px;
+        .outline-circle {
+          top: 0;
+          width: 110px;
+          height: 110px;
+          filter: none;
+          &::before {
+            background-size: 150px;
+            background-position-y: -3px;
+            width: 104px;
+            height: 104px;
+          }
+          &::after {
+            filter: blur(40px);
+          }
+        }
+        .logo-icon {
+          width: 36px;
+          height: 36px;
+        }
+      }
+      .img-summary,
+      .img-logo {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 20px;
+      }
+      .img-summary {
+        margin-bottom: 0;
+        margin-right: 10px;
+      }
+    }
+    .vision-text > .vision-text-content {
+      text-align: center;
+      line-height: 1.75;
+    }
+  }
+  .vision-icon-group {
+    overflow: visible;
+    gap: 21px;
+    padding: 0 21px;
+    transform: translateX(10px);
+    .icon-item {
+      flex: none;
+      width: calc(100% - 21px);
+      .desc-txt,
+      .desc-txt-content {
+        width: 100%;
+        line-height: 1.75;
+      }
+    }
+  }
+  .timeline-group {
+    .tl-date {
+      font-size: 14px;
+    }
+    .tl-desc {
+      font-size: 12px;
+    }
+  }
+  .timeline-group::before {
+    top: -20px;
+  }
+  .crew-group {
+    grid-template-columns: 1fr;
+    .crew {
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      .crew-name {
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+      .crew-copy {
+        font-size: 9px;
+      }
     }
   }
 }

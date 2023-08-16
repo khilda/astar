@@ -18,7 +18,19 @@
     font-size: 36px;
     font-weight: 600;
   }
-} //************************************
+}
+@include mobile {
+  .title-group {
+    gap: 5px;
+    .t-summary {
+      font-size: 12px;
+    }
+    .t-title {
+      font-size: 16px;
+    }
+  }
+}
+//************************************
 //# Title
 //***********************************
 .h1 {
@@ -54,6 +66,6 @@
   font-weight: inherit;
   color: $c-primary;
 }
-.fw-bold{
+.fw-bold {
   font-weight: 600;
 }

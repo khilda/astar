@@ -38,6 +38,7 @@
     > .#{$name}-content {
       @include bg-gradient;
       border-radius: 15px;
+      height: 100%;
       @content;
     }
   }

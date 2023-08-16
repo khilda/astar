@@ -115,16 +115,18 @@
 .vision-icon-group {
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: center;
   gap: 40px;
+  width: 100%;
   .icon-item {
-    flex: 1;
+    flex: 1 1 50%;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 72px;
+    max-width: 450px;
     .icon {
       display: block;
       width: 180px;
@@ -142,9 +144,12 @@
       color: #000;
     }
     @include gradient-box(desc-txt) {
-      padding: 70px 47px 54px;
+      padding: 70px 42px 54px;
       text-align: center;
       word-break: keep-all;
+    }
+    .desc-txt{
+      width: 100%;
     }
   }
 }
@@ -172,10 +177,11 @@
     justify-content: space-between;
     gap: 5px;
     width: 50%;
-    padding: 4px 50px;
+    padding: 4px 0;
     &:nth-child(odd) {
       align-items: flex-start;
       margin-left: auto;
+      padding-left: 50px;
       .tl-date::before,
       .tl-date::after {
         left: -10px;
@@ -184,6 +190,7 @@
     &:nth-child(even) {
       align-items: flex-end;
       margin-right: auto;
+      padding-right: 50px;
       text-align: right;
       .tl-date::before,
       .tl-date::after {
@@ -310,6 +317,7 @@
   }
   .img-desc-group {
     flex-direction: column;
+    width: 100%;
     .img-visual {
       .visual-box {
         background-size: contain;
@@ -348,11 +356,17 @@
       }
     }
     .vision-text > .vision-text-content {
+      padding-left: 25px;
+      padding-right: 25px;
       text-align: center;
       line-height: 1.75;
+      > p {
+        width: 100%;
+      }
     }
   }
   .vision-icon-group {
+    justify-content: flex-start;
     overflow: visible;
     gap: 21px;
     padding: 0 21px;

@@ -23,6 +23,8 @@
   }
   &.is-show .gnb-layer {
     transform: translateY(0vh);
+    z-index: $z-layer;
+    opacity: 1;
   }
 }
 @include tablet {
@@ -117,7 +119,8 @@
   background-color: #000;
   width: 100vw;
   height: 100vh;
-  z-index: $z-layer;
+  z-index: -1;
+  opacity: 0;
   will-change: transform;
   transform: translateY(-100vh);
   transition: transform 1.2s ease-in-out;

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background</title>
+    <link rel="stylesheet" href="./../../assets/css/styles.css" />
+    <style>
+      @property --rotate {
+        syntax: "<angle>";
+        initial-value: 132deg;
+        inherits: false;
+      }
+
+      :root {
+        --card-height: 65vh;
+        --card-width: calc(var(--card-height) / 1.5);
+      }
+
+      body {
+        min-height: 100vh;
+        background: #212534;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        box-sizing: border-box;
+      }
+
+      .card {
+        position: relative;
+        border-radius: 50%;
+        background: #191c29;
+        width: 245px;
+        height: 245px;
+      }
+
+      .card::before {
+        content: "";
+        width: 265px;
+        height: 265px;
+        border-radius: 50%;
+        background: linear-gradient(
+          var(--rotate),
+          #5ddcff,
+          #3c67e3 43%,
+          #4e00c2
+        );
+        position: absolute;
+        z-index: -1;
+        top: -10px;
+        left: -10px;
+        animation: spin 2.5s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          --rotate: 0deg;
+        }
+        100% {
+          --rotate: 360deg;
+        }
+      }
+
+      a {
+        color: #212534;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-weight: bold;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card"></div>
+  </body>
+</html>

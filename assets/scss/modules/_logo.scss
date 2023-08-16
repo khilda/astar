@@ -1,0 +1,11 @@
+/* ##############################
+# components - button
+################################*/
+.logo {
+  &-icon {
+    background: transparent url("../images/logo_icon.svg") no-repeat 50% 50%;
+  }
+  &-roket {
+    background: transparent url("../images/logo_roket.svg") no-repeat 50% 50%;
+  }
+}

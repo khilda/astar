@@ -11,6 +11,8 @@ https://codepen.io/petersonby/pen/JBrYKG
 
 ## 가장자리 빛나는거
 https://codepen.io/gayane-gasparyan/pen/jOmaBQK
+## 마우스에 따른 glow 효과
+https://codepen.io/kanajetzt/pen/LJJqOy
 
 ## 무한스크롤(아이템)
 https://codepen.io/ykadosh/pen/KKezJzz

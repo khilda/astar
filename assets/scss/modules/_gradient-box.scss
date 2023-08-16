@@ -1,0 +1,44 @@
+.text-box {
+  display: block;
+  border: 1px solid #ffffff29;
+  background: linear-gradient(
+    180deg,
+    rgba(86, 88, 96, 0.26) 0%,
+    rgba(88, 90, 97, 0.08) 73.44%,
+    rgba(69, 70, 74, 0) 100%
+  );
+  padding: 40px 52px;
+}
+@mixin bg-gradient($light: true) {
+  @if $light {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 22, 24, 1) 0%,
+      rgba(8, 9, 12, 1) 73.44%,
+      rgba(2, 2, 5, 1) 100%
+    );
+  } @else {
+    background: linear-gradient(
+      180deg,
+      rgba(46, 47, 53, 1) 0%,
+      rgba(9, 9, 12, 1) 73.44%,
+      rgba(3, 3, 6, 1) 100%
+    );
+  }
+}
+@mixin gradient-box($name) {
+  .#{$name} {
+    border-radius: 15px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.39),
+      rgba(255, 255, 255, 0.08)
+    );
+    padding: 1px;
+    > .#{$name}-content {
+      @include bg-gradient;
+      border-radius: 15px;
+      @content;
+    }
+  }
+}

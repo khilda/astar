@@ -1,3 +1,145 @@
 //************************************
 //# pages - about
 //************************************
+.about {
+  .img-desc-group,
+  .vision-icon-group {
+    margin-top: $section-margin;
+  }
+}
+.img-desc-group {
+  .img-visual {
+    .visual-box {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      background: transparent url("../images/about_img_vision_01.png") no-repeat
+        0 0;
+      width: 350px;
+      height: 265px;
+      .outline-circle {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .logo-icon {
+        position: absolute;
+        right: 50px;
+        bottom: 0;
+        background-color: #000;
+        background-size: 120%;
+        border: 3px solid $c-primary;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        z-index: 1;
+      }
+    }
+    .img-summary {
+      font-size: 16px;
+      color: $c-primary;
+      font-weight: 500;
+    }
+    .img-logo {
+      background: transparent url("../images/logo_letter.svg") no-repeat 50% 50% /
+        cover;
+      width: 110px;
+      height: 20px;
+      font-size: 0;
+    }
+  }
+}
+
+@property --outline-rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+@keyframes outline-spin {
+  0% {
+    --outline-rotate: 0deg;
+  }
+  100% {
+    --outline-rotate: 360deg;
+  }
+}
+
+.outline-circle {
+  border-radius: 50%;
+  background: linear-gradient(
+    var(--outline-rotate),
+    rgba(83, 247, 202, 1),
+    rgba(83, 247, 208, 0.3) 60%,
+    rgba(83, 247, 208, 0)
+  );
+  width: 245px;
+  height: 245px;
+  animation: outline-spin 2.5s linear infinite;
+  &::before {
+    content: "";
+    width: 239px;
+    height: 239px;
+    border-radius: 50%;
+    background: #000 url("../images/about_img_vision_01.png") no-repeat 50% -10px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    transform: scale(0.8);
+    filter: blur(100px);
+    background-image: linear-gradient(
+      var(--outline-rotate),
+      rgba(83, 247, 202, 1),
+      rgba(83, 247, 208, 0.3) 60%,
+      rgba(83, 247, 208, 0)
+    );
+    opacity: 1;
+    transition: opacity 0.5s;
+    animation: outline-spin 2.5s linear infinite;
+  }
+}
+
+.vision-icon-group {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  .icon-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 72px;
+    .icon {
+      display: block;
+      width: 180px;
+      height: 180px;
+    }
+    .desc-tit {
+      position: absolute;
+      top: 230px;
+      border-radius: 80px;
+      background-color: $c-primary;
+      width: 200px;
+      line-height: 56px;
+      text-align: center;
+      font-weight: 600;
+      color: #000;
+    }
+    @include gradient-box(desc-txt) {
+      padding: 70px 47px 54px;
+      text-align: center;
+    }
+  }
+}

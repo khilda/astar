@@ -11,35 +11,40 @@
   .t-summary {
     font-size: 18px;
     color: $c-primary;
-    font-weight: 500;
+    font-weight: 600;
   }
   .t-title {
     line-height: 1.2;
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 600;
   }
 } //************************************
 //# Title
 //***********************************
 .h1 {
   font-size: 36px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.5;
 }
 .h2 {
   font-size: 36px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.5;
 }
 .h3 {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.5;
 }
 .h4 {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.5;
 }
 .h5 {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.5;
 }
 ///************************************
 //# Font color
@@ -48,4 +53,7 @@
   font-size: inherit;
   font-weight: inherit;
   color: $c-primary;
+}
+.fw-bold{
+  font-weight: 600;
 }

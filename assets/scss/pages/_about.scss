@@ -5,8 +5,13 @@
   .w-section .title-group {
     margin-bottom: $m-section-full;
   }
+  @include outline-circle(245px, 100px) {
+    &::before {
+      background: #000 url("../images/about_img_vision_01.png") no-repeat 50% -10px;
+    }
+  }
 }
-.img-desc-group {
+.about .img-desc-group {
   .img-visual {
     .visual-box {
       position: relative;
@@ -54,65 +59,7 @@
   }
 }
 
-@property --outline-rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
-}
-@keyframes outline-spin {
-  0% {
-    --outline-rotate: 0deg;
-  }
-  100% {
-    --outline-rotate: 360deg;
-  }
-}
-
-.outline-circle {
-  border-radius: 50%;
-  background: linear-gradient(
-    var(--outline-rotate),
-    rgba(83, 247, 202, 1),
-    rgba(83, 247, 208, 0.3) 60%,
-    rgba(83, 247, 208, 0)
-  );
-  width: 245px;
-  height: 245px;
-  animation: outline-spin 2.5s linear infinite;
-  &::before {
-    content: "";
-    width: 239px;
-    height: 239px;
-    border-radius: 50%;
-    background: #000 url("../images/about_img_vision_01.png") no-repeat 50% -10px;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    transform: scale(0.8);
-    filter: blur(100px);
-    background-image: linear-gradient(
-      var(--outline-rotate),
-      rgba(83, 247, 202, 1),
-      rgba(83, 247, 208, 0.3) 60%,
-      rgba(83, 247, 208, 0)
-    );
-    opacity: 1;
-    transition: opacity 0.5s;
-    animation: outline-spin 2.5s linear infinite;
-  }
-}
-
-.vision-icon-group {
+.about .vision-icon-group {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -148,13 +95,13 @@
       text-align: center;
       word-break: keep-all;
     }
-    .desc-txt{
+    .desc-txt {
       width: 100%;
     }
   }
 }
 
-.timeline-group {
+.about .timeline-group {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -235,7 +182,7 @@
   }
 }
 
-.crew-group {
+.about .crew-group {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 50px;
@@ -271,7 +218,7 @@
 //# Response
 //************************************
 @include tablet {
-  .img-desc-group {
+  .about .img-desc-group {
     .img-visual {
       .visual-box {
         background-size: 280px;
@@ -303,7 +250,7 @@
       }
     }
   }
-  .vision-icon-group .icon-item .desc-txt > .desc-txt-content {
+  .about .vision-icon-group .icon-item .desc-txt > .desc-txt-content {
     padding: 48px 20px 40px;
     line-height: 1.5;
   }
@@ -315,7 +262,7 @@
       margin-bottom: 50px;
     }
   }
-  .img-desc-group {
+  .about .img-desc-group {
     flex-direction: column;
     width: 100%;
     .img-visual {
@@ -365,7 +312,7 @@
       }
     }
   }
-  .vision-icon-group {
+  .about .vision-icon-group {
     justify-content: flex-start;
     overflow: visible;
     gap: 21px;
@@ -389,10 +336,10 @@
       font-size: 12px;
     }
   }
-  .timeline-group::before {
+  .about .timeline-group::before {
     top: -20px;
   }
-  .crew-group {
+  .about .crew-group {
     grid-template-columns: 1fr;
     .crew {
       grid-template-columns: 100px 1fr;

@@ -1,3 +1,102 @@
 //************************************
 //# pages - business
 //************************************
+.business {
+  .w-section .title-group {
+    margin-bottom: $m-section-full;
+  }
+  .img-desc-group {
+    .img-visual {
+      display: block;
+      width: 350px;
+      height: 343px;
+    }
+    .logo-avica,
+    .logo-copykle {
+      display: block;
+      background: transparent no-repeat 50% 50%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .logo-avica {
+      background-image: url("../images/business_avica.png");
+    }
+    .logo-copykle {
+      background-image: url("../images/business_copykle.png");
+    }
+  }
+
+  .logo-group {
+    max-width: 875px;
+  }
+  .customer-desc {
+    margin-top: 70px;
+    text-align: center;
+  }
+}
+.business-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include outline-circle(320px, 20px) {
+    z-index: 1;
+  }
+  .btn-link {
+    position: relative;
+    display: block;
+    width: 320px;
+    height: 320px;
+    margin: 0 -15px;
+  }
+  .link-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+    .link-tit {
+      font-size: 20px;
+      font-weight: 600;
+      color: $c-primary;
+      text-align: inherit;
+    }
+    .link-desc {
+      margin: 25px 0 35px;
+      line-height: 1.5;
+      text-align: inherit;
+    }
+    .link-icon {
+      display: block;
+      background: transparent url("../images/business_link_icon.png") no-repeat
+        50% 50%;
+      width: 16px;
+      height: 16px;
+      margin-top: 10px;
+    }
+  }
+}
+//************************************
+//# circle type2
+//************************************
+.business-link {
+  .btn-link-type2 {
+    @include gradient-circle(320px);
+    margin: 0 -15px;
+  }
+  @for $i from 1 through 4 {
+    .btn-link-type2:nth-child(#{$i}) {
+      &,
+      &::after {
+        animation-delay: $i * -0.3s;
+      }
+    }
+  }
+}

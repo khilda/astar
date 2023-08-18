@@ -7,14 +7,16 @@
   }
   .img-desc-group {
     .img-visual {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 350px;
       height: 343px;
     }
     .logo-avica,
     .logo-copykle {
       display: block;
-      background: transparent no-repeat 50% 50%;
+      background: transparent no-repeat 50% 50% / contain;
       width: 100%;
       height: 100%;
     }
@@ -39,16 +41,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  @include outline-circle(320px, 20px) {
-    z-index: 1;
-  }
-  .btn-link {
-    position: relative;
-    display: block;
-    width: 320px;
-    height: 320px;
-    margin: 0 -15px;
-  }
   .link-text {
     position: absolute;
     left: 0;
@@ -76,11 +68,26 @@
     .link-icon {
       display: block;
       background: transparent url("../images/business_link_icon.png") no-repeat
-        50% 50%;
+        50% 50% / cover;
       width: 16px;
-      height: 16px;
+      aspect-ratio: 1 / 1;
       margin-top: 10px;
     }
+  }
+}
+//************************************
+//# circle type2
+//************************************
+.business-link {
+  @include outline-circle(320px, 20px) {
+    z-index: 1;
+  }
+  .btn-link {
+    position: relative;
+    display: block;
+    width: 320px;
+    height: 320px;
+    margin: 0 -15px;
   }
 }
 //************************************
@@ -96,6 +103,59 @@
       &,
       &::after {
         animation-delay: $i * -0.3s;
+      }
+    }
+  }
+}
+//************************************
+//# Response
+//************************************
+@include tablet {
+  .business-link {
+    flex-wrap: wrap;
+    gap: 80px;
+    .btn-link,
+    .btn-link-type2 {
+      margin: 0;
+    }
+  }
+}
+@include mobile {
+  .business-link {
+    gap: 0px;
+    .btn-link,
+    .btn-link-type2 {
+      width: 60vmin;
+      max-width: 300px;
+      margin: -10vmin 0;
+      &:nth-child(even){
+        margin-left: auto;
+      }
+      &:nth-child(odd){
+        margin-right: auto;
+      }
+    }
+    .link-text {
+      .link-desc {
+        margin: 10px 0;
+      }
+    }
+  }
+  .business .img-desc-group {
+    flex-direction: column;
+    gap: 60px;
+    width: 100%;
+    .img-visual {
+      width: 120px;
+    }
+    .vision-text {
+      gap: 20px;
+      width: 100%;
+      padding-left: 32px;
+      padding-right: 32px;
+      text-align: center;
+      .h3 {
+        font-size: 12px;
       }
     }
   }

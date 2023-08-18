@@ -1,24 +1,13 @@
-.text-box {
-  display: block;
-  border: 1px solid #ffffff29;
-  background: linear-gradient(
-    180deg,
-    rgba(86, 88, 96, 0.26) 0%,
-    rgba(88, 90, 97, 0.08) 73.44%,
-    rgba(69, 70, 74, 0) 100%
-  );
-  padding: 40px 52px;
-}
-@mixin bg-gradient($light: true) {
+@function bg-gradient($light: true) {
   @if $light {
-    background: linear-gradient(
+    @return linear-gradient(
       180deg,
       rgba(11, 22, 24, 1) 0%,
       rgba(8, 9, 12, 1) 73.44%,
       rgba(2, 2, 5, 1) 100%
     );
   } @else {
-    background: linear-gradient(
+    @return linear-gradient(
       180deg,
       rgba(46, 47, 53, 1) 0%,
       rgba(9, 9, 12, 1) 73.44%,
@@ -26,24 +15,38 @@
     );
   }
 }
+
 @mixin gradient-box($name) {
   .#{$name} {
-    border-radius: 15px;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.39),
-      rgba(255, 255, 255, 0.08)
-    );
-    padding: 1px;
-    > .#{$name}-content {
-      @include bg-gradient;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 1px solid transparent;
       border-radius: 15px;
-      height: 100%;
-      @content;
+      background-image: bg-gradient(true),
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.39),
+          rgba(255, 255, 255, 0.08)
+        );
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      z-index: -1;
     }
+    @content;
   }
 }
 
+//************************************
+//# Circle
+//************************************
 @property --outline-rotate {
   syntax: "<angle>";
   initial-value: 90deg;
@@ -77,7 +80,7 @@
       rgba(83, 247, 208, 0) 85%
     );
     width: $width;
-    height: $width;
+    aspect-ratio: 1 / 1;
     animation: outline-spin 2.5s linear infinite;
     &::before {
       content: "";
@@ -138,7 +141,7 @@
   background-origin: border-box;
   background-clip: content-box, border-box;
   width: $width;
-  height: $width;
+  aspect-ratio: 1 / 1;
   color: #fff;
   text-align: center;
   animation: outline-spin 2.5s linear infinite;

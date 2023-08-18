@@ -3,12 +3,16 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  .img-visual {
+    flex: 1;
+  }
   @include gradient-box(vision-text) {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 20px;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 40px;
     padding: 40px 52px;
   }
 }

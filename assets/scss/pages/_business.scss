@@ -113,31 +113,44 @@
 @include tablet {
   .business-link {
     flex-wrap: wrap;
+    max-width: 721px;
+    width: 100%;
     gap: 80px;
     .btn-link,
     .btn-link-type2 {
       margin: 0;
+      width: calc(50% - 40px);
     }
   }
 }
 @include mobile {
   .business-link {
+    flex-direction: column;
     gap: 0px;
+    max-width: 390px;
+    width: 78vw;
     .btn-link,
     .btn-link-type2 {
-      width: 60vmin;
-      max-width: 300px;
-      margin: -10vmin 0;
-      &:nth-child(even){
+      width: 46vmin;
+      max-width: 200px;
+      margin: -35px 0;
+      &:nth-child(even) {
         margin-left: auto;
       }
-      &:nth-child(odd){
+      &:nth-child(odd) {
         margin-right: auto;
       }
     }
     .link-text {
+      .link-tit {
+        font-size: 12px;
+      }
       .link-desc {
+        font-size: 10px;
         margin: 10px 0;
+      }
+      .link-icon {
+        width: 10px;
       }
     }
   }
@@ -150,7 +163,7 @@
     }
     .vision-text {
       gap: 20px;
-      width: 100%;
+      min-width: 50vw;
       padding-left: 32px;
       padding-right: 32px;
       text-align: center;

@@ -8,6 +8,7 @@ export class Planet {
     this._curntPlanet = null;
   }
   init() {
+    if (!this._planetCont) return;
     this.angle = 0;
     this._planetCont.replaceChildren();
     let planet = "";

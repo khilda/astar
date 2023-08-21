@@ -1,6 +1,7 @@
 import { onClickBtn } from "./evtButton.js";
 import { Planet } from "./mPlanetAnimation.js";
 import { PageAnimation } from "./scrollAnimation.js";
+import { setLogoRollingClone } from "./animation.js";
 window.addEventListener("DOMContentLoaded", () => {
   const _container = document.querySelector(".container");
   if (_container.classList.contains("intro")) {
@@ -27,9 +28,7 @@ const fnComm = () => {
       _header.classList.add("is-show");
     }
     commLayout();
-    new PageAnimation();
   });
-
   // gnb-menu link
 
   onClickBtn(".gnb-menu", (e, _target) => {
@@ -37,6 +36,10 @@ const fnComm = () => {
     const menu = _target.dataset.link;
     window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
   });
+
+  // setAnimation
+  // new PageAnimation();
+  setLogoRollingClone();
 };
 
 const fnMobile = () => {};

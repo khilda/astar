@@ -5,7 +5,7 @@
   .w-section .title-group {
     margin-bottom: $m-section-full;
   }
-  @include outline-circle(245px, 100px) {
+  @include outline-circle(100px) {
     &::before {
       background: #000 url("../images/about_img_vision_01.png") no-repeat 50% -10px;
     }

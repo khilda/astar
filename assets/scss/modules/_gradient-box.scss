@@ -68,7 +68,7 @@
     --blur-rotate: 360deg;
   }
 }
-@mixin outline-circle($width, $blur) {
+@mixin outline-circle($blur) {
   .outline-circle {
     position: relative;
     display: block;
@@ -79,7 +79,7 @@
       rgba(83, 247, 208, 0.3) 60%,
       rgba(83, 247, 208, 0) 85%
     );
-    width: $width;
+    width: 100%;
     aspect-ratio: 1 / 1;
     animation: outline-spin 2.5s linear infinite;
     &::before {
@@ -87,11 +87,11 @@
       position: absolute;
       top: 3px;
       left: 3px;
+      right: 3px;
+      bottom: 3px;
       display: block;
       border-radius: 50%;
       background: #000 no-repeat 50% 50%;
-      width: calc($width - 6px);
-      height: calc($width - 6px);
     }
     &::after {
       content: "";
@@ -125,38 +125,49 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 3px solid transparent;
-  border-radius: 50%;
-  background-image: linear-gradient(
-      var(--outline-rotate),
-      rgba(0, 0, 0, 1),
-      rgba(0, 0, 0, 1)
-    ),
-    linear-gradient(
-      var(--outline-rotate),
-      rgba(83, 247, 202, 1),
-      rgba(83, 247, 208, 0.3) 60%,
-      rgba(83, 247, 208, 0) 85%
-    );
-  background-origin: border-box;
-  background-clip: content-box, border-box;
   width: $width;
   aspect-ratio: 1 / 1;
   color: #fff;
   text-align: center;
-  animation: outline-spin 2.5s linear infinite;
-  &::after {
+  &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    display: block;
+    bottom: 0;
+    border: 3px solid transparent;
     border-radius: 50%;
+    background-image: linear-gradient(
+        var(--outline-rotate),
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 1)
+      ),
+      linear-gradient(
+        var(--outline-rotate),
+        rgba(83, 247, 202, 1),
+        rgba(83, 247, 208, 0.3) 60%,
+        rgba(83, 247, 208, 0) 85%
+      );
+    background-origin: border-box;
+    background-clip: content-box, border-box;
     height: 100%;
     width: 100%;
+    animation: outline-spin 5s linear infinite;
+    opacity: .8;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    display: block;
+    border-radius: 50%;
     transform: rotate(var(--blur-rotate));
-    box-shadow: -5px 0px 5px 0px rgba(83, 247, 202, 0.5);
-    animation: outline-spin 2.5s linear infinite;
+    box-shadow: -5px 0px 10px 0px rgba(83, 247, 202, 0.8);
+    animation: outline-spin 5s linear infinite;
+    z-index: 1;
   }
 }

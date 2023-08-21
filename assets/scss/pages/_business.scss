@@ -79,14 +79,14 @@
 //# circle type2
 //************************************
 .business-link {
-  @include outline-circle(320px, 20px) {
+  @include outline-circle(20px) {
     z-index: 1;
   }
   .btn-link {
     position: relative;
     display: block;
     width: 320px;
-    height: 320px;
+    aspect-ratio: 1 / 1;
     margin: 0 -15px;
   }
 }

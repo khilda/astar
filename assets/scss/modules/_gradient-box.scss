@@ -1,22 +1,32 @@
-@function bg-gradient($light: true) {
+@function bg-gradient($light: false) {
   @if $light {
     @return linear-gradient(
       180deg,
-      rgba(11, 22, 24, 1) 0%,
-      rgba(8, 9, 12, 1) 73.44%,
-      rgba(2, 2, 5, 1) 100%
+      rgba(116, 119, 129, 0.6) 0%,
+      rgba(88, 90, 97, 0.08) 73.44%,
+      rgba(69, 70, 74, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.39),
+      rgba(255, 255, 255, 0.08)
     );
   } @else {
     @return linear-gradient(
-      180deg,
-      rgba(46, 47, 53, 1) 0%,
-      rgba(9, 9, 12, 1) 73.44%,
-      rgba(3, 3, 6, 1) 100%
-    );
+        180deg,
+        rgba(11, 22, 24, 1) 0%,
+        rgba(8, 9, 12, 1) 73.44%,
+        rgba(2, 2, 5, 1) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.39),
+        rgba(255, 255, 255, 0.08)
+      );
   }
 }
 
-@mixin gradient-box($name) {
+@mixin gradient-box($name, $light: false) {
   .#{$name} {
     position: relative;
     z-index: 1;
@@ -30,12 +40,7 @@
       bottom: 0;
       border: 1px solid transparent;
       border-radius: 15px;
-      background-image: bg-gradient(true),
-        linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.39),
-          rgba(255, 255, 255, 0.08)
-        );
+      background-image: bg-gradient($light);
       background-origin: border-box;
       background-clip: content-box, border-box;
       z-index: -1;
@@ -154,7 +159,7 @@
     height: 100%;
     width: 100%;
     animation: outline-spin 5s linear infinite;
-    opacity: .8;
+    opacity: 0.8;
   }
   &::after {
     content: "";

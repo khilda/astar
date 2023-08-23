@@ -356,5 +356,161 @@
       import { commLayout } from "./../../assets/js/main.js";
       commLayout();
     </script>
+    <script type="module">
+      import { AstarUtil, AstarInteraction } from './../../assets/js/interactionElement.js'
+      const wSections = document.querySelectorAll('main.container .w-section');
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          const [ title, content ] = Array.from(entry.target.children)
+          entry.target.style.transition = 'opacity 2s ease-in-out'
+          if (entry.isIntersecting) {
+            title.animate(
+              [
+                {
+                  opacity: 0,
+                  transform: 'translateY(-50px)',
+                },
+                {
+                  opacity: 1,
+                  transform: 'translateY(0px)',
+                },
+              ],
+              {
+                delay: 1000,
+                duration: 500,
+                easing: 'ease-out',
+                iterations: 1,
+                fill: 'both',
+                composite: 'add',
+              }
+            );
+            content.animate(
+              [
+                {
+                  opacity: 0,
+                  transform: 'translateY(50px)',
+                },
+                {
+                  opacity: 1,
+                  transform: 'translateY(0px)',
+                },
+              ],
+              {
+                delay: 2000,
+                duration: 500,
+                easing: 'ease-out',
+                iterations: 1,
+                fill: 'both',
+                composite: 'add',
+              }
+            );
+            entry.target.style.opacity = 1
+          } else {
+            entry.target.style.opacity = 0
+          }
+        })
+      }, {
+        threshold: 1 
+      })
+
+      wSections.forEach(wSection => {
+        io.observe(wSection)
+      })
+      const titleGroups = document.querySelectorAll('.title-group');
+
+      titleGroups.forEach(titleGroup => {
+        const title = titleGroup.querySelector('.t-title'),
+              summary = titleGroup.querySelector('.t-summary');
+        new AstarInteraction(
+          titleGroup,
+          [
+            {
+              type: 'twinkle',
+              min: AstarUtil.makeRandomIndex(5, 7),
+              max: AstarUtil.makeRandomIndex(8, 10),
+              time: AstarUtil.makeRandomIndex(3000, 8000),
+            },
+            {
+              type: 'scale',
+              min: AstarUtil.makeRandomIndex(8, 9),
+              max: AstarUtil.makeRandomIndex(10, 11),
+              time: AstarUtil.makeRandomIndex(3600, 8000),
+            },
+          ]
+        )
+        new AstarInteraction(
+          title,
+          [
+            {
+              type: 'rotate',
+              start: -AstarUtil.makeRandomIndex(0, 3),
+              end: AstarUtil.makeRandomIndex(0, 3), 
+              time:  AstarUtil.makeRandomIndex(5000, 8000),
+            },
+          ]
+        )
+        new AstarInteraction(
+          summary,
+          [
+            {
+              type: 'translate',
+              direction: 'bottom',
+              interval: 'xs', 
+              time: AstarUtil.makeRandomIndex(1000, 10000),
+            },
+          ]
+        )
+      })
+      
+      const mainContents = document.querySelectorAll('[class^=main]');
+      mainContents.forEach(content => {
+        new AstarInteraction(
+          content,
+          [
+            {
+              type: 'translate',
+              direction: 'top',
+              interval: 'xs', 
+              time: AstarUtil.makeRandomIndex(7000, 10000),
+            },
+          ]
+        )
+      })
+
+      const mainAbout = document.querySelector('.main-about'),
+            aboutWrap = mainAbout.querySelector('.about-wrap'),
+            about = aboutWrap.querySelectorAll('.about');
+
+      about.forEach(content => {
+        new AstarInteraction(
+          content,
+          [
+            {
+              type: 'translate',
+              direction: 'bottom',
+              interval: 'xs', 
+              time: AstarUtil.makeRandomIndex(1000, 8000),
+            },
+          ]
+        )
+      })
+
+      const mainBusiness = document.querySelector('.main-business'),
+            businessCard = mainBusiness.querySelectorAll('.business-card');
+
+      businessCard.forEach(content => {
+        new AstarInteraction(
+          content,
+          [
+            {
+              type: 'translate',
+              direction: 'bottom',
+              interval: 'xs', 
+              time: AstarUtil.makeRandomIndex(1000, 8000),
+            },
+          ]
+        )
+      })
+    </script>
   </body>
 </html>

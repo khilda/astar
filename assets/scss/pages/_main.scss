@@ -18,7 +18,6 @@
   flex-wrap: wrap;
   .logo-about {
     width: 212px;
-    margin-top: 80px;
   }
   .about-wrap {
     position: relative;
@@ -49,7 +48,7 @@
 }
 .main-vision {
   position: relative;
-  margin-top: 62px;
+  width: 100%;
   .logo-vision {
     position: absolute;
     top: 186px;
@@ -65,6 +64,7 @@
     align-items: flex-start;
     justify-content: center;
     width: 955px;
+    margin: 0 auto;
     aspect-ratio: 1 / 0.424;
   }
   .cylinder {
@@ -79,7 +79,6 @@
       rgba(84, 250, 210, 0.1)
     );
     width: 680px;
-    aspect-ratio: 1/0.3897;
     margin: -61px 0;
     &:nth-child(odd) {
       .cyl-txt {
@@ -326,8 +325,8 @@
       width: 15vmin;
     }
     .vision-cylinder {
-      max-width: 955px;
-      width: 100%;
+      max-width: 705px;
+      width: 85%;
     }
     .cylinder {
       max-width: 680px;
@@ -352,6 +351,16 @@
     }
   }
 }
+@include tablet-only {
+  .main-business {
+    gap: 20px;
+    .business-card {
+      width: calc(33.3333vw - 36px);
+      height: auto;
+      aspect-ratio: 1/1.38;
+    }
+  }
+}
 @include mobile {
   .main {
     .section-desc {
@@ -366,10 +375,18 @@
       display: none;
     }
     .about-wrap {
-      width: 100%;
-      gap: 0 24px;
+      justify-content: flex-start;
+      order: 2;
+      gap: 0 20px;
+      width: 100vw;
+      padding-left: 21px;
+      padding-right: 21px;
+      padding-bottom: 21px;
+      overflow-x: scroll;
       margin-top: 0px;
+      overflow-x: scroll;
       .about {
+        flex: none;
         width: 66vw;
       }
       .about:nth-child(odd) {
@@ -416,8 +433,16 @@
     margin: 0 auto 45px;
   }
   .main-business {
+    justify-content: flex-start;
     order: 2;
+    gap: 20px;
+    width: 100vw;
+    padding-left: 21px;
+    padding-right: 21px;
+    padding-bottom: 21px;
+    overflow-x: scroll;
     .business-card {
+      flex: none;
       height: 250px;
     }
     .card-txt,
@@ -479,5 +504,58 @@
       font-size: 12px;
       text-align: center;
     }
+  }
+}
+
+//************************************
+//# page interaction
+//************************************
+@include desktop-tablet {
+  .section-desc {
+    transition: all 1.2s 0.3s;
+    opacity: 0;
+  }
+  .main .isPageActive .section-desc {
+    opacity: 1;
+  }
+  .main-about .logo-about {
+    transition: all 1.2s;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .main .isPageActive .main-about .logo-about {
+    opacity: 1;
+    transform: none;
+  }
+  .main-about .about-wrap .about {
+    transition: all 0.5s;
+    opacity: 0;
+    transform: translateY(50px);
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transition-delay: $i * 0.5s;
+      }
+    }
+  }
+  .main .isPageActive .about-wrap .about {
+    opacity: 1;
+    transform: none;
+  }
+  .cylinder {
+    transition: all 1.2s;
+  }
+  .main-business .business-card {
+    transition: all 0.5s;
+    opacity: 0;
+    transform: translateY(5px);
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transition-delay: $i * 0.5s;
+      }
+    }
+  }
+  .main .isPageActive .main-business .business-card {
+    opacity: 1;
+    transform: none;
   }
 }

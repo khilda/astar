@@ -143,6 +143,11 @@ $w-desktop: 1180px; // 1180 ~
     @content;
   }
 }
+@mixin desktop-tablet {
+  @media (min-width: $w-tablet) {
+    @content;
+  }
+}
 @mixin tablet {
   @media (max-width: ($w-desktop)) {
     @content;

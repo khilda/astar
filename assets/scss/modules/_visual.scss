@@ -291,11 +291,14 @@
   }
   .v-prev,
   .v-next {
-    width: auto;
+    width: calc(50vw - 170px);
     height: 340px;
     .img-plant {
       width: 115px;
       height: 230px;
+    }
+    .btn-link {
+      font-size: 15px;
     }
     .animate-arrow {
       width: 25x;
@@ -323,6 +326,9 @@
       .v-info-text {
         align-items: center;
         text-align: center;
+      }
+      .v-info-text {
+        font-size: 16px;
       }
     }
     .v-desc {
@@ -405,6 +411,144 @@
     }
     .m-desc {
       display: flex;
+    }
+  }
+}
+
+//************************************
+//# Plant type1
+//************************************
+.v-crnt {
+  gap: 50px;
+}
+.v-crnt .plant.type1 {
+  position: relative;
+  border-radius: 50%;
+  width: 320px;
+  aspect-ratio: 1/1;
+  .background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: url("./../images/img_star_main.png") no-repeat 50% 50% / 480px;
+    z-index: 1;
+    transform-origin: 80% 50%;
+  }
+  .effect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .light {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background-image: radial-gradient(
+      closest-corner at 80% 60%,
+      rgba(255, 255, 255, 0.5) 10%,
+      rgba(255, 255, 255, 0) 120%
+    );
+    z-index: 1;
+    filter: blur(40px);
+    animation: spin 8s linear infinite;
+  }
+  .shdow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background-image: radial-gradient(
+      farthest-corner at 40px 40px,
+      rgba(0, 0, 0, 0.67) 10%,
+      rgba(0, 0, 0, 0) 120%
+    );
+    z-index: 1;
+    transform-origin: 80% 50%;
+    filter: blur(40px);
+    animation: spin 8s linear infinite;
+  }
+
+  .luminor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(-225deg, #fff 0%, #50ffeb 52%, #fff 100%);
+    border-radius: 50%;
+    animation: spin 8s linear infinite;
+    opacity: 0.8;
+    span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: inherit;
+
+      &:nth-child(1) {
+        filter: blur(5px);
+      }
+
+      &:nth-child(2) {
+        filter: blur(10px);
+      }
+
+      &:nth-child(3) {
+        filter: blur(25px);
+      }
+
+      &:nth-child(4) {
+        filter: blur(50px);
+      }
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #222;
+      border-radius: inherit;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+@include tablet {
+  .v-crnt .plant.type1 {
+    width: 240px;
+    & + .v-info {
+      top: calc(20vmin + 280px);
+    }
+  }
+}
+@include mobile {
+  .v-crnt {
+    padding-top: 40px;
+    .plant.type1 {
+      width: 180px;
+      & + .v-info {
+        top: calc(20vmin + 240px);
+      }
     }
   }
 }

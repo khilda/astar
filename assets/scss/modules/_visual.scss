@@ -103,6 +103,54 @@
     width: 420px;
     height: 420px;
   }
+  > .plant {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 420px;
+    height: 420px;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      box-shadow: 10px 10px 100px 5px rgba(80, 255, 235, 0.6);
+      animation: rotate 3s linear infinite;
+      @keyframes rotate {
+        0% {
+          transform: translate(-50%, -50%) rotate(0);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+    }
+    > .img-plant {
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 270px;
+        height: 270px;
+        border-radius: 50%;
+        background: radial-gradient(
+          farthest-corner at 60% 14%,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 80%
+        );
+        // animation: rotate 3s linear infinite;
+      }
+    }
+  }
   .v-info {
     .title-group {
       align-items: flex-start;
@@ -136,7 +184,7 @@
     }
     .animate-scroll-down {
       // @include mouse-wheel;
-      @include fill-arrow
+      @include fill-arrow;
     }
   }
   .m-desc {
@@ -173,7 +221,7 @@
   }
   // 모바일 전용 인터렉션
   .p-container {
-    border: 3px solid #eee;
+    background-color: rgba(217, 217, 217, 0.1);
     border-radius: 50%;
     width: 300px;
     height: 300px;
@@ -181,7 +229,7 @@
     .planet {
       position: absolute;
       border-radius: 50%;
-      background-color: #f00;
+      background: transparent no-repeat 50% 50% / 50px 50px;
       width: 30px;
       height: 30px;
       transition: transform 0.4s linear;
@@ -194,48 +242,56 @@
     }
     .planet {
       &:nth-child(1) {
-        background: #3399ff;
+        background-image: url("./../images/img_star_main.png");
         top: -15px;
         left: 0;
         right: 0;
         margin: auto;
+        box-shadow: 0px 0px 30px 5px rgba(80, 255, 235, 0.6);
       }
       &:nth-child(2) {
-        background: #fdb05e;
+        background-image: url("./../images/img_star_about.png");
         right: 28px;
         top: 26px;
+        box-shadow: 0px 0px 30px 5px rgba(240, 158, 72, 0.6);
       }
       &:nth-child(3) {
-        background: #996633;
+        background-image: url("./../images/img_star_business.png");
         right: -16px;
         bottom: 132px;
+        box-shadow: 0px 0px 30px 5px rgba(211, 103, 24, 0.5);
       }
       &:nth-child(4) {
-        background: #8a8975;
+        background-image: url("./../images/img_star_company.png");
         right: 28px;
         bottom: 26px;
+        box-shadow: 0px 0px 30px 5px rgba(246, 128, 255, 0.5);
       }
       &:nth-child(5) {
-        background: #3399ff;
+        background-image: url("./../images/img_star_main.png");
         bottom: -15px;
         left: 0;
         right: 0;
         margin: auto;
+        box-shadow: 0px 0px 30px 5px rgba(80, 255, 235, 0.6);
       }
       &:nth-child(6) {
-        background: #fdb05e;
+        background-image: url("./../images/img_star_about.png");
         left: 28px;
         bottom: 26px;
+        box-shadow: 0px 0px 30px 5px rgba(240, 158, 72, 0.6);
       }
       &:nth-child(7) {
-        background: #996633;
+        background-image: url("./../images/img_star_business.png");
         left: -16px;
         top: 132px;
+        box-shadow: 0px 0px 30px 5px rgba(211, 103, 24, 0.5);
       }
       &:nth-child(8) {
-        background: #8a8975;
+        background-image: url("./../images/img_star_company.png");
         left: 28px;
         top: 26px;
+        box-shadow: 0px 0px 30px 5px rgba(246, 128, 255, 0.5);
       }
     }
   }
@@ -265,11 +321,11 @@
 //************************************
 //# Visual animation
 //************************************
-.visual-area{
+.visual-area {
   opacity: 0;
-  transition: opacity 1.5s .7s;
+  transition: opacity 1.5s 0.7s;
 }
-.is-animate .visual-area{
+.is-animate .visual-area {
   opacity: 1;
 }
 

@@ -38,7 +38,7 @@ const fnComm = () => {
   });
 
   // setAnimation
-  // new PageAnimation();
+  new PageAnimation();
   setLogoRollingClone();
 };
 

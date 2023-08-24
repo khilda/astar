@@ -10,37 +10,44 @@ export class PageAnimation {
   #idx = 0;
 
   init() {
-    if (window.innerWidth < 720) {
-      this.destroy();
-      return;
-    }
+    if (window.innerWidth < 720) this.destroy();
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
 
     this.setActiveDom();
-    window.addEventListener("resize", this.resize);
-    window.addEventListener("wheel", this.wheel);
+    this.addEvt("wheel", this.getWheelDir);
+    this.addEvt("resize", (e) => {
+      if (window.innerWidth < 375) this.destroy();
+    });
   }
-  resize() {
-    if (window.innerWidth < 720) {
-      this.destroy();
-      return;
+  addEvt(type, listener, useCapture = false) {
+    window.addEventListener(type, (e) => listener(e, this), useCapture);
+    this.#listener[this.#idx] = { type, listener, useCapture };
+    this.#idx++;
+  }
+  removeEvt(type) {
+    const listen = this.#listener[type];
+    if (listen) {
+      window.removeEventListener(
+        listen.type,
+        listen.listener,
+        listen.useCapture
+      );
+      delete this.#listener[type];
     }
   }
-  wheel(e) {
-    console.log(this, e);
-    this.wheelValue = e.wheelDelta ?? e.deltaY;
-    this.wheelDir = Math.max(-1, Math.min(1, this.wheelValue));
-    this.setActiveDom();
-    return { wheel: this.wheelValue, dir: this.wheelDir };
-  }
   destroy() {
-    console.log(window.innerWidth);
     document.documentElement.removeAttribute("style");
     document.body.removeAttribute("style");
     this._sections = null;
     this._curDom = null;
-    window.removeEventListener("wheel", this.getWheelDir);
+    this.removeEvt("wheel");
+  }
+  getWheelDir(e, _this) {
+    _this.wheelValue = e.wheelDelta ?? e.deltaY;
+    _this.wheelDir = Math.max(-1, Math.min(1, _this.wheelValue));
+    _this.setActiveDom();
+    return { wheel: _this.wheelValue, dir: _this.wheelDir };
   }
   setActiveDom() {
     if (!this._sections) {

@@ -1,16 +1,16 @@
 @function bg-gradient($light: false) {
   @if $light {
     @return linear-gradient(
-      180deg,
-      rgba(116, 119, 129, 0.6) 0%,
-      rgba(88, 90, 97, 0.08) 73.44%,
-      rgba(69, 70, 74, 0) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.39),
-      rgba(255, 255, 255, 0.08)
-    );
+        180deg,
+        rgba(116, 119, 129, 0.6) 0%,
+        rgba(88, 90, 97, 0.08) 73.44%,
+        rgba(69, 70, 74, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.39),
+        rgba(255, 255, 255, 0.08)
+      );
   } @else {
     @return linear-gradient(
         180deg,
@@ -54,7 +54,7 @@
 //************************************
 @property --outline-rotate {
   syntax: "<angle>";
-  initial-value: 90deg;
+  initial-value: 0deg;
   inherits: false;
 }
 @property --blur-rotate {
@@ -141,25 +141,21 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: 3px solid transparent;
     border-radius: 50%;
     background-image: linear-gradient(
-        var(--outline-rotate),
-        rgba(0, 0, 0, 1),
-        rgba(0, 0, 0, 1)
-      ),
-      linear-gradient(
-        var(--outline-rotate),
-        rgba(83, 247, 202, 1),
-        rgba(83, 247, 208, 0.3) 90%,
-        rgba(83, 247, 208, 0) 85%
-      );
+      90deg,
+      rgba(83, 247, 202, 1),
+      rgba(83, 247, 208, 0) 30%,
+      rgba(83, 247, 208, 0) 80%,
+      rgba(83, 247, 208, 0) 100%
+    );
     background-origin: border-box;
     background-clip: content-box, border-box;
     height: 100%;
     width: 100%;
+    transform: rotate(var(--outline-rotate));
     animation: outline-spin 5s linear infinite;
-    opacity: 0.8;
+    opacity: 1;
   }
   &::after {
     content: "";
@@ -170,8 +166,9 @@
     bottom: 3px;
     display: block;
     border-radius: 50%;
+    background-color: rgba(0, 0, 0, 1);
     transform: rotate(var(--blur-rotate));
-    box-shadow: -5px 0px 10px 0px rgba(83, 247, 202, 1);
+    box-shadow: -5px 0px 6px 0px rgb(83, 247, 202);
     animation: outline-spin 5s linear infinite;
     z-index: 1;
   }

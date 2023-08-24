@@ -3,7 +3,7 @@ export class PageAnimation {
     this._sections = null;
     this._curDom = null;
     this.wheelValue = 0;
-    this.wheelDir = null;
+    this.wheelDir = 0;
     this.isPC = true;
 
     this.scrollHandler = this.handleScroll.bind(this);
@@ -44,13 +44,13 @@ export class PageAnimation {
   addScrollListener() {
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
-    window.addEventListener("scroll", this.scrollHandler);
+    window.addEventListener("wheel", this.scrollHandler);
   }
 
   removeScrollListener() {
     document.documentElement.removeAttribute("style");
     document.body.removeAttribute("style");
-    window.removeEventListener("scroll", this.scrollHandler);
+    window.removeEventListener("wheel", this.scrollHandler);
   }
 
   updateCurrentSection() {
@@ -64,19 +64,18 @@ export class PageAnimation {
       let prevIdx = Array.from(this._sections).indexOf(this._curDom);
       let idx = prevIdx < 0 ? this._sections.length : prevIdx;
       idx -= this.wheelDir;
-
       let scrollTo = 0;
       if (idx < 0) {
         idx = 0;
         return;
       } else if (idx < this._sections.length) {
         this._curDom = this._sections[idx];
+        this._curDom.classList.add("isPageActive");
         scrollTo = this._curDom.offsetTop;
       } else {
         this._curDom = null;
         scrollTo = document.documentElement.getBoundingClientRect().height;
       }
-      this._curDom.classList.add("isPageActive");
       window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
     } else {
       // 스크롤 범위 체크

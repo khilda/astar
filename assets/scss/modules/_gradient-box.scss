@@ -69,8 +69,8 @@
     --blur-rotate: 0deg;
   }
   100% {
-    --outline-rotate: 360deg;
-    --blur-rotate: 360deg;
+    --outline-rotate: 359deg;
+    --blur-rotate: 359deg;
   }
 }
 @mixin outline-circle($blur) {
@@ -151,7 +151,7 @@
       linear-gradient(
         var(--outline-rotate),
         rgba(83, 247, 202, 1),
-        rgba(83, 247, 208, 0.3) 60%,
+        rgba(83, 247, 208, 0.3) 90%,
         rgba(83, 247, 208, 0) 85%
       );
     background-origin: border-box;

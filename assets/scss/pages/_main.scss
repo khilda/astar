@@ -511,13 +511,14 @@
 //# page interaction
 //************************************
 @include desktop-tablet {
-  .section-desc {
-    transition: all 1.2s 0.3s;
-    opacity: 0;
-  }
   .main.type1 {
+    .section-desc {
+      transition: all 1.5s;
+      opacity: 0;
+    }
     .isPageActive .section-desc {
       opacity: 1;
+      transition-delay: 0.5s;
     }
     .main-about .logo-about {
       transition: all 1.2s;
@@ -527,20 +528,21 @@
     .isPageActive .main-about .logo-about {
       opacity: 1;
       transform: none;
+      transition-delay: 0.5s;
     }
     .main-about .about-wrap .about {
       transition: all 0.5s;
       opacity: 0;
       transform: translateY(50px);
-      @for $i from 1 through 3 {
-        &:nth-child(#{$i}) {
-          transition-delay: $i * 0.5s;
-        }
-      }
     }
     .isPageActive .about-wrap .about {
       opacity: 1;
       transform: none;
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i * 0.5s + 0.3s;
+        }
+      }
     }
     .cylinder {
       transition: all 1.2s;
@@ -549,15 +551,15 @@
       transition: all 0.5s;
       opacity: 0;
       transform: translateY(5px);
+    }
+    .isPageActive .main-business .business-card {
+      opacity: 1;
+      transform: none;
       @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
           transition-delay: $i * 0.5s;
         }
       }
-    }
-    .isPageActive .main-business .business-card {
-      opacity: 1;
-      transform: none;
     }
   }
 }

@@ -26,6 +26,7 @@
         position: absolute;
         top: 10px;
         left: 50%;
+        width: 240px;
         transform: translateX(-50%);
       }
       .logo-icon {
@@ -89,6 +90,7 @@
       text-align: center;
       font-weight: 600;
       color: #000;
+      z-index: 2;
     }
     @include gradient-box(desc-txt) {
       padding: 70px 42px 54px;

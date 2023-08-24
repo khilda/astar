@@ -21,7 +21,7 @@ function appendShader() {
   colors.forEach((color, idx) => {
     if (color.name === _cls) {
       currentColor = color;
-      let nextIdx = idx + 1 > colors.length ? 0 : idx + 1;
+      let nextIdx = idx + 1 >= colors.length ? 0 : idx + 1;
       _next.classList.add(colors[nextIdx].name);
       let prevIdx = idx - 1 < 0 ? colors.length - 1 : idx - 1;
       _prev.classList.add(colors[prevIdx].name);

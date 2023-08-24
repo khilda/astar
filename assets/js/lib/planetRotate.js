@@ -1,17 +1,45 @@
 let renderer, scene, camera, circle, particle, luminor, halo, galaxy;
 const lights = [];
 const colors = [
-  new THREE.Color(0x4fffea), // main
-  new THREE.Color(0xffb94f), // about
-  new THREE.Color(0xfd720e), // business
-  new THREE.Color(0xe18fe8), // company
+  { name: "main", color: 0x4fffea, shadow: "0.314,1.,0.922" }, // main
+  { name: "about", color: 0xffb94f, shadow: "0.941,0.62,0.282" }, // about
+  { name: "business", color: 0xfd720e, shadow: "0.827,0.404,0.094" }, // business
+  { name: "company", color: 0xe18fe8, shadow: "0.965,0.502,1." }, // company
 ];
+let currentColor = null;
 const $target = document.querySelector(".v-crnt .img-plant");
 export const planetRotate = function () {
+  appendShader();
   init();
   animate();
 };
+function appendShader() {
+  // page
+  const _cls = document.querySelector(".container").classList[1];
+  const _prev = document.querySelector(".v-prev");
+  const _next = document.querySelector(".v-next");
+  colors.forEach((color, idx) => {
+    if (color.name === _cls) {
+      currentColor = color;
+      let nextIdx = idx + 1 >= colors.length ? 0 : idx + 1;
+      _next.classList.add(colors[nextIdx].name);
+      let prevIdx = idx - 1 < 0 ? colors.length - 1 : idx - 1;
+      _prev.classList.add(colors[prevIdx].name);
+    }
+  });
 
+  // append script
+  const _script = document.createElement("script");
+  _script.setAttribute("type", "x-shader/x-vertex");
+  const _vertex = _script.cloneNode();
+  _vertex.setAttribute("id", "vertexShader");
+  _vertex.textContent = `varying vec3 vNormal; void main() { vNormal = normalize( normalMatrix * normal ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }`;
+  document.body.appendChild(_vertex);
+  const _fragment = _script.cloneNode();
+  _fragment.setAttribute("id", "fragmentShader");
+  _fragment.textContent = `varying vec3 vNormal; void main() { float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 0.5 ) ), 4.0 ); gl_FragColor = vec4(${currentColor.shadow}, 0.5) * intensity; }`;
+  document.body.append(_fragment);
+}
 function init() {
   renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -41,19 +69,13 @@ function init() {
   const geom3 = new THREE.SphereGeometry(16, 32, 16);
 
   const mat = new THREE.MeshPhongMaterial({
-    color: 0x4fffea,
+    color: currentColor.color,
     emissive: 0x000000,
     shading: THREE.SmoothShading,
-    map: THREE.ImageUtils.loadTexture(
-      "https://upload.wikimedia.org/wikipedia/commons/2/2c/Generic_Celestia_asteroid_texture.jpg"
-    ),
-    bumpMap: THREE.ImageUtils.loadTexture(
-      "https://upload.wikimedia.org/wikipedia/commons/2/2c/Generic_Celestia_asteroid_texture.jpg"
-    ),
+    map: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
+    bumpMap: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
     bumpScale: 0.025,
-    specularMap: THREE.ImageUtils.loadTexture(
-      "https://upload.wikimedia.org/wikipedia/commons/2/2c/Generic_Celestia_asteroid_texture.jpg"
-    ),
+    specularMap: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
     specular: new THREE.Color("grey"),
   });
 
@@ -79,7 +101,7 @@ function init() {
   ball2.position.set(25, 5, 1);
   halo.add(ball2);
 
-  const ambientLight = new THREE.AmbientLight(0x37d9c5);
+  const ambientLight = new THREE.AmbientLight(currentColor.color);
   scene.add(ambientLight);
 
   const hemiLight = new THREE.HemisphereLight(0x000000, 0x111111, 20);

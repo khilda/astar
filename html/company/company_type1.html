@@ -54,8 +54,50 @@
         </div>
       </header>
       <main class="container company">
-        <section class="visual-area"></section>
-        <section class="w-section l-animate">
+        <section class="section visual-area" data-page>
+          <div class="visual-section">
+            <aside class="v-prev">
+              <div class="img-plant"></div>
+              <button class="btn-link" data-link="business">
+                BUSINESS
+                <span class="animate-arrow"></span>
+              </button>
+            </aside>
+            <article class="v-crnt">
+              <div class="img-plant">
+              </div>
+              <div class="v-info">
+                <hgroup class="title-group">
+                  <h5 class="t-summary">Company</h5>
+                  <h3 class="t-title">ASTAR's Goals</h3>
+                </hgroup>
+                <p class="v-info-text">
+                  감성 AI 엔진부터 Generative AI 까지 인공 지능에 <br />
+                  최적화된 분야로 독자적인 엔지니어랑과 기술력을 통해<br />
+                  서비스를 개발 및 운영하고 있습니다.
+                </p>
+              </div>
+              <div class="v-desc">
+                <p class="txt">아스타 은하계로 함께 떠나볼까요?</p>
+                <span class="animate-scroll-down"></span>
+              </div>
+              <div class="m-desc">
+                <ul class="p-container"></ul>
+                <div class="desc-text">
+                  <p class="txt">READ MORE</p>
+                  <span class="animate-scroll-down"></span>
+                </div>
+            </article>
+            <aside class="v-next">
+              <button class="btn-link" data-link="main">
+                INTRO
+                <span class="animate-arrow"></span>
+              </button>
+              <div class="img-plant"></div>
+            </aside>
+          </div>
+        </section>
+        <section class="w-section l-animate" data-page>
           <article class="animate-scroll">
             <div class="animate-content">
               <hgroup class="title-group">
@@ -85,7 +127,7 @@
             </div>
           </article>
         </section>
-        <section class="w-section">
+        <section class="w-section" data-page>
           <div class="join-group">
             <figure class="img-logo">
               <img src="../../assets/images/logo_icon.svg" alt="" />
@@ -127,6 +169,7 @@
         </div>
       </footer>
     </div>
+    <script src="./../../assets/js/lib/three.min.js"></script>
     <script type="module" src="./../../assets/js/main.js"></script>
   </body>
 </html>

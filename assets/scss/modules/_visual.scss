@@ -90,6 +90,22 @@
     }
   }
 }
+// images
+.v-prev,
+.v-next {
+  &.main .img-plant {
+    background-image: url("./../images/img_star_main.png");
+  }
+  &.about .img-plant {
+    background-image: url("./../images/img_star_about.png");
+  }
+  &.business .img-plant {
+    background-image: url("./../images/img_star_business.png");
+  }
+  &.company .img-plant {
+    background-image: url("./../images/img_star_company.png");
+  }
+}
 .v-crnt {
   flex: 1;
   display: flex;
@@ -552,6 +568,10 @@
   }
 }
 @include mobile {
+  .v-prev,
+  .v-next {
+    height: 300px;
+  }
   .v-crnt {
     padding-top: 40px;
     .plant.type1 {

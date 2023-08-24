@@ -72,14 +72,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 265px;
-    background: linear-gradient(
-      to right,
-      rgba(84, 250, 210, 0),
-      rgba(84, 250, 210, 0.1)
-    );
     width: 680px;
     margin: -61px 0;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 265px;
+      background: linear-gradient(
+        to right,
+        rgba(84, 250, 210, 0),
+        rgba(84, 250, 210, 0.1)
+      );
+    }
     &:nth-child(odd) {
       .cyl-txt {
         right: 98px;
@@ -87,11 +95,13 @@
       }
     }
     &:nth-child(even) {
-      background: linear-gradient(
-        to left,
-        rgba(84, 250, 210, 0),
-        rgba(84, 250, 210, 0.1)
-      );
+      &::before {
+        background: linear-gradient(
+          to left,
+          rgba(84, 250, 210, 0),
+          rgba(84, 250, 210, 0.1)
+        );
+      }
       flex-direction: row-reverse;
       margin-left: auto;
       .cyl-txt {
@@ -105,7 +115,7 @@
         color: $c-primary;
         font-size: 28px;
         font-weight: 600;
-        z-index: 1;
+        z-index: 2;
       }
     }
     .cyl-txt {
@@ -382,8 +392,8 @@
       padding-left: 21px;
       padding-right: 21px;
       padding-bottom: 21px;
-      overflow-x: scroll;
       margin-top: 0px;
+      overflow-y: hidden;
       overflow-x: scroll;
       .about {
         flex: none;
@@ -440,6 +450,7 @@
     padding-left: 21px;
     padding-right: 21px;
     padding-bottom: 21px;
+    overflow-y: hidden;
     overflow-x: scroll;
     .business-card {
       flex: none;
@@ -510,55 +521,90 @@
 //************************************
 //# page interaction
 //************************************
-@include desktop-tablet {
-  .main.type1 {
-    .section-desc {
-      transition: all 1.5s;
-      opacity: 0;
-    }
-    .isPageActive .section-desc {
-      opacity: 1;
-      transition-delay: 0.5s;
-    }
-    .main-about .logo-about {
-      transition: all 1.2s;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    .isPageActive .main-about .logo-about {
-      opacity: 1;
-      transform: none;
-      transition-delay: 0.5s;
-    }
-    .main-about .about-wrap .about {
-      transition: all 0.5s;
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    .isPageActive .about-wrap .about {
-      opacity: 1;
-      transform: none;
-      @for $i from 1 through 3 {
-        &:nth-child(#{$i}) {
-          transition-delay: $i * 0.5s + 0.3s;
-        }
+.main.type1 {
+  .section-desc {
+    transition: all 1.5s;
+    opacity: 0;
+  }
+  .isPageActive .section-desc {
+    opacity: 1;
+    transition-delay: 0.5s;
+  }
+  .main-about .logo-about {
+    transition: all 1.2s;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .isPageActive .main-about .logo-about {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.5s;
+  }
+  .main-about .about-wrap .about {
+    transition: all 0.5s;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  .isPageActive .about-wrap .about {
+    opacity: 1;
+    transform: none;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transition-delay: $i * 0.5s + 0.3s;
       }
     }
-    .cylinder {
+  }
+  .main-vision .logo-vision {
+    opacity: 0;
+    transition: opacity 1.2s 0s;
+  }
+  .cylinder {
+    &:nth-child(1) .cyl-ellipse {
+      transform: translateX(100%);
+    }
+    &:nth-child(2) .cyl-ellipse {
+      transform: translateX(-100%);
+    }
+    &::before {
+      transition: opacity 1.2s;
+      opacity: 0;
+    }
+    .cyl-ellipse {
       transition: all 1.2s;
     }
-    .main-business .business-card {
-      transition: all 0.5s;
+    .cyl-txt {
       opacity: 0;
-      transform: translateY(5px);
     }
-    .isPageActive .main-business .business-card {
+  }
+  .isPageActive .main-vision .logo-vision {
+    opacity: 1;
+    transition-delay: 1.5s;
+  }
+  .isPageActive .main-vision .cylinder {
+    &::before {
       opacity: 1;
+      transition-delay: 0.7s;
+    }
+    &:nth-child(1) .cyl-ellipse,
+    &:nth-child(2) .cyl-ellipse {
       transform: none;
-      @for $i from 1 through 3 {
-        &:nth-child(#{$i}) {
-          transition-delay: $i * 0.5s;
-        }
+    }
+    .cyl-txt {
+      opacity: 1;
+      transition-delay: 1.2s;
+    }
+  }
+  .main-business .business-card {
+    transition: all 0.5s;
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  .isPageActive .main-business .business-card {
+    opacity: 1;
+    transform: none;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transition-delay: $i * 0.5s;
       }
     }
   }

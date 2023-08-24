@@ -16,8 +16,21 @@ const fnIntro = () => {
   onClickBtn(".intro-link", (e, _target) => {
     window.location.href = `${window.location.origin}/html/layout.html`;
   });
+
+  descAnimation();
+  bgAnimation();
+  setTimeout(() => {
+    document.querySelector(".container").classList.add("is-animate");
+  }, 1000);
 };
 
+export const commLayout = () => {
+  bgAnimation();
+  planetRotate();
+  setTimeout(() => {
+    document.querySelector(".container").classList.add("is-animate");
+  }, 2000);
+};
 const fnComm = () => {
   onClickBtn(".gnb-toggle-btn", (e, _target) => {
     const _header = document.querySelector(".header");
@@ -58,41 +71,8 @@ const planetAnimate = () => {
 planetAnimate();
 
 /**
- * Intro background animation
+ * background animation
  */
-const starRotate = () => {
-  const _visualCont = document.querySelector(".visual-background.type2");
-  const _wrap = `<div class="origin"><div class="control"><ul class="galaxy"></ul></div></div>`;
-
-  _visualCont.innerHTML = _wrap;
-  let star = "";
-  for (let i = 0; i <= 200; i++) {
-    star += `<li class="star"></li>`;
-  }
-  _visualCont.querySelector(".galaxy").innerHTML = star;
-};
-
-export const introType01 = () => {
-  starRotate();
-  setTimeout(() => {
-    document.querySelector(".container").classList.add("is-animate");
-  }, 3000);
-};
-
-export const introType02 = () => {
-  descAnimation();
-  bgAnimation();
-  setTimeout(() => {
-    document.querySelector(".container").classList.add("is-animate");
-  }, 1000);
-};
-export const commLayout = () => {
-  bgAnimation();
-  planetRotate();
-  setTimeout(() => {
-    document.querySelector(".container").classList.add("is-animate");
-  }, 2000);
-};
 export const bgAnimation = () => {
   const _visualCont = document.querySelector(".visual-background");
   const cls = Array.from(_visualCont.classList);

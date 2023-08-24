@@ -82,15 +82,8 @@ export class PageAnimation {
       // 스크롤 범위 체크
       const scrollY = window.scrollY;
       this._sections.forEach((el) => {
-        if (
-          el.getBoundingClientRect().top + window.innerHeight / 2 <
-          window.innerHeight
-        ) {
-          console.log(el);
-          console.log(
-            el.getBoundingClientRect().top + +window.innerHeight / 2,
-            window.innerHeight
-          );
+        // 해당 Dom이 화면 중간위치하면 active
+        if (el.offsetTop - window.innerHeight / 2 < scrollY) {
           el.classList.add("isPageActive");
         }
       });

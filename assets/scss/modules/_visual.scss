@@ -552,6 +552,10 @@
   }
 }
 @include mobile {
+  .v-prev,
+  .v-next {
+    height: 300px;
+  }
   .v-crnt {
     padding-top: 40px;
     .plant.type1 {

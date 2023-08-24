@@ -371,9 +371,9 @@
 
         const animationTitleGroup = new AAni(titleGroup, AAni.getKeyframes('translate', -4, 4, 'bottom'), AAni.setOptions({ iterations: Infinity })),
               animationTitleGroup2 = new AAni(titleGroup, AAni.getKeyframes('scale', 0.95, 1), AAni.setOptions({ iterations: Infinity, duration: 3000 })),
-              animationTitle = new AAni(title, AAni.getKeyframes('translate', 0, 16, 'top'), AAni.setOptions({ iterations: Infinity })),
+              animationTitle = new AAni(title, AAni.getKeyframes('translate', 0, 8, 'top'), AAni.setOptions({ iterations: Infinity })),
               animationTitle2 = new AAni(title, AAni.getKeyframes('opacity', 0.8, 1), AAni.setOptions({ iterations: Infinity })),
-              animationsummary = new AAni(title, AAni.getKeyframes('translate', 0, 16, 'bottom'), AAni.setOptions({ iterations: Infinity })),
+              animationsummary = new AAni(title, AAni.getKeyframes('translate', 0, 8, 'bottom'), AAni.setOptions({ iterations: Infinity })),
               animationsummary2 = new AAni(summary, AAni.getKeyframes('rotate', -4, 3), AAni.setOptions({ iterations: Infinity }));
       })
       
@@ -410,8 +410,10 @@
           if (entry.isIntersecting) {
             animateLogo.play()
             animateLogo2.play()
-            animateAbouts[0].play()
-            animateAbouts2[0].play()
+            setTimeout(() => {
+              animateAbouts[0].play()
+              animateAbouts2[0].play()
+            }, 1000)
             observer.unobserve(entry.target);
           } else {
           }

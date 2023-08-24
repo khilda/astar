@@ -369,17 +369,30 @@
         const title = titleGroup.querySelector('.t-title'),
               summary = titleGroup.querySelector('.t-summary');
 
-        const animationTitleGroup = new AAni(titleGroup, AAni.getKeyframes('translate', -4, 4, 'bottom'), AAni.setOptions({ iterations: Infinity })),
-              animationTitleGroup2 = new AAni(titleGroup, AAni.getKeyframes('scale', 0.95, 1), AAni.setOptions({ iterations: Infinity, duration: 3000 })),
-              animationTitle = new AAni(title, AAni.getKeyframes('translate', 0, 8, 'top'), AAni.setOptions({ iterations: Infinity })),
-              animationTitle2 = new AAni(title, AAni.getKeyframes('opacity', 0.8, 1), AAni.setOptions({ iterations: Infinity })),
-              animationsummary = new AAni(title, AAni.getKeyframes('translate', 0, 8, 'bottom'), AAni.setOptions({ iterations: Infinity })),
-              animationsummary2 = new AAni(summary, AAni.getKeyframes('rotate', -4, 3), AAni.setOptions({ iterations: Infinity }));
+        new AAni(
+          titleGroup, 
+          [ AAni.getKeyframes('translate', -4, 4, 'bottom'), AAni.setOptions({ iterations: Infinity }) ],
+          [ AAni.getKeyframes('scale', 0.95, 1), AAni.setOptions({ iterations: Infinity, duration: 3000 }) ]
+        )
+        new AAni(
+          title, 
+          [ AAni.getKeyframes('translate', 0, 8, 'top'), AAni.setOptions({ iterations: Infinity }) ],
+          [ AAni.getKeyframes('opacity', 0.8, 1), AAni.setOptions({ iterations: Infinity }) ],
+        )
+        new AAni(
+          title, 
+          [ AAni.getKeyframes('translate', 0, 8, 'bottom'), AAni.setOptions({ iterations: Infinity }) ],
+          [ AAni.getKeyframes('rotate', -4, 3), AAni.setOptions({ iterations: Infinity }) ],
+        )
       })
       
       const mainContents = document.querySelectorAll('[class^=main]');
       mainContents.forEach(content => {
-        new AAni(content, AAni.getKeyframes('translate', -12, 12, 'bottom'), AAni.setOptions({ iterations: Infinity, duration: 7000 }));
+        new AAni(
+          content, 
+          [ AAni.getKeyframes('translate', -12, 12, 'bottom'), AAni.setOptions({ iterations: Infinity, duration: 7000 }) ],
+          [ AAni.getKeyframes('opacity', 0.8, 1), AAni.setOptions({ iterations: Infinity }) ],
+        )
       })
 
       const mainAbout = document.querySelector('.main-about'),
@@ -387,33 +400,30 @@
             aboutWrap = mainAbout.querySelector('.about-wrap'),
             abouts = aboutWrap.querySelectorAll('.about');
 
-      const animateLogo = new AAni(logoAbout, AAni.getKeyframes('translate', -50, 0, 'bottom'), AAni.setOptions({ duration: 1000, direction: 'normal' }));
-      const animateLogo2 = new AAni(logoAbout, AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1000, direction: 'normal' }));
+      const animationsLogoAbout = new AAni(
+        logoAbout, 
+        [ AAni.getKeyframes('translate', -50, 0, 'bottom'), AAni.setOptions({ duration: 1300, direction: 'normal' }) ],
+        [ AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1300, direction: 'normal' }) ],
+      )
       
-      const animateAbouts = Array.from(abouts).map(about => {
-        const animate = new AAni(about, AAni.getKeyframes('translate', -100, 0, 'top'), AAni.setOptions({ duration: 1300, direction: 'normal' }));
-        animate.pause()
-        return animate
+      const animationsAbouts = Array.from(abouts).map((about, index) => {
+        const animations = new AAni(
+          about,
+          [ AAni.getKeyframes('translate', -100, 0, 'top'), AAni.setOptions({ duration: 1300, direction: 'normal', delay: (index + 1) * 800 }) ],
+          [ AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1300, direction: 'normal', delay: (index + 1) * 800 }) ],
+        )
+        animations.pause()
+        return animations
       })
-      const animateAbouts2 = Array.from(abouts).map(about => {
-        const animate = new AAni(about, AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1300, direction: 'normal' }));
-        animate.pause()
-        return animate
-      })
-
-      AAni.orderedAnimation(animateAbouts)
-      AAni.orderedAnimation(animateAbouts2)
 
       const options = { threshold: 1.0 };
       const callback = (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            animateLogo.play()
-            animateLogo2.play()
-            setTimeout(() => {
-              animateAbouts[0].play()
-              animateAbouts2[0].play()
-            }, 1000)
+            animationsLogoAbout.play()
+            animationsAbouts.forEach(animationsAbout => {
+              animationsAbout.play()
+            })
             observer.unobserve(entry.target);
           } else {
           }
@@ -426,27 +436,23 @@
       const mainBusiness = document.querySelector('.main-business'),
             businessCards = mainBusiness.querySelectorAll('.business-card');
       
-      const animateBusinessCards = Array.from(businessCards).map(businessCard => {
-        const animate = new AAni(businessCard, AAni.getKeyframes('translate', -100, 0, 'top'), AAni.setOptions({ duration: 1000 }));
-        animate.pause()
-        return animate
+      const animationsBusinessCards = Array.from(businessCards).map((businessCard, index) => {
+        const animations = new AAni(
+          businessCard,
+          [ AAni.getKeyframes('translate', -100, 0, 'top'), AAni.setOptions({ duration: 1000, direction: 'normal', delay: (index + 1) * 800 }) ],
+          [ AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1000, direction: 'normal', delay: (index + 1) * 800 }) ],
+        )
+        animations.pause()
+        return animations
       })
       
-      const animateBusinessCards2 = Array.from(businessCards).map(businessCard => {
-        const animate = new AAni(businessCard, AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1000 }));
-        animate.pause()
-        return animate
-      })
-      
-      AAni.orderedAnimation(animateBusinessCards)
-      AAni.orderedAnimation(animateBusinessCards2)
-
       const options2 = { threshold: 1.0 };
       const callback2 = (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            animateBusinessCards[0].play()
-            animateBusinessCards2[0].play()
+            animationsBusinessCards.forEach(animationsBusinessCard => {
+              animationsBusinessCard.play()
+            })
             observer.unobserve(entry.target);
           } else {
           }

@@ -8,28 +8,35 @@ export class AAni {
     direction: 'alternate',
     // composite: 'add',
   }
-  constructor(element, keyframes, options) {
-    return element.animate(
-      keyframes || AAni.getKeyframes('default'),
-      options || AAni.defaultOptions
-    )
+  constructor(element, ...animations) {
+    this.element = element
+    this.animations = this.applyAnimations(animations)
   }
-  applyAnimations(element, keyframes, options) {
-    return element.animate(
-      keyframes || AAni.getKeyframes('default'),
-      options || AAni.defaultOptions
-    )
+  applyAnimations(animations) {
+    return animations.map(animation => {
+      const [ keyframes, options ] = animation
+      return this.element.animate(
+        keyframes || AAni.getKeyframes('default'),
+        options || AAni.defaultOptions
+      )
+    })
+  }
+  play(index) {
+    this.animations.forEach(animation => {
+      if (`${index}` || !index) {
+        animation.play()
+      }
+    })
+  }
+  pause(index) {
+    this.animations.forEach(animation => {
+      if (`${index}` || !index) {
+        animation.pause()
+      }
+    })
   }
   static setOptions(value) {
     return { ...AAni.defaultOptions, ...value }
-  }
-
-  static orderedAnimation(elements) {
-    elements.forEach((element, index, thisArr) => {
-      if (index !== elements.length - 1) {
-        thisArr[index].finished.then(() => thisArr[index + 1].play())
-      }
-    })
   }
 
   static getKeyframes(type, start = 0, end = 0, direction) {

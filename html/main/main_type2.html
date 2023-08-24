@@ -352,165 +352,108 @@
         </div>
       </footer>
     </div>
-    <script type="module">
-      import { commLayout } from "./../../assets/js/main.js";
-      commLayout();
+    <script id="vertexShader" type="x-shader/x-vertex">
+      varying vec3 vNormal; void main() { vNormal = normalize( normalMatrix * normal ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }
     </script>
+    <script id="fragmentShader" type="x-shader/x-vertex">
+      varying vec3 vNormal; void main() { float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 0.5 ) ), 4.0 ); gl_FragColor = vec4(0.31,1.,0.918, 0.5) * intensity; }
+    </script>
+    <script src="./../../assets/js/lib/three.min.js"></script>
+    <script type="module" src="./../../assets/js/main.js"></script>
     <script type="module">
-      import { AstarUtil, AstarInteraction } from './../../assets/js/interactionElement.js'
-      const wSections = document.querySelectorAll('main.container .w-section');
-      const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          const [ title, content ] = Array.from(entry.target.children)
-          entry.target.style.transition = 'opacity 2s ease-in-out'
-          if (entry.isIntersecting) {
-            title.animate(
-              [
-                {
-                  opacity: 0,
-                  transform: 'translateY(-50px)',
-                },
-                {
-                  opacity: 1,
-                  transform: 'translateY(0px)',
-                },
-              ],
-              {
-                delay: 1000,
-                duration: 500,
-                easing: 'ease-out',
-                iterations: 1,
-                fill: 'both',
-                composite: 'add',
-              }
-            );
-            content.animate(
-              [
-                {
-                  opacity: 0,
-                  transform: 'translateY(50px)',
-                },
-                {
-                  opacity: 1,
-                  transform: 'translateY(0px)',
-                },
-              ],
-              {
-                delay: 2000,
-                duration: 500,
-                easing: 'ease-out',
-                iterations: 1,
-                fill: 'both',
-                composite: 'add',
-              }
-            );
-            entry.target.style.opacity = 1
-          } else {
-            entry.target.style.opacity = 0
-          }
-        })
-      }, {
-        threshold: 1 
-      })
+      import { AAni } from './../../assets/js/interactionElement.js'
 
-      wSections.forEach(wSection => {
-        io.observe(wSection)
-      })
       const titleGroups = document.querySelectorAll('.title-group');
 
       titleGroups.forEach(titleGroup => {
         const title = titleGroup.querySelector('.t-title'),
               summary = titleGroup.querySelector('.t-summary');
-        new AstarInteraction(
-          titleGroup,
-          [
-            {
-              type: 'twinkle',
-              min: AstarUtil.makeRandomIndex(5, 7),
-              max: AstarUtil.makeRandomIndex(8, 10),
-              time: AstarUtil.makeRandomIndex(3000, 8000),
-            },
-            {
-              type: 'scale',
-              min: AstarUtil.makeRandomIndex(8, 9),
-              max: AstarUtil.makeRandomIndex(10, 11),
-              time: AstarUtil.makeRandomIndex(3600, 8000),
-            },
-          ]
-        )
-        new AstarInteraction(
-          title,
-          [
-            {
-              type: 'rotate',
-              start: -AstarUtil.makeRandomIndex(0, 3),
-              end: AstarUtil.makeRandomIndex(0, 3), 
-              time:  AstarUtil.makeRandomIndex(5000, 8000),
-            },
-          ]
-        )
-        new AstarInteraction(
-          summary,
-          [
-            {
-              type: 'translate',
-              direction: 'bottom',
-              interval: 'xs', 
-              time: AstarUtil.makeRandomIndex(1000, 10000),
-            },
-          ]
-        )
+
+        const animationTitleGroup = new AAni(titleGroup, AAni.getKeyframes('translate', -4, 4, 'bottom'), AAni.setOptions({ iterations: Infinity })),
+              animationTitleGroup2 = new AAni(titleGroup, AAni.getKeyframes('scale', 0.95, 1), AAni.setOptions({ iterations: Infinity, duration: 3000 })),
+              animationTitle = new AAni(title, AAni.getKeyframes('translate', 0, 16, 'top'), AAni.setOptions({ iterations: Infinity })),
+              animationTitle2 = new AAni(title, AAni.getKeyframes('opacity', 0.8, 1), AAni.setOptions({ iterations: Infinity })),
+              animationsummary = new AAni(title, AAni.getKeyframes('translate', 0, 16, 'bottom'), AAni.setOptions({ iterations: Infinity })),
+              animationsummary2 = new AAni(summary, AAni.getKeyframes('rotate', -4, 3), AAni.setOptions({ iterations: Infinity }));
       })
       
       const mainContents = document.querySelectorAll('[class^=main]');
       mainContents.forEach(content => {
-        new AstarInteraction(
-          content,
-          [
-            {
-              type: 'translate',
-              direction: 'top',
-              interval: 'xs', 
-              time: AstarUtil.makeRandomIndex(7000, 10000),
-            },
-          ]
-        )
+        new AAni(content, AAni.getKeyframes('translate', -12, 12, 'bottom'), AAni.setOptions({ iterations: Infinity, duration: 7000 }));
       })
 
       const mainAbout = document.querySelector('.main-about'),
+            logoAbout = mainAbout.querySelector('.logo-about'),
             aboutWrap = mainAbout.querySelector('.about-wrap'),
-            about = aboutWrap.querySelectorAll('.about');
+            abouts = aboutWrap.querySelectorAll('.about');
 
-      about.forEach(content => {
-        new AstarInteraction(
-          content,
-          [
-            {
-              type: 'translate',
-              direction: 'bottom',
-              interval: 'xs', 
-              time: AstarUtil.makeRandomIndex(1000, 8000),
-            },
-          ]
-        )
+      const animateLogo = new AAni(logoAbout, AAni.getKeyframes('translate', -50, 0, 'bottom'), AAni.setOptions({ duration: 1000, direction: 'normal' }));
+      const animateLogo2 = new AAni(logoAbout, AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1000, direction: 'normal' }));
+      
+      const animateAbouts = Array.from(abouts).map(about => {
+        const animate = new AAni(about, AAni.getKeyframes('translate', -100, 0, 'top'), AAni.setOptions({ duration: 1300, direction: 'normal' }));
+        animate.pause()
+        return animate
       })
+      const animateAbouts2 = Array.from(abouts).map(about => {
+        const animate = new AAni(about, AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1300, direction: 'normal' }));
+        animate.pause()
+        return animate
+      })
+
+      AAni.orderedAnimation(animateAbouts)
+      AAni.orderedAnimation(animateAbouts2)
+
+      const options = { threshold: 1.0 };
+      const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateLogo.play()
+            animateLogo2.play()
+            animateAbouts[0].play()
+            animateAbouts2[0].play()
+            observer.unobserve(entry.target);
+          } else {
+          }
+        });
+      }
+      const observer = new IntersectionObserver(callback, options);
+      observer.observe(mainAbout);
+      
 
       const mainBusiness = document.querySelector('.main-business'),
-            businessCard = mainBusiness.querySelectorAll('.business-card');
-
-      businessCard.forEach(content => {
-        new AstarInteraction(
-          content,
-          [
-            {
-              type: 'translate',
-              direction: 'bottom',
-              interval: 'xs', 
-              time: AstarUtil.makeRandomIndex(1000, 8000),
-            },
-          ]
-        )
+            businessCards = mainBusiness.querySelectorAll('.business-card');
+      
+      const animateBusinessCards = Array.from(businessCards).map(businessCard => {
+        const animate = new AAni(businessCard, AAni.getKeyframes('translate', -100, 0, 'top'), AAni.setOptions({ duration: 1000 }));
+        animate.pause()
+        return animate
       })
+      
+      const animateBusinessCards2 = Array.from(businessCards).map(businessCard => {
+        const animate = new AAni(businessCard, AAni.getKeyframes('opacity', 0, 1,), AAni.setOptions({ duration: 1000 }));
+        animate.pause()
+        return animate
+      })
+      
+      AAni.orderedAnimation(animateBusinessCards)
+      AAni.orderedAnimation(animateBusinessCards2)
+
+      const options2 = { threshold: 1.0 };
+      const callback2 = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateBusinessCards[0].play()
+            animateBusinessCards2[0].play()
+            observer.unobserve(entry.target);
+          } else {
+          }
+        });
+      }
+      const observer2 = new IntersectionObserver(callback2, options2);
+      observer2.observe(mainBusiness);
+
+      
     </script>
   </body>
 </html>

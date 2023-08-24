@@ -4,6 +4,7 @@ export class PageAnimation {
     this._curDom = null;
     this.wheelValue = 0;
     this.wheelDir = null;
+    this.isPC = true;
 
     this.scrollHandler = this.handleScroll.bind(this);
     window.addEventListener("wheel", this.scrollHandler);
@@ -32,22 +33,24 @@ export class PageAnimation {
 
   handleResize() {
     if (window.innerWidth >= 720) {
+      this.isPC = true;
       this.addScrollListener();
     } else {
-      this.removeScrollListener();
+      this.isPC = false;
+      // this.removeScrollListener();
     }
   }
 
   addScrollListener() {
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
-    window.addEventListener("wheel", this.scrollHandler);
+    window.addEventListener("scroll", this.scrollHandler);
   }
 
   removeScrollListener() {
     document.documentElement.removeAttribute("style");
     document.body.removeAttribute("style");
-    window.removeEventListener("wheel", this.scrollHandler);
+    window.removeEventListener("scroll", this.scrollHandler);
   }
 
   updateCurrentSection() {
@@ -55,22 +58,42 @@ export class PageAnimation {
       this._sections = document.querySelectorAll("[data-page]");
       this._curDom = this._sections[0];
     }
-    this._sections.forEach((el) => el.classList.remove("isPageActive"));
-    let prevIdx = Array.from(this._sections).indexOf(this._curDom);
-    let idx = prevIdx < 0 ? this._sections.length : prevIdx;
-    idx -= this.wheelDir;
-    let scrollTo = 0;
-    if (idx < 0) {
-      idx = 0;
-      return;
-    } else if (idx < this._sections.length) {
-      this._curDom = this._sections[idx];
+    // PC일 경우에만 fullpage 이벤트
+    if (this.isPC) {
+      this._sections.forEach((el) => el.classList.remove("isPageActive"));
+      let prevIdx = Array.from(this._sections).indexOf(this._curDom);
+      let idx = prevIdx < 0 ? this._sections.length : prevIdx;
+      idx -= this.wheelDir;
+
+      let scrollTo = 0;
+      if (idx < 0) {
+        idx = 0;
+        return;
+      } else if (idx < this._sections.length) {
+        this._curDom = this._sections[idx];
+        scrollTo = this._curDom.offsetTop;
+      } else {
+        this._curDom = null;
+        scrollTo = document.documentElement.getBoundingClientRect().height;
+      }
       this._curDom.classList.add("isPageActive");
-      scrollTo = this._curDom.offsetTop;
+      window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
     } else {
-      this._curDom = null;
-      scrollTo = document.documentElement.getBoundingClientRect().height;
+      // 스크롤 범위 체크
+      const scrollY = window.scrollY;
+      this._sections.forEach((el) => {
+        if (
+          el.getBoundingClientRect().top + window.innerHeight / 2 <
+          window.innerHeight
+        ) {
+          console.log(el);
+          console.log(
+            el.getBoundingClientRect().top + +window.innerHeight / 2,
+            window.innerHeight
+          );
+          el.classList.add("isPageActive");
+        }
+      });
     }
-    window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
   }
 }

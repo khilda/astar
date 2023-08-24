@@ -4,52 +4,53 @@ export class PageAnimation {
     this._curDom = null;
     this.wheelValue = 0;
     this.wheelDir = null;
-    this.init();
-  }
-  #listener = [];
-  #idx = 0;
 
-  init() {
-    if (window.innerWidth < 720) this.destroy();
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
+    this.scrollHandler = this.handleScroll.bind(this);
+    window.addEventListener("wheel", this.scrollHandler);
 
-    this.setActiveDom();
-    this.addEvt("wheel", this.getWheelDir);
-    this.addEvt("resize", (e) => {
-      if (window.innerWidth < 375) this.destroy();
-    });
+    this.resizeHandler = this.handleResize.bind(this);
+    window.addEventListener("resize", this.resizeHandler);
+
+    this.initFullPage();
   }
-  addEvt(type, listener, useCapture = false) {
-    window.addEventListener(type, (e) => listener(e, this), useCapture);
-    this.#listener[this.#idx] = { type, listener, useCapture };
-    this.#idx++;
-  }
-  removeEvt(type) {
-    const listen = this.#listener[type];
-    if (listen) {
-      window.removeEventListener(
-        listen.type,
-        listen.listener,
-        listen.useCapture
-      );
-      delete this.#listener[type];
+
+  initFullPage() {
+    this.updateCurrentSection();
+    this.handleResize();
+    // 해당 지정이 아닐경우, 삭제
+    if (!this._sections.length) {
+      this.removeScrollListener();
     }
   }
-  destroy() {
+
+  handleScroll(e) {
+    this.wheelValue = e.wheelDelta ?? e.deltaY;
+    this.wheelDir = Math.max(-1, Math.min(1, this.wheelValue));
+    // 페이지 전환
+    this.updateCurrentSection();
+  }
+
+  handleResize() {
+    if (window.innerWidth >= 720) {
+      this.addScrollListener();
+    } else {
+      this.removeScrollListener();
+    }
+  }
+
+  addScrollListener() {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    window.addEventListener("wheel", this.scrollHandler);
+  }
+
+  removeScrollListener() {
     document.documentElement.removeAttribute("style");
     document.body.removeAttribute("style");
-    this._sections = null;
-    this._curDom = null;
-    this.removeEvt("wheel");
+    window.removeEventListener("wheel", this.scrollHandler);
   }
-  getWheelDir(e, _this) {
-    _this.wheelValue = e.wheelDelta ?? e.deltaY;
-    _this.wheelDir = Math.max(-1, Math.min(1, _this.wheelValue));
-    _this.setActiveDom();
-    return { wheel: _this.wheelValue, dir: _this.wheelDir };
-  }
-  setActiveDom() {
+
+  updateCurrentSection() {
     if (!this._sections) {
       this._sections = document.querySelectorAll("[data-page]");
       this._curDom = this._sections[0];
@@ -70,13 +71,6 @@ export class PageAnimation {
       this._curDom = null;
       scrollTo = document.documentElement.getBoundingClientRect().height;
     }
-    this.moveToSection(scrollTo);
-  }
-  moveToSection(top) {
-    window.scrollTo({
-      top,
-      left: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
   }
 }

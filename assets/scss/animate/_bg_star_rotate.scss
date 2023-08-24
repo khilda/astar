@@ -91,7 +91,7 @@ $colors: (
 }
 
 .origin {
-  transform: translate3d($origin);
+  transform: translate3d(1,1,1);
   .control {
     transform: scale3d(0, 0, 0);
     animation: star-appear $time linear forwards;
@@ -140,6 +140,9 @@ $colors: (
 }
 
 @keyframes star-appear {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
   100% {
     transform: scale3d(1, 1, 1);
   }

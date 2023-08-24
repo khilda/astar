@@ -2,6 +2,7 @@ import { onClickBtn } from "./evtButton.js";
 import { Planet } from "./mPlanetAnimation.js";
 import { PageAnimation } from "./scrollAnimation.js";
 import { setLogoRollingClone } from "./animation.js";
+import { planetRotate } from "./lib/planetRotate.js";
 window.addEventListener("DOMContentLoaded", () => {
   const _container = document.querySelector(".container");
   if (_container.classList.contains("intro")) {
@@ -27,8 +28,8 @@ const fnComm = () => {
       _target.classList.add("is-active");
       _header.classList.add("is-show");
     }
-    commLayout();
   });
+  commLayout();
   // gnb-menu link
 
   onClickBtn(".gnb-menu", (e, _target) => {
@@ -42,7 +43,6 @@ const fnComm = () => {
   setLogoRollingClone();
 };
 
-const fnMobile = () => {};
 const planetAnimate = () => {
   if (!document.querySelector(".visual-area")) return;
 
@@ -88,7 +88,7 @@ export const introType02 = () => {
 };
 export const commLayout = () => {
   bgAnimation();
-  // starRotate();
+  planetRotate();
   setTimeout(() => {
     document.querySelector(".container").classList.add("is-animate");
   }, 2000);
@@ -131,3 +131,8 @@ const descAnimation = () => {
     }
   }
 };
+
+/**
+ * Main
+ */
+const fnMain = () => {};

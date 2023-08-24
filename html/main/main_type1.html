@@ -53,7 +53,7 @@
           </nav>
         </div>
       </header>
-      <main class="container main">
+      <main class="container main type1">
         <section class="section visual-area" data-page>
           <div class="visual-section">
             <aside class="v-prev">
@@ -64,18 +64,7 @@
               </button>
             </aside>
             <article class="v-crnt">
-              <div class="plant type1">
-                <div class="luminor">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div class="background"></div>
-                <div class="effect">
-                  <div class="light"></div>
-                  <div class="shdow"></div>
-                </div>
+              <div class="img-plant">
               </div>
               <div class="v-info">
                 <hgroup class="title-group">
@@ -362,10 +351,14 @@
         </div>
       </footer>
     </div>
-    <script type="module">
-      import { commLayout } from "./../../assets/js/main.js";
-      commLayout();
+    <script id="vertexShader" type="x-shader/x-vertex">
+      varying vec3 vNormal; void main() { vNormal = normalize( normalMatrix * normal ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }
     </script>
+    <script id="fragmentShader" type="x-shader/x-vertex">
+      varying vec3 vNormal; void main() { float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 0.5 ) ), 4.0 ); gl_FragColor = vec4(0.31,1.,0.918, 0.5) * intensity; }
+    </script>
+    <script src="./../../assets/js/lib/three.min.js"></script>
+    <script type="module" src="./../../assets/js/main.js"></script>
 
   </body>
 </html>

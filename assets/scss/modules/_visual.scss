@@ -97,11 +97,21 @@
   align-items: center;
   gap: 20px;
   .img-plant {
+    position: relative;
     display: block;
     background: transparent no-repeat 50% 50% / contain;
-    background-image: url($img-main);
+    // background-image: url($img-main);
     width: 420px;
     height: 420px;
+    canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      aspect-ratio: 1/1;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
   }
   .v-info {
     .title-group {

@@ -515,47 +515,49 @@
     transition: all 1.2s 0.3s;
     opacity: 0;
   }
-  .main .isPageActive .section-desc {
-    opacity: 1;
-  }
-  .main-about .logo-about {
-    transition: all 1.2s;
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  .main .isPageActive .main-about .logo-about {
-    opacity: 1;
-    transform: none;
-  }
-  .main-about .about-wrap .about {
-    transition: all 0.5s;
-    opacity: 0;
-    transform: translateY(50px);
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        transition-delay: $i * 0.5s;
+  .main.type1 {
+    .isPageActive .section-desc {
+      opacity: 1;
+    }
+    .main-about .logo-about {
+      transition: all 1.2s;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .main .isPageActive .main-about .logo-about {
+      opacity: 1;
+      transform: none;
+    }
+    .main-about .about-wrap .about {
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateY(50px);
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i * 0.5s;
+        }
       }
     }
-  }
-  .main .isPageActive .about-wrap .about {
-    opacity: 1;
-    transform: none;
-  }
-  .cylinder {
-    transition: all 1.2s;
-  }
-  .main-business .business-card {
-    transition: all 0.5s;
-    opacity: 0;
-    transform: translateY(5px);
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        transition-delay: $i * 0.5s;
+    .main .isPageActive .about-wrap .about {
+      opacity: 1;
+      transform: none;
+    }
+    .cylinder {
+      transition: all 1.2s;
+    }
+    .main-business .business-card {
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateY(5px);
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i * 0.5s;
+        }
       }
     }
-  }
-  .main .isPageActive .main-business .business-card {
-    opacity: 1;
-    transform: none;
+    .main .isPageActive .main-business .business-card {
+      opacity: 1;
+      transform: none;
+    }
   }
 }

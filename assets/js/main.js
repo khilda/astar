@@ -3,6 +3,7 @@ import { onClickBtn } from "./evtButton.js";
 import { fnVisual } from "./pages/visual.js";
 import { fnIntro } from "./pages/intro.js";
 import { fnMain } from "./pages/main.js";
+import { fnAbout } from "./pages/about.js";
 import { fnBusiness } from "./pages/business.js";
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -13,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   // content
   fnIntro();
+  fnAbout();
   fnMain();
   fnBusiness();
 });

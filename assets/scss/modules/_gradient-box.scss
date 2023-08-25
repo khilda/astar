@@ -118,7 +118,7 @@
       );
       opacity: 1;
       transition: opacity 0.5s;
-      animation: outline-spin 2.5s linear infinite;
+      animation: outline-spin 5s linear infinite;
     }
     @content;
   }

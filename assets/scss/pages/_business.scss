@@ -173,3 +173,83 @@
     }
   }
 }
+
+///************************************
+//# type1 interaction
+//************************************
+.business.type1 {
+  .business-link .btn-link {
+    transition: all 1.5s;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .isPageActive .business-link .btn-link {
+    opacity: 1;
+    transform: none;
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        transition-delay: $i * 0.5s + 0.3s;
+        z-index: 2;
+      }
+    }
+  }
+  .img-desc-group {
+    .img-visual,
+    .vision-text {
+      transition: all 1.5s;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .vision-text h3,
+    .vision-text p {
+      transition: all 1.5s;
+      opacity: 0;
+    }
+  }
+  .isPageActive .img-desc-group {
+    .img-visual {
+      opacity: 1;
+      transform: none;
+    }
+    .vision-text {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.5s;
+    }
+    .vision-text h3 {
+      opacity: 1;
+      transition-delay: 1.2s;
+    }
+    .vision-text p {
+      opacity: 1;
+      transition-delay: 1.5s;
+    }
+  }
+  .logo-group .logo-item {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .isPageActive .logo-group .logo-row{
+    .logo-item {
+      transition: all 1.5s;
+      opacity: 1;
+      transform: none;
+    }
+    @for $i from 1 through 3 {
+      &:nth-child(1) .logo-item:nth-child(#{$i}) {
+        transition-delay: ($i * 0.25s);
+      }
+      &:nth-child(2) .logo-item:nth-child(#{$i}) {
+        transition-delay: ($i * 0.25s) + 0.75s;
+      }
+    }
+  }
+  .customer-desc {
+    transition: all 1.5s;
+    opacity: 0;
+  }
+  .isPageActive .customer-desc {
+    opacity: 1;
+    transition-delay: 0.5s;
+  }
+}

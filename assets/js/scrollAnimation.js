@@ -85,19 +85,15 @@ export class PageAnimation {
     let prevIdx = Array.from(this._sections).indexOf(this._curDom);
     let idx = prevIdx < 0 ? this._sections.length : prevIdx;
     idx -= this.wheelDir;
-    let scrollTo = 0;
     if (idx < 0) {
-      idx = 0;
+      this._curDom = this._sections[0];
       return;
     } else if (idx < this._sections.length) {
       this._curDom = this._sections[idx];
-      this._curDom.classList.add("isPageActive");
-      scrollTo = this._curDom.offsetTop;
     } else {
       this._curDom = null;
-      scrollTo = document.documentElement.getBoundingClientRect().height;
     }
-    window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
+    this.scrollToSection();
   }
   updateMobileSection() {
     if (!this._sections) {
@@ -112,5 +108,20 @@ export class PageAnimation {
         el.classList.add("isPageActive");
       }
     });
+  }
+  scrollToSection(target) {
+    let scrollTo = 0;
+    if (target) this._curDom = target;
+    const isIncludeDom = Array.from(this._sections).find((node) =>
+      node.isEqualNode(this._curDom)
+    );
+    if (isIncludeDom) {
+      this._curDom.classList.add("isPageActive");
+      scrollTo = window.scrollY + this._curDom.getBoundingClientRect().top;
+    } else {
+      this._curDom = null;
+      scrollTo = document.documentElement.getBoundingClientRect().height;
+    }
+    window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
   }
 }

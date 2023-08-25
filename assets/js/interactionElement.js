@@ -11,7 +11,7 @@ export class AAni {
     return animations.map(animation => {
       const [ keyframes, options ] = animation
       return this.element.animate(
-        this.#getKeyframes(keyframes) || this.#getKeyframes('default'),
+        Array.isArray(keyframes) ? keyframes : this.#getKeyframes(keyframes),
         this.#setOptions(options) || this.#setOptions()
       )
     })

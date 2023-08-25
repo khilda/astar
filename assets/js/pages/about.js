@@ -42,9 +42,9 @@ function fnTimeline() {
 }
 function fnCrew() {
   const _crewWrap = document.querySelector(".crew-wrap");
-  if (window.innerWidth >= 720) {
-    const crewGroupAnimate = setInterval(() => {
-      console.log(crewGroupAnimate);
+  let crewGroupAnimate = null;
+  function setGroupAnimate() {
+    crewGroupAnimate = setInterval(() => {
       if (
         !document.querySelector(".l-crew").classList.contains("isPageActive")
       ) {
@@ -53,9 +53,12 @@ function fnCrew() {
       _crewWrap.classList.toggle("is-animate");
     }, 5000);
   }
+  if (window.innerWidth >= 720) {
+    setGroupAnimate();
+  }
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 720) {
-      crewGroupAnimate();
+      setGroupAnimate();
     } else {
       if (crewGroupAnimate) {
         for (let i = 0; i <= crewGroupAnimate; i++) {

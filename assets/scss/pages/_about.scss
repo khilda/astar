@@ -392,11 +392,16 @@
     justify-content: flex-start;
     overflow: visible;
     gap: 21px;
-    padding: 0 21px;
-    transform: translateX(10px);
+    width: 100vw;
+    padding-left: 21px;
+    padding-right: 21px;
+    padding-bottom: 21px;
+    margin-top: 0px;
+    overflow-y: hidden;
+    overflow-x: scroll;
     .icon-item {
       flex: none;
-      width: calc(100% - 21px);
+      width: calc(100% - 42px);
       .desc-txt,
       .desc-txt-content {
         width: 100%;

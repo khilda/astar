@@ -41,25 +41,25 @@ function fnTimeline() {
   }
 }
 function fnCrew() {
+  const _section = document.querySelector(".l-crew");
   const _crewWrap = document.querySelector(".crew-wrap");
   let crewGroupAnimate = null;
   function setGroupAnimate() {
     crewGroupAnimate = setInterval(() => {
-      if (
-        !document.querySelector(".l-crew").classList.contains("isPageActive")
-      ) {
+      if (!_section.classList.contains("isPageActive")) {
         return;
       }
       _crewWrap.classList.toggle("is-animate");
     }, 5000);
   }
   if (window.innerWidth >= 720) {
-    setGroupAnimate();
+    window.pageAnimation?.scrollCallback(_section, setGroupAnimate);
   }
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 720) {
-      setGroupAnimate();
+      window.pageAnimation.scrollCallback(_section, setGroupAnimate);
     } else {
+      window.pageAnimation.scrollCallback();
       if (crewGroupAnimate) {
         for (let i = 0; i <= crewGroupAnimate; i++) {
           clearInterval(crewGroupAnimate);

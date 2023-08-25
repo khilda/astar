@@ -1,11 +1,14 @@
 export class PageAnimation {
   constructor() {
-    this._sections = null;
-    this._curDom = null;
-    this.wheelValue = 0;
-    this.wheelDir = 0;
-    this.isPC = true;
-    this.timerId = null;
+    this._sections = null; // fullpage 이벤트 대상 타겟들
+    this._curDom = null; // 현재 활성화된 section
+    this.wheelValue = 0; // 스크롤 범위
+    this.wheelDir = 0; // 스크롤 방향 (-1: 위, 1: 아래)
+    this.isPC = true; // PC 여부
+
+    this.callback = { target: null, fn: null }; // 스크롤시 callback 이벤트
+
+    this.timerId = null; // 스크롤 디바운스
 
     this.resizeHandler = this.handleResize.bind(this);
     window.addEventListener("resize", this.resizeHandler);
@@ -94,6 +97,9 @@ export class PageAnimation {
       this._curDom = null;
     }
     this.scrollToSection();
+    if (this.callback.target && this.callback.target === this._curDom) {
+      this.callback.fn();
+    }
   }
   updateMobileSection() {
     if (!this._sections) {
@@ -123,5 +129,10 @@ export class PageAnimation {
       scrollTo = document.documentElement.getBoundingClientRect().height;
     }
     window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
+  }
+  scrollCallback(target, fn) {
+    this.callback.target = target;
+    this.callback.fn = fn;
+    return this.callback
   }
 }

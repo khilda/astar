@@ -445,7 +445,7 @@
   }
   .about .crew-group {
     grid-template-columns: 1fr;
-    min-width: 50vw;
+    min-width: 78vw;
     max-width: 350px;
     .crew {
       grid-template-columns: 100px 1fr;
@@ -488,7 +488,7 @@
           transition-delay: $i * 0.5s + 0.3s;
         }
         .desc-tit,
-        .desc-txt{
+        .desc-txt {
           opacity: 1;
           transform: none;
           transition-delay: $i * 0.5s + 0.5s;
@@ -499,7 +499,24 @@
   @include desktop-tablet {
     .crew-wrap {
       height: 428px;
-      .crew-group:nth-child(1) {
+    }
+    .crew-group,
+    .crew {
+      transition: all 0.5s;
+    }
+    .crew-group {
+      opacity: 0;
+      &:nth-child(2) {
+        transform: translateY(-100%);
+      }
+    }
+    .crew {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .isPageActive .crew-wrap {
+      &:not(.is-animate) .crew-group:nth-child(1),
+      &.is-animate .crew-group:nth-child(2) {
         opacity: 1;
         .crew {
           opacity: 1;
@@ -511,39 +528,6 @@
           }
         }
       }
-      .crew-group:nth-child(2) {
-        opacity: 0;
-        transform: translateY(-100%);
-        .crew {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-      }
-      &.is-animate {
-        .crew-group:nth-child(1) {
-          opacity: 0;
-          .crew {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-        }
-        .crew-group:nth-child(2) {
-          opacity: 1;
-          .crew {
-            opacity: 1;
-            transform: none;
-            @for $i from 1 through 4 {
-              &:nth-child(#{$i}) {
-                transition-delay: $i * 0.5s;
-              }
-            }
-          }
-        }
-      }
-    }
-    .crew-group,
-    .crew {
-      transition: all 0.5s;
     }
   }
 }

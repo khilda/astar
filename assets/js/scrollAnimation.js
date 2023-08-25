@@ -97,6 +97,7 @@ export class PageAnimation {
       this._curDom = null;
     }
     this.scrollToSection();
+
     if (this.callback.length) {
       this.callback.forEach((cb) => {
         if (cb.target === this._curDom) {
@@ -116,6 +117,13 @@ export class PageAnimation {
       // 해당 Dom이 화면 중간위치하면 active
       if (el.offsetTop - window.innerHeight / 2 < scrollY) {
         el.classList.add("isPageActive");
+      }
+      if (this.callback.length) {
+        this.callback.forEach((cb) => {
+          if (cb.target === el) {
+            cb.fn();
+          }
+        });
       }
     });
   }

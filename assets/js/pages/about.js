@@ -41,7 +41,7 @@ function fnTimeline() {
         return !el.classList.contains("is-animate");
       })
       .forEach((el, idx) => {
-        if (el.offsetTop + el.clientHeight < boxH) {
+        if (el.offsetTop + el.clientHeight <= boxH) {
           setTimeout(() => {
             el.classList.add("is-animate");
           }, 500 * idx);

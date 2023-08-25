@@ -13,6 +13,10 @@ function fnTimeline() {
 
   let h = 0;
   _btnPrev.style.opacity = "0";
+
+  const _section = document.querySelector(".l-timeline");
+  window.pageAnimation.scrollCallback(_section, setClassAnimate);
+
   _btnPrev.addEventListener("click", (e) => {
     h = getTimelineView();
     _timelineArea.scrollTo({ top: h, left: 0, behavior: "smooth" });
@@ -28,7 +32,22 @@ function fnTimeline() {
     if (h >= _timelineGroup.clientHeight - _timelineArea.clientHeight) {
       _btnNext.style.opacity = "0";
     }
+    setClassAnimate();
   });
+  function setClassAnimate() {
+    const boxH = _timelineArea.clientHeight + h;
+    Array.from(_timeline)
+      .filter((el) => {
+        return !el.classList.contains("is-animate");
+      })
+      .forEach((el, idx) => {
+        if (el.offsetTop + el.clientHeight < boxH) {
+          setTimeout(() => {
+            el.classList.add("is-animate");
+          }, 500 * idx);
+        }
+      });
+  }
   function getTimelineView(isBottom) {
     if (isBottom) {
       targetIdx += 3;

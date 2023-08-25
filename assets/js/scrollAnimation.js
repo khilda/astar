@@ -113,4 +113,12 @@ export class PageAnimation {
       }
     });
   }
+  goToSection(target){
+    this._curDom = target
+    if (this.isPC) {
+      this.debouncing(this.updateCurrentSection);
+    } else {
+      this.debouncing(this.updateMobileSection);
+    }
+  }
 }

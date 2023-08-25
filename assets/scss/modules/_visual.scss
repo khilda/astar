@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: stretch;
   width: $w-full;
-  height: $h-content;
+  height: $h-full;
 }
 
 .v-prev,
@@ -314,7 +314,6 @@
   .visual-section {
     position: relative;
     padding-top: 20vmin;
-    height: calc(100vh - 20vmin);
   }
   .v-prev,
   .v-next {
@@ -372,7 +371,6 @@
 @include mobile {
   .visual-section {
     padding-top: 16vmin;
-    height: calc(100vh - 16vmin);
   }
   .v-prev,
   .v-next {

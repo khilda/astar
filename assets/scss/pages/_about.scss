@@ -183,6 +183,14 @@
   initial-value: 0;
   inherits: false;
 }
+@keyframes to-opacity {
+  0% {
+    --opacity: 0;
+  }
+  100% {
+    --opacity: 1;
+  }
+}
 .about .timeline-group {
   position: relative;
   display: flex;
@@ -198,7 +206,6 @@
     display: block;
     background: linear-gradient(0deg, #38facc 0%, rgba(56, 250, 204, 0) 100%);
     width: 3px;
-    opacity: var(--opacity);
   }
   .timeline {
     position: relative;

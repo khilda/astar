@@ -6,7 +6,7 @@ export class PageAnimation {
     this.wheelDir = 0; // 스크롤 방향 (-1: 위, 1: 아래)
     this.isPC = true; // PC 여부
 
-    this.callback = { target: null, fn: null }; // 스크롤시 callback 이벤트
+    this.callback = []; // 스크롤시 callback 이벤트
 
     this.timerId = null; // 스크롤 디바운스
 
@@ -97,8 +97,13 @@ export class PageAnimation {
       this._curDom = null;
     }
     this.scrollToSection();
-    if (this.callback.target && this.callback.target === this._curDom) {
-      this.callback.fn();
+
+    if (this.callback.length) {
+      this.callback.forEach((cb) => {
+        if (cb.target === this._curDom) {
+          cb.fn();
+        }
+      });
     }
   }
   updateMobileSection() {
@@ -112,6 +117,13 @@ export class PageAnimation {
       // 해당 Dom이 화면 중간위치하면 active
       if (el.offsetTop - window.innerHeight / 2 < scrollY) {
         el.classList.add("isPageActive");
+      }
+      if (this.callback.length) {
+        this.callback.forEach((cb) => {
+          if (cb.target === el) {
+            cb.fn();
+          }
+        });
       }
     });
   }
@@ -131,8 +143,7 @@ export class PageAnimation {
     window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
   }
   scrollCallback(target, fn) {
-    this.callback.target = target;
-    this.callback.fn = fn;
-    return this.callback
+    this.callback.push({ target, fn });
+    return this.callback;
   }
 }

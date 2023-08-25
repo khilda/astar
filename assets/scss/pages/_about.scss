@@ -183,6 +183,14 @@
   initial-value: 0;
   inherits: false;
 }
+@keyframes to-opacity {
+  0% {
+    --opacity: 0;
+  }
+  100% {
+    --opacity: 1;
+  }
+}
 .about .timeline-group {
   position: relative;
   display: flex;
@@ -198,7 +206,6 @@
     display: block;
     background: linear-gradient(0deg, #38facc 0%, rgba(56, 250, 204, 0) 100%);
     width: 3px;
-    opacity: var(--opacity);
   }
   .timeline {
     position: relative;
@@ -490,6 +497,42 @@
     }
     &:nth-child(2) {
       transition-delay: 1s;
+    }
+  }
+  .timeline-group {
+    .timeline:nth-child(odd) {
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    .timeline:nth-child(even) {
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    .tl-date::before,
+    .tl-date::after {
+      transition: all 1s;
+      opacity: 0;
+    }
+  }
+  .isPageActive .timeline-group {
+    .timeline.is-animate {
+      opacity: 1;
+      transform: none;
+      .tl-date::before,
+      .tl-date::after {
+        opacity: 1;
+      }
+    }
+    @for $i from 1 through 13 {
+      .timeline.is-animate:nth-child(#{$i}) {
+        transition-delay: 0.5s;
+        .tl-date::before,
+        .tl-date::after {
+          transition-delay: 0.8s;
+        }
+      }
     }
   }
   @include desktop-tablet {

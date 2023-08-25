@@ -250,5 +250,71 @@
     </div>
     <script src="./../../assets/js/lib/three.min.js"></script>
     <script type="module" src="./../../assets/js/main.js"></script>
+    <script type="module">
+      import { AAni } from './../../assets/js/interactionElement.js'
+  
+      // title group animations
+      const titleGroups = document.querySelectorAll('.title-group');
+      titleGroups.forEach(titleGroup => {
+        const title = titleGroup.querySelector('.t-title'),
+          summary = titleGroup.querySelector('.t-summary');
+  
+        new AAni(
+          titleGroup,
+          [{ type: 'translate', start: -4, end: [0, 4], diraction: 'bottom' }, { iterations: Infinity }],
+          [{ type: 'scale', start: 0.95, end: 1 }, { iterations: Infinity, duration: 3000 }],
+        )
+        new AAni(
+          title,
+          [{ type: 'translate', start: 0, end: 8, direction: 'top' }, { iterations: Infinity }],
+          [{ type: 'opacity', start: 0.8, end: 1 }, { iterations: Infinity }],
+        )
+        new AAni(
+          title,
+          [{ type: 'translate', start: 0, end: 8, direction: 'bottom' }, { iterations: Infinity }],
+          [{ type: 'rotate', srat: -2, end: 2 }, { iterations: Infinity }],
+        )
+      })
+  
+      // business contents animations
+      const businessContents = document.querySelectorAll(['[class^=business]', '[class^=img-desc]', '.logo-group']);
+      businessContents.forEach(content => {
+        new AAni(
+          content,
+          [{ type: 'translate', start: -12, end: 12, direction: 'bottom' }, { iterations: Infinity, duration: 7000 }],
+          [{ type: 'opacity', start: 0.8, end: 1 }, { iterations: Infinity }],
+        )
+      })
+      
+      // business link & intersection observer (ordered interaction)
+      const businessLink = document.querySelector('.business-link'),
+            linkBtns = businessLink.querySelectorAll('button');
+
+      const animationslinkBtns = Array.from(linkBtns).map((linkBtn, index) => {
+        linkBtn.style.zIndex = index + 1
+        const animations = new AAni(
+          linkBtn,
+          [{ type: 'translate', start: -100, end: 0, direction: 'top' }, { duration: 1000, direction: 'normal', delay: (index + 1) * 800 }],
+          [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index + 1) * 800 }],
+        )
+        animations.pause()
+        return animations
+      })
+
+      const businessLinkObvserverOptions = { threshold: 1.0 };
+      const businessLinkObvserverCallback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animationslinkBtns.forEach(animationslinkBtn => {
+              animationslinkBtn.play()
+            })
+            observer.unobserve(entry.target);
+          } else {
+          }
+        });
+      }
+      const businessLinkObvserver = new IntersectionObserver(businessLinkObvserverCallback, businessLinkObvserverOptions);
+      businessLinkObvserver.observe(businessLink);
+    </script>
   </body>
 </html>

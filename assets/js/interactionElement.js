@@ -1,38 +1,48 @@
 export class AAni {
-  static defaultOptions = {
-    // delay: 1000,
-    duration: 5000,
-    easing: 'ease-in-out',
-    iterations: 1,
-    fill: 'backwards',
-    direction: 'alternate',
-    // composite: 'add',
-  }
-  constructor(element, keyframes, options) {
-    return element.animate(
-      keyframes || AAni.getKeyframes('default'),
-      options || AAni.defaultOptions
-    )
-  }
-  applyAnimations(element, keyframes, options) {
-    return element.animate(
-      keyframes || AAni.getKeyframes('default'),
-      options || AAni.defaultOptions
-    )
-  }
-  static setOptions(value) {
-    return { ...AAni.defaultOptions, ...value }
+  static makeRandomValue([min, max, decimal = 1]) {
+    return Math.floor(Math.random() * (max - min + 1) + min) / decimal
   }
 
-  static orderedAnimation(elements) {
-    elements.forEach((element, index, thisArr) => {
-      if (index !== elements.length - 1) {
-        thisArr[index].finished.then(() => thisArr[index + 1].play())
+  constructor(element, ...animations) {
+    this.element = element
+    this.animations = this.applyAnimations(animations)
+  }
+  applyAnimations(animations) {
+    return animations.map(animation => {
+      const [ keyframes, options ] = animation
+      return this.element.animate(
+        AAni.getKeyframes(keyframes) || AAni.getKeyframes('default'),
+        AAni.setOptions(options) || AAni.setOptions()
+      )
+    })
+  }
+  play(index) {
+    this.animations.forEach(animation => {
+      if (`${index}` || !index) {
+        animation.play()
       }
     })
   }
-
-  static getKeyframes(type, start = 0, end = 0, direction) {
+  pause(index) {
+    this.animations.forEach(animation => {
+      if (`${index}` || !index) {
+        animation.pause()
+      }
+    })
+  }
+  static setOptions(value) {
+    const defaultOptions = {
+      // delay: 1000,
+      duration: 5000,
+      easing: 'ease-in-out',
+      iterations: 1,
+      fill: 'backwards',
+      direction: 'alternate',
+      // composite: 'add',
+    }
+    return { ...defaultOptions, ...value }
+  }
+  static getKeyframes({type, start = 0, end = 0, direction}) {
     const keyframes = [
       {
         offset: 0,
@@ -44,6 +54,8 @@ export class AAni {
         offset: 1,
       },
     ]
+    const startValue = Array.isArray(start) ? this.makeRandomValue(start) : start
+    const endValue = Array.isArray(end) ? this.makeRandomValue(end) : end
     switch(type) {
       case 'translate':
         const directions = {
@@ -61,11 +73,11 @@ export class AAni {
         return [
           {
             offset: 0,
-            transform: `translate(${start * x}px, ${start * y}px)`,
+            transform: `translate(${startValue * x}px, ${startValue * y}px)`,
           },
           {
             offset: 1,
-            transform: `translate(${end * x}px, ${end * y}px)`,
+            transform: `translate(${endValue * x}px, ${endValue * y}px)`,
           },
         ]
         break;
@@ -73,11 +85,11 @@ export class AAni {
         return [
           {
             offset: 0,
-            transform: `rotate(${start}deg)`,
+            transform: `rotate(${startValue}deg)`,
           },
           {
             offset: 1,
-            transform: `rotate(${end}deg)`,
+            transform: `rotate(${endValue}deg)`,
           },
         ]
         break;
@@ -85,24 +97,24 @@ export class AAni {
         return [
           {
             offset: 0,
-            transform: `scale(${start})`,
+            transform: `scale(${startValue})`,
           },
           {
             offset: 1,
-            transform: `scale(${end})`,
+            transform: `scale(${endValue})`,
           },
         ]
         break;
       case 'skew':
-        console.log(start, end)
+        console.log(startValue, endValue)
         return [
           {
             offset: 0,
-            transform: `skew(${start}deg, ${start}deg)`,
+            transform: `skew(${startValue}deg, ${startValue}deg)`,
           },
           {
             offset: 1,
-            transform: `skew(${end}deg, ${end}deg)`,
+            transform: `skew(${endValue}deg, ${endValue}deg)`,
           },
         ]
         break;
@@ -110,11 +122,11 @@ export class AAni {
         return [
           {
             offset: 0,
-            opacity: start,
+            opacity: startValue,
           },
           {
             offset: 1,
-            opacity: end,
+            opacity: endValue,
           },
         ]
         break;

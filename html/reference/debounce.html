@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASTAR</title>
+    <link rel="stylesheet" href="./../../assets/css/styles.css" />
+    <link rel="stylesheet" href="./../../assets/css/refer.css" />
+    <style>
+      .wrap {
+        height: 1000vh;
+      }
+      .fixed {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap"></div>
+    <div class="fixed">
+      <p>스크롤 이벤트 발생 <strong>0</strong></p>
+      <div>디바운스 <em>0</em></div>
+    </div>
+    <script>
+      const clickCnt = document.querySelector("strong");
+      const debouncingCnt = document.querySelector("em");
+
+      let timerId;
+
+      function debouncing(func, timeout = 300) {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => func.apply(this), timeout);
+      }
+
+      function delayFunction(e) {
+        console.log(e);
+        debouncingCnt.innerHTML = parseInt(debouncingCnt.innerHTML) + 1;
+      }
+
+      window.addEventListener("wheel", () => {
+        console.log("fjdkls");
+        clickCnt.innerHTML = parseInt(clickCnt.innerHTML) + 1;
+        debouncing(delayFunction);
+      });
+    </script>
+  </body>
+</html>

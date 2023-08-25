@@ -326,18 +326,18 @@
 
       new AAni(
         titleGroup,
-        [{ type: 'translate', start: -4, end: [0, 4], diraction: 'bottom' }, AAni.setOptions({ iterations: Infinity })],
-        [{ type: 'scale', start: 0.95, end: 1 }, AAni.setOptions({ iterations: Infinity, duration: 3000 })]
+        [{ type: 'translate', start: -4, end: [0, 4], diraction: 'bottom' }, { iterations: Infinity }],
+        [{ type: 'scale', start: 0.95, end: 1 }, { iterations: Infinity, duration: 3000 }]
       )
       new AAni(
         title,
-        [{ type: 'translate', start: 0, end: 8, direction: 'top' }, AAni.setOptions({ iterations: Infinity })],
-        [{ type: 'opacity', start: 0.8, end: 1 }, AAni.setOptions({ iterations: Infinity })],
+        [{ type: 'translate', start: 0, end: 8, direction: 'top' }, { iterations: Infinity }],
+        [{ type: 'opacity', start: 0.8, end: 1 }, { iterations: Infinity }],
       )
       new AAni(
         title,
-        [{ type: 'translate', start: 0, end: 8, direction: 'bottom' }, AAni.setOptions({ iterations: Infinity })],
-        [{ type: 'rotate', srat: -4, end: 3 }, AAni.setOptions({ iterations: Infinity })],
+        [{ type: 'translate', start: 0, end: 8, direction: 'bottom' }, { iterations: Infinity }],
+        [{ type: 'rotate', srat: -4, end: 3 }, { iterations: Infinity }],
       )
     })
 
@@ -345,8 +345,8 @@
     mainContents.forEach(content => {
       new AAni(
         content,
-        [{ type: 'translate', start: -12, end: 12, direction: 'bottom' }, AAni.setOptions({ iterations: Infinity, duration: 7000 })],
-        [{ type: 'opacity', start: 0.8, end: 1 }, AAni.setOptions({ iterations: Infinity })],
+        [{ type: 'translate', start: -12, end: 12, direction: 'bottom' }, { iterations: Infinity, duration: 7000 }],
+        [{ type: 'opacity', start: 0.8, end: 1 }, { iterations: Infinity }],
       )
     })
 
@@ -357,15 +357,15 @@
 
     const animationsLogoAbout = new AAni(
       logoAbout,
-      [{ type: 'translate', start: -50, end: 0, direction: 'bottom' }, AAni.setOptions({ duration: 1300, direction: 'normal' })],
-      [{ type: 'opacity', start: 0, end: 1 }, AAni.setOptions({ duration: 1300, direction: 'normal' })],
+      [{ type: 'translate', start: -50, end: 0, direction: 'bottom' }, { duration: 1300, direction: 'normal' }],
+      [{ type: 'opacity', start: 0, end: 1 }, { duration: 1300, direction: 'normal' }],
     )
 
     const animationsAbouts = Array.from(abouts).map((about, index) => {
       const animations = new AAni(
         about,
-        [{ type: 'translate', start: -100, end: 0, direction: 'top' }, AAni.setOptions({ duration: 1300, direction: 'normal', delay: (index + 1) * 800 })],
-        [{ type: 'opacity', start: 0, end: 1 }, AAni.setOptions({ duration: 1300, direction: 'normal', delay: (index + 1) * 800 })],
+        [{ type: 'translate', start: -100, end: 0, direction: 'top' }, { duration: 1300, direction: 'normal', delay: (index + 1) * 800 }],
+        [{ type: 'opacity', start: 0, end: 1 }, { duration: 1300, direction: 'normal', delay: (index + 1) * 800 }],
       )
       animations.pause()
       return animations
@@ -394,8 +394,8 @@
     const animationsBusinessCards = Array.from(businessCards).map((businessCard, index) => {
       const animations = new AAni(
         businessCard,
-        [{ type: 'translate', start: -100, end: 0, direction: 'top' }, AAni.setOptions({ duration: 1000, direction: 'normal', delay: (index + 1) * 800 })],
-        [{ type: 'opacity', start: 0, end: 1 }, AAni.setOptions({ duration: 1000, direction: 'normal', delay: (index + 1) * 800 })],
+        [{ type: 'translate', start: -100, end: 0, direction: 'top' }, { duration: 1000, direction: 'normal', delay: (index + 1) * 800 }],
+        [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index + 1) * 800 }],
       )
       animations.pause()
       return animations

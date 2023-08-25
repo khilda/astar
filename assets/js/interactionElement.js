@@ -1,6 +1,5 @@
 export class AAni {
   static makeRandomValue([min, max, decimal = 1]) {
-    console.log(Math.floor(Math.random() * (max - min + 1) + min) / decimal)
     return Math.floor(Math.random() * (max - min + 1) + min) / decimal
   }
 

@@ -5,6 +5,7 @@ export class PageAnimation {
     this.wheelValue = 0;
     this.wheelDir = 0;
     this.isPC = true;
+    this.timerId = null;
 
     this.resizeHandler = this.handleResize.bind(this);
     window.addEventListener("resize", this.resizeHandler);
@@ -24,15 +25,20 @@ export class PageAnimation {
     }
   }
 
+  debouncing(func, timeout = 100) {
+    clearTimeout(this.timerId);
+    const _this = this;
+    this.timerId = setTimeout(() => func.apply(_this), timeout);
+  }
+
   handleScroll(e) {
     this.wheelValue = e.wheelDelta ?? e.deltaY;
     this.wheelDir = Math.max(-1, Math.min(1, this.wheelValue));
     // 페이지 전환
-    console.log(e);
     if (this.isPC) {
-      this.updateCurrentSection();
+      this.debouncing(this.updateCurrentSection);
     } else {
-      this.updateMobileSection();
+      this.debouncing(this.updateMobileSection);
     }
   }
 

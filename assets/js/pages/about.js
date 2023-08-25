@@ -1,6 +1,7 @@
 export const fnAbout = () => {
   if (!document.querySelector(".about")) return;
   fnTimeline();
+  fnCrew();
 };
 function fnTimeline() {
   const _timelineArea = document.querySelector(".timeline-area");
@@ -38,4 +39,29 @@ function fnTimeline() {
     }
     return _timeline[targetIdx].offsetTop;
   }
+}
+function fnCrew() {
+  const _crewWrap = document.querySelector(".crew-wrap");
+  if (window.innerWidth >= 720) {
+    const crewGroupAnimate = setInterval(() => {
+      console.log(crewGroupAnimate);
+      if (
+        !document.querySelector(".l-crew").classList.contains("isPageActive")
+      ) {
+        return;
+      }
+      _crewWrap.classList.toggle("is-animate");
+    }, 5000);
+  }
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 720) {
+      crewGroupAnimate();
+    } else {
+      if (crewGroupAnimate) {
+        for (let i = 0; i <= crewGroupAnimate; i++) {
+          clearInterval(crewGroupAnimate);
+        }
+      }
+    }
+  });
 }

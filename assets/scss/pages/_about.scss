@@ -499,6 +499,42 @@
       transition-delay: 1s;
     }
   }
+  .timeline-group {
+    .timeline:nth-child(odd) {
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    .timeline:nth-child(even) {
+      transition: all 0.5s;
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    .tl-date::before,
+    .tl-date::after {
+      transition: all 1s;
+      opacity: 0;
+    }
+  }
+  .isPageActive .timeline-group {
+    .timeline {
+      opacity: 1;
+      transform: none;
+    }
+    .tl-date::before,
+    .tl-date::after {
+      opacity: 1;
+    }
+    @for $i from 1 through 13 {
+      .timeline:nth-child(#{$i}) {
+        transition-delay: $i * 0.5s;
+        .tl-date::before,
+        .tl-date::after {
+          transition-delay: $i * 0.5s + 0.3s;
+        }
+      }
+    }
+  }
   @include desktop-tablet {
     .crew-wrap {
       height: 428px;

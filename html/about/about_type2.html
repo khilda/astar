@@ -522,30 +522,30 @@
       // const crewGroup = document.querySelector('.crew-group'),
       //       crews = crewGroup.querySelectorAll('.crew');
 
-      // const animationsCrews = Array.from(crews).map((crew, index) => {
-      //   const animations = new AAni(
-      //     crew,
-      //     [{ type: 'translate', start: -100, end: 0, direction: 'right' }, { duration: 1000, direction: 'normal', delay: index * 500 }],
-      //     [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: index * 500 }],
-      //   )
-      //   animations.pause()
-      //   return animations
-      // })
+      const animationsCrews = Array.from(crews).map((crew, index) => {
+        const animations = new AAni(
+          crew,
+          [{ type: 'translate', start: -100, end: 0, direction: 'right' }, { duration: 1000, direction: 'normal', delay: index * 500 }],
+          [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: index * 500 }],
+        )
+        animations.pause()
+        return animations
+      })
 
-      // const crewGroupObvserverOptions = { threshold: 1.0 };
-      // const crewGroupObvserverCallback = (entries, observer) => {
-      //   entries.forEach((entry) => {
-      //     if (entry.isIntersecting) {
-      //       animationsCrews.forEach(animationsCrew => {
-      //         animationsCrew.play()
-      //       })
-      //       observer.unobserve(entry.target);
-      //     } else {
-      //     }
-      //   });
-      // }
-      // const crewGroupObvserver = new IntersectionObserver(crewGroupObvserverCallback, crewGroupObvserverOptions);
-      // crewGroupObvserver.observe(crewGroup);
+      const crewGroupObvserverOptions = { threshold: 1.0 };
+      const crewGroupObvserverCallback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animationsCrews.forEach(animationsCrew => {
+              animationsCrew.play()
+            })
+            observer.unobserve(entry.target);
+          } else {
+          }
+        });
+      }
+      const crewGroupObvserver = new IntersectionObserver(crewGroupObvserverCallback, crewGroupObvserverOptions);
+      crewGroupObvserver.observe(crewGroup);
     </script>
   </body>
 </html>

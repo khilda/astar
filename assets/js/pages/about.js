@@ -1,5 +1,5 @@
 export const fnAbout = () => {
-  if (!document.querySelector(".about")) return;
+  if (!document.querySelector(".container.about")) return;
   fnTimeline();
   fnCrew();
 };

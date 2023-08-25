@@ -469,27 +469,50 @@
             timelineArea = timelineWrap.querySelector('.timeline-area'),
             timelines = timelineArea.querySelectorAll('.timeline');
 
+      const timelineAreaHeight = timelineArea.getBoundingClientRect().height
+      let nextGroup = 0
+      Array.from(timelines).reduce((a, b, index) => {
+        if (a < timelineAreaHeight) {
+          nextGroup = index
+        }
+        return a + b.getBoundingClientRect().height
+      }, 0)
+
       Array.from(timelines).forEach((timeline, index) => {
-        const animations = new AAni(
-          timeline.querySelector('.tl-wrap'),
-          [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal' }],
-          [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal' }],
-        )
+        let animations
+        if (index < nextGroup) {
+          animations = new AAni(
+            timeline.querySelector('.tl-wrap'),
+            [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: index * 500 }],
+            [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: index * 500 }],
+          )
+        } else if (index >= nextGroup && index < nextGroup + 3) {
+          animations = new AAni(
+            timeline.querySelector('.tl-wrap'),
+            [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: (index - nextGroup) * 500 }],
+            [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index - nextGroup) * 500 }],
+          )
+        } else if (index >= nextGroup + 3 && index < nextGroup + 6) {
+          animations = new AAni(
+            timeline.querySelector('.tl-wrap'),
+            [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 3) * 500 }],
+            [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 3) * 500 }],
+          )
+        } else if (index >= nextGroup + 6) {
+          animations = new AAni(
+            timeline.querySelector('.tl-wrap'),
+            [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 6) * 500 }],
+            [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 6) * 500 }],
+          )
+        }
+
         animations.pause()
       })
-
+      
       const timelinesObvserverOptions = { threshold: 0.9 };
       const timelinesObvserverCallback = (entries, observer) => {
         entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            // timelines.forEach((timeline, index, thisArr) => {
-            //   if (timeline === entry.target) {
-            //     thisArr[index + 1].querySelector('.tl-wrap').getAnimations().forEach(animation => {
-            //       animation.effect.updateTiming({ delay: (index + 1) * 500 })
-            //     })
-            //   }
-            // })
-            console.log(entry)
             entry.target.querySelector('.tl-wrap').getAnimations().forEach(animation => {
               animation.play()
             })
@@ -503,24 +526,9 @@
         timelinesObvserver.observe(timeline);
       })
 
-      // const timelineAreaObvserverOptions = { threshold: 1.0 };
-      // const timelineAreaObvserverCallback = (entries, observer) => {
-      //   entries.forEach((entry) => {
-      //     if (entry.isIntersecting) {
-      //       timelines.forEach(timeline => {
-      //         timelinesObvserver.observe(timeline);
-      //       })
-      //       observer.unobserve(entry.target);
-      //     } else {
-      //     }
-      //   });
-      // }
-      // const timelineAreaObvserver = new IntersectionObserver(timelineAreaObvserverCallback, timelineAreaObvserverOptions);
-      // timelineAreaObvserver.observe(timelineArea);
-
-      // // about crew & intersection observer (ordered interaction)
-      // const crewGroup = document.querySelector('.crew-group'),
-      //       crews = crewGroup.querySelectorAll('.crew');
+      // about crew & intersection observer (ordered interaction)
+      const crewGroup = document.querySelector('.crew-group'),
+            crews = crewGroup.querySelectorAll('.crew');
 
       const animationsCrews = Array.from(crews).map((crew, index) => {
         const animations = new AAni(

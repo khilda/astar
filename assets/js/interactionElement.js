@@ -1,5 +1,5 @@
 export class AAni {
-  static makeRandomValue([min, max, decimal = 1]) {
+  #makeRandomValue([min, max, decimal = 1]) {
     return Math.floor(Math.random() * (max - min + 1) + min) / decimal
   }
 
@@ -11,8 +11,8 @@ export class AAni {
     return animations.map(animation => {
       const [ keyframes, options ] = animation
       return this.element.animate(
-        AAni.getKeyframes(keyframes) || AAni.getKeyframes('default'),
-        AAni.setOptions(options) || AAni.setOptions()
+        this.#getKeyframes(keyframes) || this.#getKeyframes('default'),
+        this.#setOptions(options) || this.#setOptions()
       )
     })
   }
@@ -30,7 +30,7 @@ export class AAni {
       }
     })
   }
-  static setOptions(value) {
+  #setOptions(value) {
     const defaultOptions = {
       // delay: 1000,
       duration: 5000,
@@ -42,7 +42,7 @@ export class AAni {
     }
     return { ...defaultOptions, ...value }
   }
-  static getKeyframes({type, start = 0, end = 0, direction}) {
+  #getKeyframes({type, start = 0, end = 0, direction}) {
     const keyframes = [
       {
         offset: 0,
@@ -54,8 +54,8 @@ export class AAni {
         offset: 1,
       },
     ]
-    const startValue = Array.isArray(start) ? this.makeRandomValue(start) : start
-    const endValue = Array.isArray(end) ? this.makeRandomValue(end) : end
+    const startValue = Array.isArray(start) ? this.#makeRandomValue(start) : start
+    const endValue = Array.isArray(end) ? this.#makeRandomValue(end) : end
     switch(type) {
       case 'translate':
         const directions = {

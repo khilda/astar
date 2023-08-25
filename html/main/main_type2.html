@@ -318,8 +318,8 @@
   <script type="module">
     import { AAni } from './../../assets/js/interactionElement.js'
 
+    // title group animations
     const titleGroups = document.querySelectorAll('.title-group');
-
     titleGroups.forEach(titleGroup => {
       const title = titleGroup.querySelector('.t-title'),
         summary = titleGroup.querySelector('.t-summary');
@@ -327,7 +327,7 @@
       new AAni(
         titleGroup,
         [{ type: 'translate', start: -4, end: [0, 4], diraction: 'bottom' }, { iterations: Infinity }],
-        [{ type: 'scale', start: 0.95, end: 1 }, { iterations: Infinity, duration: 3000 }]
+        [{ type: 'scale', start: 0.95, end: 1 }, { iterations: Infinity, duration: 3000 }],
       )
       new AAni(
         title,
@@ -337,10 +337,11 @@
       new AAni(
         title,
         [{ type: 'translate', start: 0, end: 8, direction: 'bottom' }, { iterations: Infinity }],
-        [{ type: 'rotate', srat: -4, end: 3 }, { iterations: Infinity }],
+        [{ type: 'rotate', srat: -2, end: 2 }, { iterations: Infinity }],
       )
     })
 
+    // main contents animations
     const mainContents = document.querySelectorAll('[class^=main]');
     mainContents.forEach(content => {
       new AAni(
@@ -350,6 +351,7 @@
       )
     })
 
+    // main about animations & intersection observer (ordered interaction)
     const mainAbout = document.querySelector('.main-about'),
       logoAbout = mainAbout.querySelector('.logo-about'),
       aboutWrap = mainAbout.querySelector('.about-wrap'),
@@ -387,7 +389,7 @@
     const observer = new IntersectionObserver(callback, options);
     observer.observe(mainAbout);
 
-
+    // main business & intersection observer (ordered interaction)
     const mainBusiness = document.querySelector('.main-business'),
       businessCards = mainBusiness.querySelectorAll('.business-card');
 
@@ -415,8 +417,6 @@
     }
     const observer2 = new IntersectionObserver(callback2, options2);
     observer2.observe(mainBusiness);
-
-
   </script>
 </body>
 

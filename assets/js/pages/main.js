@@ -1,5 +1,5 @@
 import { setLogoRollingClone } from "./../animation.js";
 export const fnMain = () => {
-  if (!document.querySelector(".main")) return;
+  if (!document.querySelector(".container.main")) return;
   setLogoRollingClone();
 };

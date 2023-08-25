@@ -1,5 +1,5 @@
 export const fnBusiness = () => {
-  if (!document.querySelector(".business")) return;
+  if (!document.querySelector(".container.business")) return;
   const links = document.querySelectorAll("[data-section]");
   if (!links.length) return;
   links.forEach((link) => {

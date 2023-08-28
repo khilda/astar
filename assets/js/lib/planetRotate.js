@@ -9,6 +9,7 @@ const colors = [
 let currentColor = null;
 const $target = document.querySelector(".v-crnt .img-plant");
 export const planetRotate = function () {
+  if(!document.querySelector('.visual-area')) return
   appendShader();
   init();
   animate();

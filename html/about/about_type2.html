@@ -480,25 +480,37 @@
 
       Array.from(timelines).forEach((timeline, index) => {
         let animations
-        if (index < nextGroup) {
+        if (window.innerHeight > 720) {
           animations = new AAni(
             timeline.querySelector('.tl-wrap'),
             [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: index * 500 }],
             [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: index * 500 }],
           )
-        } else if (index >= nextGroup && index < nextGroup + 3) {
+          return
+        }
+        if (index < nextGroup) {
+          console.log(`1 ${index}`)
+          animations = new AAni(
+            timeline.querySelector('.tl-wrap'),
+            [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: index * 500 }],
+            [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: index * 500 }],
+            )
+          } else if (index >= nextGroup && index < nextGroup + 3) {
+          console.log(`2 ${index}`)
           animations = new AAni(
             timeline.querySelector('.tl-wrap'),
             [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: (index - nextGroup) * 500 }],
             [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index - nextGroup) * 500 }],
-          )
-        } else if (index >= nextGroup + 3 && index < nextGroup + 6) {
+            )
+          } else if (index >= nextGroup + 3 && index < nextGroup + 6) {
+          console.log(`3 ${index}`)
           animations = new AAni(
             timeline.querySelector('.tl-wrap'),
             [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 3) * 500 }],
             [{ type: 'opacity', start: 0, end: 1 }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 3) * 500 }],
-          )
-        } else if (index >= nextGroup + 6) {
+            )
+          } else if (index >= nextGroup + 6) {
+          console.log(`4 ${index}`)
           animations = new AAni(
             timeline.querySelector('.tl-wrap'),
             [{ type: 'translate', start: -100, end: 0, direction: index % 2 === 0 ? 'left' : 'right' }, { duration: 1000, direction: 'normal', delay: (index - nextGroup - 6) * 500 }],

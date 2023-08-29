@@ -179,11 +179,11 @@
 //************************************
 .business.type1 {
   .business-link .btn-link {
-    transition: all 1.5s;
     opacity: 0;
     transform: translateY(10px);
   }
   .isPageActive .business-link .btn-link {
+    transition: all 1.5s;
     opacity: 1;
     transform: none;
     @for $i from 1 through 4 {
@@ -196,31 +196,33 @@
   .img-desc-group {
     .img-visual,
     .vision-text {
-      transition: all 1.5s;
       opacity: 0;
       transform: translateY(10px);
     }
     .vision-text h3,
     .vision-text p {
-      transition: all 1.5s;
       opacity: 0;
     }
   }
   .isPageActive .img-desc-group {
     .img-visual {
+      transition: all 1.5s;
       opacity: 1;
       transform: none;
     }
     .vision-text {
+      transition: all 1.5s;
       opacity: 1;
       transform: none;
       transition-delay: 0.5s;
     }
     .vision-text h3 {
+      transition: all 1.5s;
       opacity: 1;
       transition-delay: 1.2s;
     }
     .vision-text p {
+      transition: all 1.5s;
       opacity: 1;
       transition-delay: 1.5s;
     }
@@ -229,7 +231,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
-  .isPageActive .logo-group .logo-row{
+  .isPageActive .logo-group .logo-row {
     .logo-item {
       transition: all 1.5s;
       opacity: 1;
@@ -245,10 +247,10 @@
     }
   }
   .customer-desc {
-    transition: all 1.5s;
     opacity: 0;
   }
   .isPageActive .customer-desc {
+    transition: all 1.5s;
     opacity: 1;
     transition-delay: 0.5s;
   }

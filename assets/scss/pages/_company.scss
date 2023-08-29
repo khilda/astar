@@ -4,21 +4,44 @@
 .company {
   .l-animate {
     position: relative;
+    overflow: hidden;
   }
   .animate-scroll {
     position: absolute;
+    top: -430px;
     bottom: 0;
-    left: 0;
+    left: calc(50% - 590px);
     width: 1180px;
-    height: 250vh;
     transform-origin: 50% 100%;
-    transform: perspective(300px) rotateX(25deg);
+    transform: perspective(800px) rotateX(25deg);
     overflow: hidden;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 350px;
+      background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+      z-index: 1;
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 350px;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+      z-index: 1;
+    }
   }
   .animate-content {
     display: flex;
@@ -51,7 +74,7 @@
     top: 100%;
   }
   100% {
-    top: -170%;
+    top: -100%;
   }
 }
 
@@ -80,7 +103,7 @@
     display: flex;
     align-items: center;
     border-radius: 80px;
-    background-color: $c-primary;
+    background: $c-primary;
     margin-top: 40px;
     padding: 20px 30px;
     line-height: 1;
@@ -89,7 +112,57 @@
     color: #000;
     &::before {
       @include before-icon;
-      background-image: url("");
+      background-image: url("./../images/btn_join.png");
     }
   }
+}
+///************************************
+//# type1
+//************************************
+.company.type1 {
+  .isPageActive .animate-content {
+    animation: scroll 50s linear 4s infinite;
+  }
+  .join-group {
+    .img-logo,
+    .join-title,
+    .join-desc,
+    .btn-join {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+  .isPageActive .join-group {
+    .img-logo,
+    .join-title,
+    .join-desc,
+    .btn-join {
+      transition: all 1.5s;
+      opacity: 1;
+      transform: none;
+    }
+    .img-logo {
+      transition-delay: 0.5s;
+    }
+    .join-title {
+      transition-delay: 0.75s;
+    }
+    .join-desc {
+      transition-delay: 1.25s;
+    }
+    .btn-join {
+      transition-delay: 1.5s;
+    }
+  }
+}
+///************************************
+//# Responsive
+//************************************
+@include tablet {
+  .company .animate-scroll {
+    left: calc(50% - 75vw);
+    width: 150vw;
+  }
+}
+@include mobile {
 }

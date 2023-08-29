@@ -521,11 +521,11 @@
 //************************************
 .about.type1 {
   .vision-icon-group .icon-item {
-    transition: all 0.5s;
     opacity: 0;
     transform: translateY(10px);
   }
   .isPageActive .vision-icon-group .icon-item {
+    transition: all 0.5s;
     opacity: 1;
     transform: none;
     &:nth-child(1) {
@@ -537,12 +537,10 @@
   }
   .timeline-group {
     .timeline:nth-child(odd) {
-      transition: all 0.5s;
       opacity: 0;
       transform: translateX(30px);
     }
     .timeline:nth-child(even) {
-      transition: all 0.5s;
       opacity: 0;
       transform: translateX(-30px);
     }
@@ -554,6 +552,7 @@
   }
   .isPageActive .timeline-group {
     .timeline.is-animate {
+      transition: all 0.5s;
       opacity: 1;
       transform: none;
       .tl-date::before,
@@ -575,10 +574,6 @@
     .crew-wrap {
       height: 428px;
     }
-    .crew-group,
-    .crew {
-      transition: all 0.5s;
-    }
     .crew-group {
       opacity: 0;
       &:nth-child(2) {
@@ -592,8 +587,10 @@
     .isPageActive .crew-wrap {
       &:not(.is-animate) .crew-group:nth-child(1),
       &.is-animate .crew-group:nth-child(2) {
+        transition: all 0.5s;
         opacity: 1;
         .crew {
+          transition: all 0.5s;
           opacity: 1;
           transform: none;
           @for $i from 1 through 4 {

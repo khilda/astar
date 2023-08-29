@@ -216,10 +216,31 @@
     width: 50%;
     padding: 4px 0;
     .tl-wrap {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 5px;
+      .tl-dot {
+        position: relative;
+        display: block;
+        .before,
+        .after {
+          position: absolute;
+          top: 4px;
+          display: block;
+          background-color: $c-primary;
+          width: 19px;
+          height: 19px;
+          border-radius: 50%;
+        }
+      }
+      .tl-date {
+        &::before,
+        &::after {
+          content: none;
+        }
+      }
     }
     &:nth-child(odd) {
       align-items: flex-start;
@@ -228,6 +249,12 @@
       .tl-date::before,
       .tl-date::after {
         left: -10px;
+      }
+      .tl-dot {
+        .before,
+        .after {
+          left: -60px;
+        }
       }
     }
     &:nth-child(even) {
@@ -239,8 +266,17 @@
       .tl-date::after {
         right: -9px;
       }
+      .tl-dot {
+        .before,
+        .after {
+          right: -59px;
+        }
+      }
     }
     &:hover .tl-date::before {
+      animation: timeline-bounce 1.6s 0.4s infinite;
+    }
+    &:hover .tl-dot .before {
       animation: timeline-bounce 1.6s 0.4s infinite;
     }
   }

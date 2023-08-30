@@ -104,6 +104,7 @@
 }
 
 .w-section.l-timeline {
+  padding-top: 90px;
   .title-group {
     margin-bottom: 50px;
   }
@@ -130,6 +131,7 @@
         rgba(56, 250, 204, 0) 100%
       );
       width: 3px;
+      opacity: .5;
     }
   }
   .timeline-area {
@@ -527,7 +529,7 @@
 //************************************
 //# interaction
 //************************************
-.about.type1 {
+.about {
   .vision-icon-group .icon-item {
     opacity: 0;
     transform: translateY(10px);

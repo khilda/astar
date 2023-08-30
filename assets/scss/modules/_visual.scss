@@ -9,22 +9,23 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  width: $w-full;
+  width: calc(100vw + 240px);
   height: $h-full;
+  margin: 0 -120px;
 }
 
 .v-prev,
 .v-next {
   display: flex;
   align-items: center;
-  width: 270px;
+  width: 360px;
   z-index: 1;
   .img-plant {
     flex: none;
     display: block;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 120px;
+    width: 240px;
     height: 240px;
   }
   .btn-link {
@@ -130,6 +131,7 @@
     }
   }
   .v-info {
+    overflow: hidden;
     .title-group {
       align-items: flex-start;
       text-align: left;
@@ -303,13 +305,13 @@
 //************************************
 //# Visual animation
 //************************************
-.visual-area {
-  opacity: 0;
-  transition: opacity 1.5s 0.7s;
-}
-.is-animate .visual-area {
-  opacity: 1;
-}
+// .visual-area {
+//   opacity: 0;
+//   transition: opacity 1.5s 0.7s;
+// }
+// .is-animate .visual-area {
+//   opacity: 1;
+// }
 
 ///************************************
 //# Responsive - tablet
@@ -318,6 +320,8 @@
   .visual-section {
     position: relative;
     padding-top: 20vmin;
+    width: 100vw;
+    margin: 0;
   }
   .v-prev,
   .v-next {
@@ -331,7 +335,7 @@
       font-size: 15px;
     }
     .animate-arrow {
-      width: 25x;
+      width: 25px;
       &::before {
         width: 12px;
         height: 12px;
@@ -422,6 +426,8 @@
     }
     .v-info {
       top: calc(16vmin + 240px); // visual-section 기준
+      left: 50%;
+      transform: translateX(-50%);
       .title-group {
         .t-summary {
           font-size: 14px;
@@ -590,7 +596,7 @@
   .v-prev .btn-link,
   .v-next .btn-link,
   .v-crnt .v-info,
-  .v-crnt .v-desc  {
+  .v-crnt .v-desc {
     transition: opacity 0.5s 0.5s;
   }
 }
@@ -608,7 +614,9 @@
 .visual-area.afterPageTrans {
   .v-prev .btn-link,
   .v-next .btn-link,
-  .v-crnt .v-info {
+  .v-crnt .v-info,
+  .v-crnt .v-desc {
+    transition-delay: 0s;
     opacity: 0;
   }
 }

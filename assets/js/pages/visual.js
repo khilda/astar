@@ -8,9 +8,6 @@ export const fnVisual = () => {
   window.pageAnimation = new PageAnimation();
   planetRotate();
   planetAnimate();
-  setTimeout(() => {
-    document.querySelector(".container").classList.add("is-animate");
-  }, 2000);
   clickDesc();
 };
 

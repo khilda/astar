@@ -28,25 +28,33 @@
       <div class="box"></div>
     </div>
     <script>
-      function animate({ draw, duration }) {
-        let start = performance.now();
+      function animate({ delay = 0, draw, duration }) {
+        setTimeout(() => {
+          let start = performance.now();
+          requestAnimationFrame(function animate(time) {
+            let timeFraction = (time - start) / duration;
+            if (timeFraction > 1) timeFraction = 1;
 
-        requestAnimationFrame(function animate(time) {
-          let timeFraction = (time - start) / duration;
-          if (timeFraction > 1) timeFraction = 1;
+            draw(timeFraction); // draw it
 
-          draw(timeFraction); // draw it
-
-          if (timeFraction < 1) {
-            requestAnimationFrame(animate);
-          }
-        });
+            if (timeFraction < 1) {
+              requestAnimationFrame(animate);
+            }
+          });
+        }, delay);
       }
+      function widthZero(el, percent) {
+        const _w = el.clientWidth - el.clientWidth * percent;
+        el.style.width = `${_w}px`;
+      }
+
       const _box = document.querySelector(".box");
       setTimeout(() => {
         animate({
+          delay: 1500,
           duration: 1000,
           draw(progress) {
+            widthZero(_box, progress, _box.clientWidth);
           },
         });
       }, 1000);

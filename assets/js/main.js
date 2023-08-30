@@ -1,4 +1,6 @@
 import { onClickBtn } from "./evtButton.js";
+import { pageTrnasition } from "./func/pageTrans.js";
+
 // page
 import { fnVisual } from "./pages/visual.js";
 import { fnIntro } from "./pages/intro.js";
@@ -10,10 +12,11 @@ window.addEventListener("DOMContentLoaded", () => {
   fnVisual();
   const _container = document.querySelector(".container");
   if (_container.classList.contains("intro")) {
-    fnComm();
+    fnIntro();
+    return;
   }
+  fnComm();
   // content
-  fnIntro();
   fnAbout();
   fnMain();
   fnBusiness();
@@ -35,4 +38,5 @@ const fnComm = () => {
     const menu = _target.dataset.link;
     window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
   });
+  pageTrnasition();
 };

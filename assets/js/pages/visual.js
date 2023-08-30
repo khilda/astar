@@ -43,7 +43,7 @@ export const bgAnimation = () => {
 };
 
 const clickDesc = () => {
-  document.querySelector(".v-desc").addEventListener("click", (e) => {
+  document.querySelector(".v-desc")?.addEventListener("click", (e) => {
     window.pageAnimation.scrollToSection(document.querySelector(".container > .w-section"));
   });
 };

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASTAR</title>
+    <link rel="stylesheet" href="./../../assets/css/styles.css" />
+    <link rel="stylesheet" href="./../../assets/css/refer.css" />
+    <style>
+      .wrap {
+        height: 1000vh;
+      }
+      .fixed {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .box {
+        background-color: #fff;
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed">
+      <div class="box"></div>
+    </div>
+    <script>
+      function animate({ draw, duration }) {
+        let start = performance.now();
+
+        requestAnimationFrame(function animate(time) {
+          let timeFraction = (time - start) / duration;
+          if (timeFraction > 1) timeFraction = 1;
+
+          draw(timeFraction); // draw it
+
+          if (timeFraction < 1) {
+            requestAnimationFrame(animate);
+          }
+        });
+      }
+      const _box = document.querySelector(".box");
+      setTimeout(() => {
+        animate({
+          duration: 1000,
+          draw(progress) {
+          },
+        });
+      }, 1000);
+    </script>
+  </body>
+</html>

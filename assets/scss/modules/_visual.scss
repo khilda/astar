@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   width: 270px;
+  z-index: 1;
   .img-plant {
     flex: none;
     display: block;
@@ -580,5 +581,34 @@
         top: calc(20vmin + 240px);
       }
     }
+  }
+}
+//************************************
+//# 페이지 들어갈때
+//************************************
+.visual-area {
+  .v-prev .btn-link,
+  .v-next .btn-link,
+  .v-crnt .v-info,
+  .v-crnt .v-desc  {
+    transition: opacity 0.5s 0.5s;
+  }
+}
+.visual-area.beforePageTrans {
+  .v-prev .btn-link,
+  .v-next .btn-link,
+  .v-crnt .v-info,
+  .v-crnt .v-desc {
+    opacity: 0;
+  }
+}
+//************************************
+//# 페이지 나올때
+//************************************
+.visual-area.afterPageTrans {
+  .v-prev .btn-link,
+  .v-next .btn-link,
+  .v-crnt .v-info {
+    opacity: 0;
   }
 }

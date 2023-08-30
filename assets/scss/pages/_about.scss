@@ -131,7 +131,7 @@
         rgba(56, 250, 204, 0) 100%
       );
       width: 3px;
-      opacity: .5;
+      opacity: 0.5;
     }
   }
   .timeline-area {
@@ -323,6 +323,7 @@
     transform: scale(2);
   }
 }
+
 .about .crew-wrap {
   width: 100%;
   overflow: hidden;
@@ -355,6 +356,24 @@
     .crew-copy {
       font-size: 15px;
       word-break: keep-all;
+    }
+  }
+}
+.about .crew-pagination {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 100px;
+  .btn-page {
+    display: block;
+    background-color: #444;
+    width: 100px;
+    height: 3px;
+    font-size: 0;
+    &.is-active {
+      background-color: $c-primary;
     }
   }
 }
@@ -525,6 +544,9 @@
       }
     }
   }
+  .about .crew-pagination {
+    display: none;
+  }
 }
 //************************************
 //# interaction
@@ -594,19 +616,16 @@
       opacity: 0;
       transform: translateY(10px);
     }
-    .isPageActive .crew-wrap {
-      &:not(.is-animate) .crew-group:nth-child(1),
-      &.is-animate .crew-group:nth-child(2) {
+    .isPageActive .crew-wrap .crew-group.is-active {
+      transition: all 0.5s;
+      opacity: 1;
+      .crew {
         transition: all 0.5s;
         opacity: 1;
-        .crew {
-          transition: all 0.5s;
-          opacity: 1;
-          transform: none;
-          @for $i from 1 through 4 {
-            &:nth-child(#{$i}) {
-              transition-delay: $i * 0.5s;
-            }
+        transform: none;
+        @for $i from 1 through 4 {
+          &:nth-child(#{$i}) {
+            transition-delay: $i * 0.5s;
           }
         }
       }

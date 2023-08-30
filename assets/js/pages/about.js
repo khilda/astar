@@ -61,14 +61,15 @@ function fnTimeline() {
 }
 function fnCrew() {
   const _section = document.querySelector(".l-crew");
-  const _crewWrap = document.querySelector(".crew-wrap");
+  const _crewGroup = document.querySelectorAll(".crew-group");
+  const _pagination = document.querySelectorAll(".crew-pagination .btn-page");
   let crewGroupAnimate = null;
+  let index = 0;
   function setGroupAnimate() {
     crewGroupAnimate = setInterval(() => {
-      if (!_section.classList.contains("isPageActive")) {
-        return;
-      }
-      _crewWrap.classList.toggle("is-animate");
+      _pagination.forEach((el) => el.classList.remove("is-active"));
+      _pagination[index].classList.add("is-active");
+      changeGroup(index);
     }, 5000);
   }
   if (window.innerWidth >= 720) {
@@ -86,4 +87,19 @@ function fnCrew() {
       }
     }
   });
+  _pagination.forEach((btn, idx, btns) => {
+    btn.addEventListener("click", () => {
+      btns.forEach((el) => el.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      changeGroup(idx);
+      clearInterval(crewGroupAnimate);
+      setGroupAnimate();
+    });
+  });
+  function changeGroup(idx) {
+    if (!_section.classList.contains("isPageActive")) return;
+    _crewGroup.forEach((el) => el.classList.remove("is-active"));
+    _crewGroup[idx].classList.add("is-active");
+    index = (idx + 1) % _crewGroup.length;
+  }
 }

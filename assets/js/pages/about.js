@@ -1,7 +1,10 @@
+import { contentsBounce } from "../func/contentsBounce.js";
+
 export const fnAbout = () => {
   if (!document.querySelector(".container.about")) return;
   fnTimeline();
   fnCrew();
+  contentsBounce('.img-desc-group', '.vision-icon-group', '.timeline-wrap', '.crew-group');
 };
 function fnTimeline() {
   const _timelineArea = document.querySelector(".timeline-area");

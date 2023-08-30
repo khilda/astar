@@ -1,8 +1,11 @@
 import { setLogoRollingClone } from "./../animation.js";
+import { contentsBounce } from "../func/contentsBounce.js";
+
 export const fnMain = () => {
   if (!document.querySelector(".container.main")) return;
   setLogoRollingClone();
   iptEvt();
+  contentsBounce('[class^=main]')
 };
 
 const iptEvt = () => {

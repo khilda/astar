@@ -6,7 +6,6 @@ export const fnBusiness = () => {
     link.addEventListener("click", (e) => {
       const id = link.dataset.section;
       const _target = document.getElementById(id);
-      console.log(_target)
       window.pageAnimation.scrollToSection(_target);
     });
   });

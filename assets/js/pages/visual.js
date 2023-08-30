@@ -11,6 +11,7 @@ export const fnVisual = () => {
   setTimeout(() => {
     document.querySelector(".container").classList.add("is-animate");
   }, 2000);
+  clickDesc();
 };
 
 const planetAnimate = () => {
@@ -39,4 +40,10 @@ export const bgAnimation = () => {
     star += `<li class="star"></li>`;
   }
   _visualCont.querySelector(".galaxy").innerHTML = star;
+};
+
+const clickDesc = () => {
+  document.querySelector(".v-desc").addEventListener("click", (e) => {
+    window.pageAnimation.scrollToSection(document.querySelector(".container > .w-section"));
+  });
 };

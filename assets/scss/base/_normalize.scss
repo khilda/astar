@@ -40,6 +40,12 @@ button {
     cursor: default;
   }
 }
+input:autofill {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  border: 0 none;
+}
 ::placeholder {
   color: #969696;
   font-size: inherit;

@@ -17,7 +17,7 @@
 .v-next {
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 270px;
   .img-plant {
     flex: none;
     display: block;
@@ -116,9 +116,8 @@
     position: relative;
     display: block;
     background: transparent no-repeat 50% 50% / contain;
-    // background-image: url($img-main);
-    width: 420px;
-    height: 420px;
+    width: 380px;
+    height: 380px;
     canvas {
       position: absolute;
       top: 50%;
@@ -135,9 +134,12 @@
       text-align: left;
       gap: 20px;
     }
+    .t-title {
+      font-size: 28px;
+    }
     .v-info-text {
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 400;
       > strong {
         font-size: inherit;
@@ -154,6 +156,7 @@
     align-items: center;
     width: 100vw;
     text-align: center;
+    cursor: pointer;
     .txt {
       display: block;
       margin-bottom: 5px;
@@ -444,9 +447,6 @@
 //************************************
 //# Plant type1
 //************************************
-.v-crnt {
-  gap: 50px;
-}
 .v-crnt .plant.type1 {
   position: relative;
   border-radius: 50%;

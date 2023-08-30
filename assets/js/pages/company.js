@@ -1,13 +1,6 @@
 export const fnCompany = () => {
   if (!document.querySelector(".container.company")) return;
-  const noArr = [
-    "01",
-    "02",
-    "03",
-    "04",
-    "05",
-    "06",
-  ];
+  const noArr = ["01", "02", "03", "04", "05", "06"];
   const descArr = [
     "고귀한 성품을 가진 회사",
     "고객에게 신뢰를 얻는 회사",
@@ -16,14 +9,16 @@ export const fnCompany = () => {
     "인정을 베푸는 회사",
     "다 함께 뛰는 회사",
   ];
-  visionAnimate('.t-summary', noArr);
-  visionAnimate('.t-desc', descArr);
+  visionAnimate(".t-summary", noArr);
+  visionAnimate(".t-desc", descArr);
 };
 const visionAnimate = (_class, textArr) => {
   const elts = {
     prev: document.querySelector(`#prev ${_class}`),
     next: document.querySelector(`#next ${_class}`),
   };
+
+  if (!elts.prev || !elts.next) return;
 
   const morphTime = 1;
   const cooldownTime = 0.5;

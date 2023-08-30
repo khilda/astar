@@ -1,3 +1,5 @@
+import { contentsBounce } from "../func/contentsBounce.js";
+
 export const fnBusiness = () => {
   if (!document.querySelector(".container.business")) return;
   const links = document.querySelectorAll("[data-section]");
@@ -9,4 +11,6 @@ export const fnBusiness = () => {
       window.pageAnimation.scrollToSection(_target);
     });
   });
+
+  contentsBounce('[class^=business]', '[class^=img-desc]', '.logo-group')
 };

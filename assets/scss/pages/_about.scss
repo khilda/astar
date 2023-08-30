@@ -108,12 +108,29 @@
     margin-bottom: 50px;
   }
   .timeline-wrap {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     height: 65vh;
     gap: 10px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      bottom: 40px;
+      left: calc(50% - 1px);
+      display: block;
+      background: linear-gradient(
+        0deg,
+        rgba(56, 250, 204, 0) 0%,
+        #38facc 10%,
+        #38facc 90%,
+        rgba(56, 250, 204, 0) 100%
+      );
+      width: 3px;
+    }
   }
   .timeline-area {
     position: relative;
@@ -198,15 +215,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  &::before {
-    content: "";
-    position: absolute;
-    top: -100px;
-    bottom: 40px;
-    display: block;
-    background: linear-gradient(0deg, #38facc 0%, rgba(56, 250, 204, 0) 100%);
-    width: 3px;
-  }
   .timeline {
     position: relative;
     display: flex;

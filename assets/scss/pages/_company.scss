@@ -54,6 +54,7 @@
     .title-group {
       gap: 37px;
       .t-summary {
+        line-height: 1;
         font-size: 35px;
         font-weight: 800;
       }
@@ -64,7 +65,7 @@
     }
   }
 }
-.animate-content {
+.animate-scroll .animate-content {
   position: absolute;
   top: 100%;
   animation: scroll 50s linear 4s infinite;
@@ -120,7 +121,26 @@
 //# type1
 //************************************
 .company.type1 {
-  .isPageActive .animate-content {
+  .animate-content.type1 {
+    position: relative;
+    width: 100vw;
+    height: 300px;
+    .title-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      gap: 20px;
+      .t-summary,
+      .t-desc {
+        transition: none;
+      }
+    }
+  }
+}
+.company {
+  .isPageActive .animate-scroll .animate-content {
     animation: scroll 50s linear 4s infinite;
   }
   .join-group {

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASTAR</title>
     <link rel="stylesheet" href="./../../assets/css/styles.css" />
-    <link rel="stylesheet" href="./../../assets/css/refer.css" />
     <style>
       .wrap {
         height: 1000vh;
@@ -16,10 +15,46 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+      .btn-top {
+        display: block;
+        position: fixed;
+        right: 50px;
+        bottom: 50px;
+        border-radius: 50px;
+        width: 46px;
+        height: 46px;
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px);
+        -webkit-transition: all 200ms linear;
+        transition: all 200ms linear;
+        cursor: pointer;
+        z-index: 999;
+      }
+      .btn-top.is-progress {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .btn-top svg.circle path {
+        fill: none;
+        stroke: #54FAD2;
+        stroke-width: 4;
+        box-sizing: border-box;
+        -webkit-transition: all 200ms linear;
+        transition: all 200ms linear;
+      }
     </style>
   </head>
   <body>
-    <div class="wrap"></div>
+    <div class="wrap">
+      <div class="btn-top">
+        <svg class="circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+      </div>
+    </div>
     <div class="fixed">
       <p>스크롤 이벤트 발생 <strong>0</strong></p>
       <div>디바운스 <em>0</em></div>
@@ -36,14 +71,46 @@
       }
 
       function delayFunction(e) {
-        console.log(e);
         debouncingCnt.innerHTML = parseInt(debouncingCnt.innerHTML) + 1;
       }
-
       window.addEventListener("wheel", () => {
-        console.log("fjdkls");
         clickCnt.innerHTML = parseInt(clickCnt.innerHTML) + 1;
         debouncing(delayFunction);
+      });
+      /**
+       * top btn
+       */
+      const _wrap = document.querySelector(".wrap");
+      const _progressWrap = document.querySelector(".btn-top");
+
+      const progressPath = _progressWrap.querySelector("path");
+      const pathLength = progressPath.getTotalLength();
+      progressPath.style.strokeDasharray = pathLength + " " + pathLength;
+      progressPath.style.strokeDashoffset = pathLength;
+      progressPath.getBoundingClientRect();
+
+      const updateProgress = function () {
+        var scroll = window.scrollY;
+        var height = _wrap.offsetHeight - window.innerHeight;
+        var progress = pathLength - (scroll * pathLength) / height;
+        progressPath.style.strokeDashoffset = progress;
+      };
+      _progressWrap.addEventListener("click", function (event) {
+        document.documentElement.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+        return false;
+      });
+      let offset = 50;
+      window.addEventListener("scroll", (e) => {
+        updateProgress();
+        if (document.documentElement.scrollTop > offset) {
+          _progressWrap.classList.add("is-progress");
+        } else {
+          _progressWrap.classList.remove("is-progress");
+        }
       });
     </script>
   </body>

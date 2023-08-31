@@ -5,203 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>background</title>
     <link rel="stylesheet" href="./../../assets/css/styles.css" />
-    <link rel="stylesheet" href="./../../assets/css/refer.css" />
+    <style>
+      .container {
+        margin: 0 auto;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        perspective: 1000px;
+      }
+
+      .carousel {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+      }
+      .carousel div {
+        transform-style: preserve-3d;
+      }
+
+      .item {
+        display: block;
+        position: absolute;
+        border: 5px solid transparent;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        font-size: 5em;
+        text-align: center;
+        color: #fff;
+        opacity: 0.95;
+        border-radius: 50%;
+        transition: transform 1s;
+      }
+
+      .a {
+        transform: rotateY(0deg) translateZ(360px);
+      }
+      .a .item {
+        border-color: #ed1c24;
+      }
+      .b {
+        transform: rotateY(90deg) translateZ(360px) rotateY(-90deg);
+      }
+      .b .item {
+        border-color: #0072bc;
+      }
+      .c {
+        transform: rotateY(180deg) translateZ(360px) rotateY(-180deg);
+      }
+      .c .item {
+        border-color: #39b54a;
+      }
+      .d {
+        transform: rotateY(270deg) translateZ(360px) rotateY(-270deg);
+      }
+      .d .item {
+        border-color: #f26522;
+      }
+
+      .next,
+      .prev {
+        color: #444;
+        position: absolute;
+        top: 150px;
+        padding: 1em 2em;
+        cursor: pointer;
+        background: #ccc;
+        border-radius: 5px;
+        border-top: 1px solid #fff;
+        box-shadow: 0 5px 0 #999;
+        transition: box-shadow 0.1s, top 0.1s;
+      }
+      .next:hover,
+      .prev:hover {
+        color: #000;
+      }
+      .next:active,
+      .prev:active {
+        box-shadow: 0 1px 0 #999;
+      }
+      .next {
+        right: 1em;
+      }
+      .prev {
+        left: 1em;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <div class="page" data-transition="fromTop">
-        <p>#1</p>
-      </div>
-
-      <div class="page" data-transition="fromRight">
-        <p>#2</p>
-      </div>
-
-      <div class="page" data-transition="fromBottom">
-        <p>#3</p>
-      </div>
-
-      <div class="page" data-transition="fromLeft">
-        <p>#4</p>
-      </div>
-
-      <div class="arrows">
-        <p class="arrow arrow--left">&#8610;</p>
-        <p class="arrow arrow--right">&#8611;</p>
+      <div class="carousel">
+        <div class="a">
+          <div class="item">A</div>
+        </div>
+        <div class="b">
+          <div class="item">B</div>
+        </div>
+        <div class="c">
+          <div class="item">C</div>
+        </div>
+        <div class="d">
+          <div class="item">D</div>
+        </div>
       </div>
     </div>
+    <div class="next">Next</div>
+    <div class="prev">Prev</div>
     <script>
-      function $(selector, context) {
-        context = arguments.length > 1 ? context : document;
-        return context ? context.querySelectorAll(selector) : null;
+      var _carousel = document.querySelector(".carousel"),
+        _items = document.querySelectorAll(".item"),
+        currdeg = 0;
+
+      document.querySelector(".next").addEventListener("click", () => {
+        rotate("next");
+      });
+      document.querySelector(".prev").addEventListener("click", () => {
+        rotate("prev");
+      });
+
+      function rotate(arrow) {
+        if (arrow == "next") {
+          currdeg = currdeg - 90;
+        }
+        if (arrow == "prev") {
+          currdeg = currdeg + 90;
+        }
+        _carousel.style = `transform: rotateY(${currdeg}deg)`;
+        _items.forEach(
+          (el) => (el.style = `transform: rotateY(${-currdeg}deg)`)
+        );
       }
-      var pageTransition = {
-        currentPageIndex: 0,
-
-        pages: [],
-
-        transitions: {
-          fromTop: {
-            reverse: "toTop",
-            oppositeOut: "toBottom",
-            oppositeIn: "fromBottom",
-          },
-          fromRight: {
-            reverse: "toRight",
-            oppositeOut: "toLeft",
-            oppositeIn: "fromLeft",
-          },
-          fromBottom: {
-            reverse: "toBottom",
-            oppositeOut: "toTop",
-            oppositeIn: "fromTop",
-          },
-          fromLeft: {
-            reverse: "toLeft",
-            oppositeOut: "toRight",
-            oppositeIn: "fromRight",
-          },
-        },
-
-        transitionEndEventName: {
-          WebkitAnimation: "webkitAnimationEnd",
-          OAnimation: "oAnimationEnd",
-          msAnimation: "MSAnimationEnd",
-          animation: "animationend",
-        },
-
-        addPage: function (pageSelector, transitionName) {
-          var page = {
-            selector: pageSelector,
-            transitionName: transitionName,
-          };
-          this.pages.push(page);
-        },
-
-        getCurrentPage: function () {
-          return this.pages[this.currentPageIndex]
-            ? this.pages[this.currentPageIndex]
-            : false;
-        },
-
-        getPreviousPage: function () {
-          return this.pages[this.currentPageIndex - 1]
-            ? this.pages[this.currentPageIndex - 1]
-            : false;
-        },
-
-        getNextPage: function () {
-          return this.pages[this.currentPageIndex + 1]
-            ? this.pages[this.currentPageIndex + 1]
-            : false;
-        },
-
-        first: function () {
-          this.transitionEvent = this.transitionEndEventName.animation;
-
-          if (!this.getCurrentPage()) return false;
-
-          this.transitionPageIn(
-            this.getCurrentPage(),
-            this.getCurrentPage().transitionName
-          );
-        },
-
-        next: function () {
-          if (!this.getNextPage()) return false;
-
-          if (this.getCurrentPage()) {
-            this.transitionPageOut(
-              this.getCurrentPage(),
-              this.transitions[this.getNextPage().transitionName].oppositeOut
-            );
-          }
-
-          this.transitionPageIn(
-            this.getNextPage(),
-            this.getNextPage().transitionName
-          );
-          this.currentPageIndex++;
-        },
-
-        previous: function () {
-          if (!this.getPreviousPage()) return false;
-
-          this.transitionPageOut(
-            this.getCurrentPage(),
-            this.transitions[this.getCurrentPage().transitionName].reverse
-          );
-          this.transitionPageIn(
-            this.getPreviousPage(),
-            this.transitions[this.getCurrentPage().transitionName].oppositeIn
-          );
-          this.currentPageIndex--;
-        },
-
-        transitionPageIn: function (page, pageTransitionName) {
-          var _this = document.querySelector(page.selector);
-          const removeClass = Array.from(_this.classList).filter((x) =>
-            x.includes("page--animation")
-          );
-          if (removeClass.length) _this.classList.remove(...removeClass);
-          _this.classList.add("page--animation-" + pageTransitionName);
-          _this.classList.add(
-            "page--animation-" + pageTransitionName + "--animate"
-          );
-          _this.classList.add("page--current");
-        },
-
-        transitionPageOut: function (page, pageTransitionName) {
-          var context = this;
-          var _this = document.querySelector(page.selector);
-          _this.addEventListener(this.transitionEvent, () => {
-            document.documentElement.removeEventListener(
-              context.transitionEvent,
-              () => {
-                [...document.documentElement.attributes].forEach(
-                  (att) =>
-                    att.name.startsWith("on") && _this.removeAttribute(att.name)
-                );
-              }
-            );
-            const removeClass = Array.from(_this.classList).filter((x) =>
-              x.includes("page--animation")
-            );
-            if (removeClass.length) _this.classList.remove(...removeClass);
-            _this.classList.remove("page--current");
-          });
-
-          const removeClass = Array.from(_this.classList).filter((x) =>
-            x.includes("page--animation")
-          );
-          if (removeClass.length) _this.classList.remove(...removeClass);
-          _this.classList.add("page--animation-" + pageTransitionName);
-          _this.classList.add(
-            "page--animation-" + pageTransitionName + "--animate"
-          );
-          _this.classList.add("page--current");
-        },
-      };
-
-      // First, add all pages to pageTransition
-      $(".page").forEach(function (el, index) {
-        var className = "number-" + index;
-        el.classList.add(className);
-        pageTransition.addPage("." + className, el.dataset.transition);
-      });
-
-      pageTransition.first();
-      $(".arrow--left").forEach((el) => {
-        el.addEventListener("click", function () {
-          pageTransition.previous();
-        });
-      });
-
-      $(".arrow--right").forEach((el) => {
-        el.addEventListener("click", function () {
-          pageTransition.next();
-        });
-      });
     </script>
   </body>
 </html>

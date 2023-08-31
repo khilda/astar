@@ -1,6 +1,6 @@
 import { onClickBtn } from "./evtButton.js";
 import { pageTrnasition } from "./func/pageTrans.js";
-
+import { btnTopAnimate } from "./func/btnTop.js";
 // page
 import { fnVisual } from "./pages/visual.js";
 import { fnIntro } from "./pages/intro.js";
@@ -11,6 +11,7 @@ import { fnCompany } from "./pages/company.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   fnVisual();
+  btnTopAnimate();
   const _container = document.querySelector(".container");
   if (_container.classList.contains("intro")) {
     fnIntro();
@@ -21,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
   fnAbout();
   fnMain();
   fnBusiness();
-  fnCompany()
+  fnCompany();
 });
 
 const fnComm = () => {

@@ -8,12 +8,14 @@ const colors = [
 ];
 let currentColor = null;
 const $target = document.querySelector(".v-crnt .img-plant");
-export const planetRotate = function () {
-  if(!document.querySelector('.visual-area')) return
+
+export const planetThree = function () {
+  if (!document.querySelector(".visual-area")) return;
   appendShader();
   init();
   animate();
 };
+
 function appendShader() {
   // page
   const _cls = document.querySelector(".container").classList[1];
@@ -74,9 +76,13 @@ function init() {
     emissive: 0x000000,
     shading: THREE.SmoothShading,
     map: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
-    bumpMap: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
+    bumpMap: THREE.ImageUtils.loadTexture(
+      "./../../assets/images/bg_planet.png"
+    ),
     bumpScale: 0.025,
-    specularMap: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
+    specularMap: THREE.ImageUtils.loadTexture(
+      "./../../assets/images/bg_planet.png"
+    ),
     specular: new THREE.Color("grey"),
   });
 

@@ -1,7 +1,11 @@
+import { setLogoRollingClone } from "../func/logoRolling.js";
 import { contentsBounce } from "../func/contentsBounce.js";
 
 export const fnBusiness = () => {
   if (!document.querySelector(".container.business")) return;
+
+  setLogoRollingClone();
+
   const links = document.querySelectorAll("[data-section]");
   if (!links.length) return;
   links.forEach((link) => {
@@ -12,5 +16,5 @@ export const fnBusiness = () => {
     });
   });
 
-  contentsBounce('[class^=business]', '[class^=img-desc]', '.logo-group')
+  contentsBounce("[class^=business]", "[class^=img-desc]", ".logo-group");
 };

@@ -1,7 +1,7 @@
-import { onClickBtn } from "./../evtButton.js";
+import { onClickBtn } from "../func/evtButton.js";
 
 export const fnIntro = () => {
-  if (!document.querySelector(".intro")) return;
+  if (!document.querySelector(".container.intro")) return;
 
   onClickBtn(".intro-link", (e, _target) => {
     window.location.href = `${window.location.origin}/html/layout.html`;

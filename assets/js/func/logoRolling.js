@@ -6,7 +6,6 @@ export const setLogoRollingClone = () => {
     row.querySelectorAll(".logo-item").forEach((item) => {
       _cloneItem.push(item.cloneNode(true));
     });
-    console.log(_cloneItem);
     for (let i = 0; row.childElementCount < 12; i++) {
       _cloneItem.forEach((item) => {
         row.appendChild(item.cloneNode(true));

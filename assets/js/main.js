@@ -1,8 +1,6 @@
-import { onClickBtn } from "./evtButton.js";
-import { pageTrnasition } from "./func/pageTrans.js";
-import { btnTopAnimate } from "./func/btnTop.js";
+// common
+import { fnComm } from "./pages/visual.js";
 // page
-import { fnVisual } from "./pages/visual.js";
 import { fnIntro } from "./pages/intro.js";
 import { fnMain } from "./pages/main.js";
 import { fnAbout } from "./pages/about.js";
@@ -10,36 +8,12 @@ import { fnBusiness } from "./pages/business.js";
 import { fnCompany } from "./pages/company.js";
 
 window.addEventListener("DOMContentLoaded", () => {
-  fnVisual();
-  btnTopAnimate();
-  const _container = document.querySelector(".container");
-  if (_container.classList.contains("intro")) {
-    fnIntro();
-    return;
-  }
   fnComm();
+
   // content
-  fnAbout();
+  fnIntro();
   fnMain();
+  fnAbout();
   fnBusiness();
   fnCompany();
 });
-
-const fnComm = () => {
-  onClickBtn(".gnb-toggle-btn", (e, _target) => {
-    const _header = document.querySelector(".header");
-    if (_target.classList.contains("is-active")) {
-      _target.classList.remove("is-active");
-      _header.classList.remove("is-show");
-    } else {
-      _target.classList.add("is-active");
-      _header.classList.add("is-show");
-    }
-  });
-  onClickBtn(".gnb-menu", (e, _target) => {
-    console.log(_target);
-    const menu = _target.dataset.link;
-    window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
-  });
-  // pageTrnasition();
-};

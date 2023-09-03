@@ -4,6 +4,11 @@
 .visual-area {
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s 3s linear;
+}
+.visual-area.isPageActive {
+  opacity: 1;
 }
 .visual-section {
   display: flex;
@@ -91,8 +96,8 @@
     position: relative;
     display: block;
     background: transparent no-repeat 50% 50% / contain;
-    width: 380px;
-    height: 380px;
+    width: 240px;
+    height: 240px;
     canvas {
       position: absolute;
       top: 50%;
@@ -324,10 +329,15 @@ $rotate: 50vw;
       opacity: 1;
       transition: opacity 0.5s 0s;
     }
+    .img-plant {
+      width: 280px;
+      height: 280px;
+    }
   }
   .c-item-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: absolute;
     left: calc(50% - ($size/2));
     width: $size;
@@ -335,9 +345,6 @@ $rotate: 50vw;
     color: #fff;
     transition: all 1s;
     transform-style: preserve-3d;
-  }
-  .img-plant {
-    width: 240px;
   }
   &.main .img-plant {
     background-image: url("./../images/img_star_main.png");

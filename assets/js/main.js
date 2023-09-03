@@ -41,5 +41,5 @@ const fnComm = () => {
     const menu = _target.dataset.link;
     window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
   });
-  pageTrnasition();
+  // pageTrnasition();
 };

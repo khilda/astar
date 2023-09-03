@@ -11,9 +11,9 @@ export const fnVisual = () => {
   clickDesc();
 };
 
-const planetAnimate = () => {
+export const planetAnimate = () => {
+  console.log('ee')
   if (!document.querySelector(".visual-area")) return;
-
   const planet = new Planet();
   planet.init();
   onClickBtn(".v-prev .btn-link", (e, _target) => {
@@ -29,7 +29,6 @@ const planetAnimate = () => {
  */
 export const bgAnimation = () => {
   const _visualCont = document.querySelector(".visual-background");
-  const cls = Array.from(_visualCont.classList);
   const _wrap = `<div class="origin"><div class="control"><ul class="galaxy"></ul></div></div>`;
   _visualCont.innerHTML = _wrap;
   let star = "";

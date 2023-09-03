@@ -3,8 +3,10 @@ import { onClickBtn } from "../func/evtButton.js";
 export const fnIntro = () => {
   if (!document.querySelector(".container.intro")) return;
 
+  document.querySelector(".container.intro").classList.add("is-animate");
+
   onClickBtn(".intro-link", (e, _target) => {
-    window.location.href = `${window.location.origin}/html/layout.html`;
+    window.location.href = `${window.location.origin}/html/pages/main.html`;
   });
   descAnimation();
 };

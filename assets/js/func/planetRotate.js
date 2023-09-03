@@ -72,6 +72,7 @@ export class VisualRotate {
   }
 
   rotate() {
+    console.log(this);
     this._carousel.classList.add("is-animate");
     this.setBeforeRotate()
       .then(() => this.rotateLayout())
@@ -119,6 +120,7 @@ export class VisualRotate {
   }
 
   init() {
+    if (!this._carousel) return;
     if (window.innerWidth > 1180) {
       this.infoWidth = this._dom.info[0].getBoundingClientRect().width;
     } else {

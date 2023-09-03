@@ -77,8 +77,10 @@ export class VisualRotate {
       .then(() => this.rotateLayout())
       .then(() => this.setAfterRotate())
       .then(() => {
-        this._prev.querySelector(".menu").innerHTML = this.names[this.calcIdx(-1)];
-        this._next.querySelector(".menu").innerHTML = this.names[this.calcIdx(1)];
+        this._prev.querySelector(".menu").innerHTML =
+          this.names[this.calcIdx(-1)];
+        this._next.querySelector(".menu").innerHTML =
+          this.names[this.calcIdx(1)];
         this._carousel.classList.remove("is-animate");
       });
   }
@@ -166,7 +168,9 @@ export class MobileDescRotate {
   }
   moveToDir(target) {
     const dir = target === "prev" ? -1 : 1;
-    this.aminatePlanet(dir);
+    setTimeout(() => {
+      this.aminatePlanet(dir);
+    }, 1100);
   }
   aminatePlanet(dir) {
     if (dir) {

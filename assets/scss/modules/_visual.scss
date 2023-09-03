@@ -183,7 +183,7 @@
   border-radius: 50%;
   width: 300px;
   height: 300px;
-  transition: transform 0.7s ease-in;
+  transition: all 0.5s linear;
   .planet {
     position: absolute;
     border-radius: 50%;
@@ -194,7 +194,7 @@
     will-change: transform;
   }
   .is-active {
-    transition: transform 0.4s ease-in;
+    transition: all 0.4s linear;
     transform: scale(1.5);
     will-change: transform;
   }
@@ -429,7 +429,7 @@ $rotate: 50vw;
     &.is-animate .c-item {
       opacity: 1;
     }
-    &:not(.is-animate) .c-item:not(.is-active){
+    &:not(.is-animate) .c-item:not(.is-active) {
       opacity: 0;
     }
     .c-item {

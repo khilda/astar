@@ -1,3 +1,7 @@
+/**
+ * 탑 버튼 animation 실행 
+ */
+
 export const btnTopAnimate = () => {
   const _wrap = document.querySelector(".wrap");
   const _progressWrap = document.querySelector(".btn-top");

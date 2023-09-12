@@ -1,3 +1,7 @@
+/**
+ * mobile 에서 엽체 logo rolling 시 element 복제 
+ */
+
 export const setLogoRollingClone = () => {
   const _logoRow = document.querySelectorAll(".logo-row");
   if (!_logoRow || window.innerWidth > 720) return;

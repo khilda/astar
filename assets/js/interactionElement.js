@@ -1,4 +1,4 @@
-export class AAni {
+export class InteractionElement {
   #makeRandomValue([min, max, decimal = 1]) {
     return Math.floor(Math.random() * (max - min + 1) + min) / decimal
   }

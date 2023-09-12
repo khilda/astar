@@ -5,6 +5,13 @@ import { fnBusiness } from "./../pages/business.js";
 import { fnCompany } from "./../pages/company.js";
 import { PageAnimation } from "./../layout/scrollAnimation.js";
 
+/**
+ * SPA 헝태에서 contents 변경
+ * @param {string} target - contents container
+ * @param {HTMLElement} navBtn - visual-area 의 prev, next btn
+ * @param {string} clickedGnb - gnb에서 클릭한 메뉴 이름
+ */
+
 export function fetchPage(target, navBtn, clickedGnb) {
   const pageFunction = {
     main: fnMain,

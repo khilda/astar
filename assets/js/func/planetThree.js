@@ -147,3 +147,149 @@ function animate() {
   renderer.clear();
   renderer.render(scene, camera);
 }
+
+export class PlanetsThree {
+  // let renderer, scene, camera, circle, particle, luminor, halo, galaxy;
+  // const lights = [];
+  colors = [
+    { name: "main", color: 0x4fffea, shadow: "0.314,1.,0.922" }, // main
+    { name: "about", color: 0xffb94f, shadow: "0.941,0.62,0.282" }, // about
+    { name: "business", color: 0xfd720e, shadow: "0.827,0.404,0.094" }, // business
+    { name: "company", color: 0xe18fe8, shadow: "0.965,0.502,1." }, // company
+  ];
+  currentColor = null;
+  // const $target = document.querySelectorAll(".v-crnt .img-plant")[1];
+
+  start() {
+    if (!document.querySelector(".visual-area")) return;
+    document.querySelectorAll(".v-crnt .img-plant").forEach((target, index) => {
+      this.appendShader(index);
+      this.init(target, index).then(res => {
+        this.animate(res)
+      });
+    })
+    // animate();
+  };
+
+  appendShader(index) {
+    // append script
+    const _script = document.createElement("script");
+    _script.setAttribute("type", "x-shader/x-vertex");
+    const _vertex = _script.cloneNode();
+    _vertex.setAttribute("id", `vertexShader${index}`);
+    _vertex.textContent = `varying vec3 vNormal; void main() { vNormal = normalize( normalMatrix * normal ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }`;
+    document.body.appendChild(_vertex);
+    const _fragment = _script.cloneNode();
+    _fragment.setAttribute("id", `fragmentShader${index}`);
+    _fragment.textContent = `varying vec3 vNormal; void main() { float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 0.5 ) ), 4.0 ); gl_FragColor = vec4(${this.colors[index].shadow}, 0.5) * intensity; }`;
+    document.body.append(_fragment);
+  }
+  async init(target, index) {
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+    });
+    renderer.setPixelRatio(5);
+    // renderer.setSize($target.clientWidth, $target.clientHeight);
+    renderer.autoClear = false;
+    renderer.setClearColor(0x000000, 0.0);
+    target.appendChild(renderer.domElement);
+    
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(95, 1, 1, 1000);
+    camera.position.z = 400;
+    scene.add(camera);
+
+    const circle = new THREE.Object3D();
+    const halo = new THREE.Object3D();
+    const luminor = new THREE.Object3D();
+
+    scene.add(circle);
+    scene.add(halo);
+    scene.add(luminor);
+
+    const geo_planet = new THREE.SphereGeometry(10, 64, 32);
+    const geom3 = new THREE.SphereGeometry(16, 32, 16);
+
+    const mat = new THREE.MeshPhongMaterial({
+      color: this.colors[index].color,
+      emissive: 0x000000,
+      shading: THREE.SmoothShading,
+      map: THREE.ImageUtils.loadTexture("./../../assets/images/bg_planet.png"),
+      bumpMap: THREE.ImageUtils.loadTexture(
+        "./../../assets/images/bg_planet.png"
+      ),
+      bumpScale: 0.025,
+      specularMap: THREE.ImageUtils.loadTexture(
+        "./../../assets/images/bg_planet.png"
+      ),
+      specular: new THREE.Color("grey"),
+    });
+
+    const mat3 = new THREE.ShaderMaterial({
+      uniforms: { color: { value: new THREE.Color("violet") } },
+      vertexShader: document.getElementById(`vertexShader${index}`).textContent,
+      fragmentShader: document.getElementById(`fragmentShader${index}`).textContent,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
+    });
+
+    const planet = new THREE.Mesh(geo_planet, mat);
+    planet.scale.x = planet.scale.y = planet.scale.z = 15;
+    circle.add(planet);
+
+    const ball = new THREE.Mesh(geom3, mat3);
+    ball.scale.x = ball.scale.y = ball.scale.z = 16;
+    halo.add(ball);
+
+    const ball2 = new THREE.Mesh(geom3, mat3);
+    ball2.scale.x = ball2.scale.y = ball2.scale.z = 12;
+    ball2.position.set(25, 5, 1);
+    halo.add(ball2);
+
+    const ambientLight = new THREE.AmbientLight(this.colors[index].color);
+    scene.add(ambientLight);
+
+    const hemiLight = new THREE.HemisphereLight(0x000000, 0x111111, 20);
+    hemiLight.position.set(-1, -1, 2);
+    luminor.add(hemiLight);
+
+    const lights = []
+    lights[1] = new THREE.DirectionalLight(0x000000, 7);
+    lights[1].position.set(-1, 0, 0.5);
+    lights[2] = new THREE.DirectionalLight(0x000000, 7);
+    lights[2].position.set(1, 0, 0.5);
+
+    scene.add(lights[1]);
+    scene.add(lights[2]);
+
+    window.addEventListener("resize", this.onWindowResize, false);
+    return { renderer, scene, camera, circle, luminor, halo }
+  }
+
+  onWindowResize() {
+    camera.aspect = 1 / 1;
+    camera.updateProjectionMatrix();
+    // renderer.setSize($target.clientWidth, $target.clientHeight);
+  }
+
+  animate({ renderer, scene, camera, circle, luminor, halo }) {
+    const timer = 0.0001 * Date.now();
+    requestAnimationFrame(() => this.animate({ renderer, scene, camera, circle, luminor, halo }));
+
+    circle.rotation.x -= 0.001;
+    circle.rotation.y -= 0.001;
+
+    halo.rotation.z -= 0.001;
+    luminor.rotation.z -= 0.001;
+    // halo.scale.x = Math.sin( timer * 3) * 0.09 + 1;
+    // halo.scale.y = Math.sin( timer * 7 ) * 0.09 + 1;
+
+    renderer.clear();
+    renderer.render(scene, camera);
+  }
+
+}

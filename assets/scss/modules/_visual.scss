@@ -428,21 +428,29 @@ $rotate: 50vw;
     }
   }
   .v-carousel-container {
+    .c-item {
+      @for $i from 0 through 3 {
+        &:nth-child(#{$i + 1}) {
+          transform: rotateY(#{$i * 90}deg)
+            translateZ(100vw)
+            rotateY(#{$i * 90 * -1}deg);
+        }
+      }
+    }
     .img-plant {
       position: relative;
       width: 220px;
       height: 220px;
     }
-    &.is-animate .c-item {
-      opacity: 1;
-    }
-    &:not(.is-animate) .c-item:not(.is-active) {
-      opacity: 0;
-    }
-    .c-item {
-      transition: opacity 0.3s linear;
-    }
-
+    // &.is-animate .c-item {
+    //   opacity: 1;
+    // }
+    // &:not(.is-animate) .c-item:not(.is-active) {
+    //   opacity: 0;
+    // }
+    // .c-item {
+    //   transition: opacity 0.3s linear;
+    // }
     .v-info {
       top: calc(16vmin + 240px); // visual-section 기준
       left: 50%;

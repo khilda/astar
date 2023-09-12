@@ -72,14 +72,13 @@ export class VisualRotate {
   }
 
   rotate() {
-    console.log(this);
     this._carousel.classList.add("is-animate");
     this.setBeforeRotate()
       .then(() => this.rotateLayout())
       .then(() => this.setAfterRotate())
       .then(() => {
         this._prev.querySelector(".menu").innerHTML =
-          this.names[this.calcIdx(-1)];
+        this.names[this.calcIdx(-1)];
         this._next.querySelector(".menu").innerHTML =
           this.names[this.calcIdx(1)];
         this._carousel.classList.remove("is-animate");
@@ -129,15 +128,22 @@ export class VisualRotate {
     this.rotate();
 
     this._next.addEventListener("click", () => {
-      this.index = this.calcIdx(1);
-      this.currdeg = this.currdeg - 90;
-      this.rotate();
+      this.toRotate({ direction: 'left'})
     });
     this._prev.addEventListener("click", () => {
-      this.index = this.calcIdx(-1);
-      this.currdeg = this.currdeg + 90;
-      this.rotate();
+      this.toRotate({ direction: 'right'})
     });
+  }
+
+  toRotate({ step = 1, direction = 'left' }) {
+    if (direction === 'left') {
+      this.index = this.calcIdx(step);
+      this.currdeg = this.currdeg + (-step * 90);
+    } else if (direction === 'right') {
+      this.index = this.calcIdx(-step);
+      this.currdeg = this.currdeg + (step * 90);
+    }
+    this.rotate();
   }
 }
 
@@ -166,18 +172,18 @@ export class MobileDescRotate {
     this._curntPlanet = document.querySelector(".container").classList[1];
     this.index = this._planetCls.indexOf(this._curntPlanet);
     this.angle = this.index * -45;
-    this.aminatePlanet();
+    this.animatePlanet();
   }
-  moveToDir(target) {
+  moveToDir(target, step = 1) {
     const dir = target === "prev" ? -1 : 1;
     setTimeout(() => {
-      this.aminatePlanet(dir);
+      this.animatePlanet(dir, step);
     }, 1100);
   }
-  aminatePlanet(dir) {
+  animatePlanet(dir, step) {
     if (dir) {
-      this.angle = this.angle + dir * -45;
-      this.index = (this.index + dir) % 8 < 0 ? 7 : (this.index + dir) % 8;
+      this.angle = this.angle + (dir * step) * -45;
+      this.index = (this.index + (dir * step)) % 8 < 0 ? 7 : (this.index + (dir * step)) % 8;
     }
     this._planetCont.style.transform = `rotateZ(${this.angle}deg)`;
     this._planets.forEach((el) => el.classList.remove("is-active"));

@@ -26,6 +26,11 @@
     z-index: $z-layer;
     opacity: 1;
   }
+  .gnb-layer {
+    transform: translateY(-100vh);
+    z-index: $z-layer;
+    opacity: 1;
+  }
 }
 @include tablet {
   .header {

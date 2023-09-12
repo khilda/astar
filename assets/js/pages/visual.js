@@ -1,7 +1,8 @@
 import { onClickBtn } from "../func/evtButton.js";
 import { btnTopAnimate } from "../func/btnTop.js";
 import { MobileDescRotate, VisualRotate } from "../func/planetRotate.js";
-import { planetThree } from "../func/planetThree.js";
+import { planetThree, PlanetsThree } from "../func/planetThree.js";
+import { fetchPage } from "../func/fetchPage.js";
 import { PageAnimation } from "../layout/scrollAnimation.js";
 
 export const fnComm = () => {
@@ -10,13 +11,18 @@ export const fnComm = () => {
   // full page
   window.pageAnimation = new PageAnimation();
   // visual animation
-  visualRotate();
+  const classesRotate = visualRotate();
   // common button
-  fnGnb();
+  fnGnb(classesRotate);
 };
 export const visualRotate = () => {
   if (!document.querySelector(".visual-area")) return;
-  planetThree();
+  if (window.location.href.split('/').at(-1) === 'layout.html') {
+    const a = new PlanetsThree();
+    a.start()
+  } else {
+    planetThree();
+  }
 
   const visualRotate = new VisualRotate();
 
@@ -35,6 +41,8 @@ export const visualRotate = () => {
       document.querySelector(".container > .w-section")
     );
   });
+
+  return { visualRotate, mDesc }
 };
 
 /**
@@ -56,21 +64,43 @@ export const bgAnimation = () => {
 /**
  * GNB button
  */
-const fnGnb = () => {
+function gnbInteraction(_target) {
+  const _header = document.querySelector(".header");
+  if (_target.classList.contains("is-active")) {
+    _target.classList.remove("is-active");
+    _header.classList.remove("is-show");
+  } else {
+    _target.classList.add("is-active");
+    _header.classList.add("is-show");
+  }
+}
+const fnGnb = ({ visualRotate, mDesc }) => {
   onClickBtn(".gnb-toggle-btn", (e, _target) => {
-    const _header = document.querySelector(".header");
-    if (_target.classList.contains("is-active")) {
-      _target.classList.remove("is-active");
-      _header.classList.remove("is-show");
-    } else {
-      _target.classList.add("is-active");
-      _header.classList.add("is-show");
-    }
+    gnbInteraction(_target)
   });
-  onClickBtn(".gnb-menu", (e, _target) => {
-    console.log(_target);
-    const menu = _target.dataset.link;
-    window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
-  });
+  if (window.location.href.split('/').at(-1) === 'layout.html') {
+    onClickBtn(".gnb-menu", (e, _target) => {
+      const menu = _target.dataset.link;
+      const _gnbToggleBtn = document.querySelector(".gnb-toggle-btn");
+      gnbInteraction(_gnbToggleBtn)
+      
+      const menus = [ 'main', 'about', 'business', 'company' ];
+      const [ selectedMenu ] = Array.from(document.querySelector('.v-crnt .is-active').classList).filter(className => {
+        return menus.find(menu => menu === className)
+      })
+      const toStep = menus.findIndex(item => item === menu) - menus.findIndex(item => item === selectedMenu)
+      visualRotate.toRotate({ step: Math.abs(toStep) })
+      mDesc.moveToDir("next", toStep);
+
+      const container = document.querySelector('.container');
+      fetchPage(container, null, menu)
+    });
+  } else {
+    onClickBtn(".gnb-menu", (e, _target) => {
+      console.log(_target);
+      const menu = _target.dataset.link;
+      window.location.href = `${window.location.origin}/html/pages/${menu}.html`;
+    });
+  }
   btnTopAnimate();
 };

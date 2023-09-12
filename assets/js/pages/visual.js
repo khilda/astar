@@ -74,11 +74,12 @@ function gnbInteraction(_target) {
     _header.classList.add("is-show");
   }
 }
-const fnGnb = ({ visualRotate, mDesc }) => {
+const fnGnb = (classesRotate) => {
   onClickBtn(".gnb-toggle-btn", (e, _target) => {
     gnbInteraction(_target)
   });
   if (window.location.href.split('/').at(-1) === 'layout.html') {
+    const { visualRotate, mDesc } = classesRotate
     onClickBtn(".gnb-menu", (e, _target) => {
       const menu = _target.dataset.link;
       const _gnbToggleBtn = document.querySelector(".gnb-toggle-btn");

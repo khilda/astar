@@ -17,7 +17,7 @@ export const fnComm = () => {
 };
 export const visualRotate = () => {
   if (!document.querySelector(".visual-area")) return;
-  if (window.location.href.split('/').at(-1) === 'layout.html') {
+  if (window.location.href.split('/').at(-1) === 'spa.html') {
     const a = new PlanetsThree();
     a.start()
   } else {
@@ -78,7 +78,7 @@ const fnGnb = (classesRotate) => {
   onClickBtn(".gnb-toggle-btn", (e, _target) => {
     gnbInteraction(_target)
   });
-  if (window.location.href.split('/').at(-1) === 'layout.html') {
+  if (window.location.href.split('/').at(-1) === 'spa.html') {
     const { visualRotate, mDesc } = classesRotate
     onClickBtn(".gnb-menu", (e, _target) => {
       const menu = _target.dataset.link;

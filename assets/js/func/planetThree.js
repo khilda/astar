@@ -266,11 +266,11 @@ export class PlanetsThree {
     scene.add(lights[1]);
     scene.add(lights[2]);
 
-    window.addEventListener("resize", this.onWindowResize, false);
+    window.addEventListener("resize", () => this.onWindowResize(camera), false);
     return { renderer, scene, camera, circle, luminor, halo }
   }
 
-  onWindowResize() {
+  onWindowResize(camera) {
     camera.aspect = 1 / 1;
     camera.updateProjectionMatrix();
     // renderer.setSize($target.clientWidth, $target.clientHeight);

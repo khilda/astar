@@ -27,6 +27,18 @@
     .logo-copykle {
       background-image: url("../images/business_copykle.png");
     }
+
+    .btn-move {
+      align-self: flex-start;
+      border-radius: 80px;
+      background: #38facc;
+      padding: 18px 30px;
+      line-height: 1;
+      font-size: 14px;
+      color: #111;
+      font-weight: 800;
+      box-shadow: 0px 0px 15px 0px #72FCE64D;
+    }
   }
 
   .logo-group {
@@ -35,6 +47,9 @@
   .customer-desc {
     margin-top: 70px;
     text-align: center;
+    .accent {
+      color: #54fad2;
+    }
   }
 }
 .business-link {
@@ -170,6 +185,9 @@
       .h3 {
         font-size: 12px;
       }
+      .btn-move {
+        align-self: center;
+      }
     }
   }
 }
@@ -200,7 +218,8 @@
       transform: translateY(10px);
     }
     .vision-text h3,
-    .vision-text p {
+    .vision-text p,
+    .vision-text .btn-move {
       opacity: 0;
     }
   }
@@ -226,6 +245,11 @@
       opacity: 1;
       transition-delay: 1.5s;
     }
+    .vision-text .btn-move {
+      transition: all 1.5s;
+      opacity: 1;
+      transition-delay: 1.8s;
+    }
   }
   .logo-group .logo-item {
     opacity: 0;
@@ -238,6 +262,21 @@
       transform: none;
     }
     @for $i from 1 through 3 {
+      &:nth-child(1) .logo-item:nth-child(#{$i}) {
+        transition-delay: ($i * 0.25s);
+      }
+      &:nth-child(2) .logo-item:nth-child(#{$i}) {
+        transition-delay: ($i * 0.25s) + 0.75s;
+      }
+    }
+  }
+  .isPageActive .logo-group.marketing .logo-row {
+    .logo-item {
+      transition: all 1.5s;
+      opacity: 1;
+      transform: none;
+    }
+    @for $i from 1 through 4 {
       &:nth-child(1) .logo-item:nth-child(#{$i}) {
         transition-delay: ($i * 0.25s);
       }

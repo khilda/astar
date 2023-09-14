@@ -20,7 +20,7 @@ export function fetchPage(target, navBtn, clickedGnb) {
     company: fnCompany,
   }
   let menu = navBtn?.querySelector('.menu').textContent.split(' ')[0]
-  if (!menu || menu === 'INTRO') {
+  if (!menu || menu === 'WELCOME') {
     menu = 'MAIN'
   }
   menu = clickedGnb || menu.toLowerCase()

@@ -13,7 +13,7 @@ export class VisualRotate {
       ),
       info: document.querySelectorAll(".v-info"),
     };
-    this.names = ["INTRO", "ABOUT ASTAR", "BUSINESS", "COMPANY"];
+    this.names = ["WELCOME", "ABOUT ASTAR", "BUSINESS", "COMPANY"];
     this._prev = document.querySelector(".v-prev");
     this._next = document.querySelector(".v-next");
     this.index = 0;

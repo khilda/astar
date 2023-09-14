@@ -90,6 +90,39 @@
     }
   }
 }
+
+.slide-container {
+  .slide-view {
+    overflow: hidden;
+  }
+  .slide-wrapper {
+    display: flex;
+    transition: transform 1.2s;
+    .slide {
+      display: flex;
+      justify-content: center;
+      flex: 1 0 100%;
+    }
+  }
+  .slide-pagination {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 100px;
+    .btn-page {
+      display: block;
+      background-color: #444;
+      width: 100px;
+      height: 3px;
+      font-size: 0;
+      &.is-active {
+        background-color: $c-primary;
+      }
+    }
+  }
+}
 //************************************
 //# circle type2
 //************************************
@@ -223,7 +256,36 @@
       opacity: 0;
     }
   }
-  .isPageActive .img-desc-group {
+  .isPageActive > .img-desc-group {
+    .img-visual {
+      transition: all 1.5s;
+      opacity: 1;
+      transform: none;
+    }
+    .vision-text {
+      transition: all 1.5s;
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.5s;
+    }
+    .vision-text h3 {
+      transition: all 1.5s;
+      opacity: 1;
+      transition-delay: 1.2s;
+    }
+    .vision-text p {
+      transition: all 1.5s;
+      opacity: 1;
+      transition-delay: 1.5s;
+    }
+    .vision-text .btn-move {
+      transition: all 1.5s;
+      opacity: 1;
+      transition-delay: 1.8s;
+    }
+  }
+
+  .isPageActive .slide.is-active .img-desc-group {
     .img-visual {
       transition: all 1.5s;
       opacity: 1;

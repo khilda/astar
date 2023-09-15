@@ -6,7 +6,7 @@ export const fnIntro = () => {
   document.querySelector(".container.intro").classList.add("is-animate");
 
   onClickBtn(".intro-link", (e, _target) => {
-    window.location.href = `${window.location.origin}/html/pages/main.html`;
+    window.location.href = `${window.location.origin}/html/pages/spa.html`;
   });
   descAnimation();
 };

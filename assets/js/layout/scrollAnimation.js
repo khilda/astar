@@ -37,11 +37,13 @@ export class PageAnimation {
   handleScroll(e) {
     this.wheelValue = e.wheelDelta ?? e.deltaY;
     this.wheelDir = Math.max(-1, Math.min(1, this.wheelValue));
-    // 페이지 전환
-    if (this.isPC) {
-      this.debouncing(this.updateCurrentSection);
-    } else {
-      this.debouncing(this.updateMobileSection);
+    if (!(window.scrollY === 0 && e.deltaY < 0)) {
+      // 페이지 전환
+      if (this.isPC) {
+        this.debouncing(this.updateCurrentSection);
+      } else {
+        this.debouncing(this.updateMobileSection);
+      }
     }
   }
 

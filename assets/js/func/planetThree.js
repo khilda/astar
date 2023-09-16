@@ -280,11 +280,11 @@ export class PlanetsThree {
     const timer = 0.0001 * Date.now();
     requestAnimationFrame(() => this.animate({ renderer, scene, camera, circle, luminor, halo }));
 
-    circle.rotation.x -= 0.001;
-    circle.rotation.y -= 0.001;
+    circle.rotation.x -= 0.0005;
+    circle.rotation.y -= 0.0005;
 
-    halo.rotation.z -= 0.001;
-    luminor.rotation.z -= 0.001;
+    halo.rotation.z -= 0.0005;
+    luminor.rotation.z -= 0.0005;
     // halo.scale.x = Math.sin( timer * 3) * 0.09 + 1;
     // halo.scale.y = Math.sin( timer * 7 ) * 0.09 + 1;
 

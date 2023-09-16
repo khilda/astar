@@ -68,35 +68,35 @@ function fnCrew() {
   const _pagination = document.querySelectorAll(".crew-pagination .btn-page");
   let crewGroupAnimate = null;
   let index = 0;
-  function setGroupAnimate() {
-    crewGroupAnimate = setInterval(() => {
-      _pagination.forEach((el) => el.classList.remove("is-active"));
-      _pagination[index].classList.add("is-active");
-      changeGroup(index);
-    }, 5000);
-  }
-  if (window.innerWidth >= 720) {
-    window.pageAnimation?.scrollCallback(_section, setGroupAnimate);
-  }
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 720) {
-      window.pageAnimation.scrollCallback(_section, setGroupAnimate);
-    } else {
-      window.pageAnimation.scrollCallback();
-      if (crewGroupAnimate) {
-        for (let i = 0; i <= crewGroupAnimate; i++) {
-          clearInterval(crewGroupAnimate);
-        }
-      }
-    }
-  });
+  // function setGroupAnimate() {
+  //   crewGroupAnimate = setInterval(() => {
+  //     _pagination.forEach((el) => el.classList.remove("is-active"));
+  //     _pagination[index].classList.add("is-active");
+  //     changeGroup(index);
+  //   }, 5000);
+  // }
+  // if (window.innerWidth >= 720) {
+  //   window.pageAnimation?.scrollCallback(_section, setGroupAnimate);
+  // }
+  // window.addEventListener("resize", () => {
+  //   if (window.innerWidth >= 720) {
+  //     window.pageAnimation.scrollCallback(_section, setGroupAnimate);
+  //   } else {
+  //     window.pageAnimation.scrollCallback();
+  //     if (crewGroupAnimate) {
+  //       for (let i = 0; i <= crewGroupAnimate; i++) {
+  //         clearInterval(crewGroupAnimate);
+  //       }
+  //     }
+  //   }
+  // });
   _pagination.forEach((btn, idx, btns) => {
     btn.addEventListener("click", () => {
       btns.forEach((el) => el.classList.remove("is-active"));
       btn.classList.add("is-active");
       changeGroup(idx);
-      clearInterval(crewGroupAnimate);
-      setGroupAnimate();
+      // clearInterval(crewGroupAnimate);
+      // setGroupAnimate();
     });
   });
   function changeGroup(idx) {

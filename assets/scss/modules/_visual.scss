@@ -319,6 +319,7 @@ $rotate: 50vw;
   &.is-active {
     .c-item-container {
       display: flex;
+      gap: 10px;
       width: 100%;
       left: 0%;
     }

@@ -22,12 +22,12 @@
     @include hidden-txt;
   }
   &.is-show .gnb-layer {
-    transform: translateY(0vh);
+    transform: translateX(0vw);
     z-index: $z-layer;
     opacity: 1;
   }
   .gnb-layer {
-    transform: translateY(-100vh);
+    transform: translateX(-100vw);
     z-index: $z-layer;
     opacity: 1;
   }

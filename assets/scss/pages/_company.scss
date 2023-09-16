@@ -55,7 +55,7 @@
       gap: 37px;
       .t-summary {
         line-height: 1;
-        font-size: 35px;
+        font-size: 32px;
         font-weight: 800;
       }
       .t-desc {
@@ -74,7 +74,7 @@
     top: 100%;
   }
   100% {
-    top: -100%;
+    top: -270%;
   }
 }
 
@@ -118,7 +118,7 @@
 }
 .company {
   .isPageActive .animate-scroll .animate-content {
-    animation: scroll 20s linear 4s infinite;
+    animation: scroll 16s linear 4s infinite;
   }
   .join-group {
     .img-logo,

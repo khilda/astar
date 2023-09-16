@@ -1,5 +1,6 @@
 import { onClickBtn } from "../func/evtButton.js";
 import { btnTopAnimate } from "../func/btnTop.js";
+import { clickHeaderLogo } from "../func/clickHeaderLogo.js";
 import { MobileDescRotate, VisualRotate } from "../func/planetRotate.js";
 import { planetThree, PlanetsThree } from "../func/planetThree.js";
 import { fetchPage } from "../func/fetchPage.js";
@@ -14,6 +15,8 @@ export const fnComm = () => {
   const classesRotate = visualRotate();
   // common button
   fnGnb(classesRotate);
+
+  clickHeaderLogo()
 };
 export const visualRotate = () => {
   if (!document.querySelector(".visual-area")) return;

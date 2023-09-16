@@ -74,7 +74,8 @@ export class VisualRotate {
   rotate() {
     this._carousel.classList.add("is-animate");
     this.setBeforeRotate()
-      .then(() => this.rotateLayout())
+    this.rotateLayout()
+      // .then(() => this.rotateLayout())
       .then(() => this.setAfterRotate())
       .then(() => {
         this._prev.querySelector(".menu").innerHTML =

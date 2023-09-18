@@ -1,6 +1,7 @@
 // click header-logo
 
 export function clickHeaderLogo() {
+  if (!document.querySelector('header .logo')) return;
   document.querySelector('header .logo').addEventListener("click", () => {
     document.documentElement.scrollTo({
       top: 0,

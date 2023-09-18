@@ -52,6 +52,44 @@
       background-image: url("../images/intro_visual_letter_cover.png");
       z-index: 2;
     }
+    .img-star {
+      position: absolute;
+      top: 24.5%;
+      left: -25.8%;
+      width: 100vw;
+      height: 114px;
+      transform: rotate(326deg);
+      span {
+        position: absolute;
+        top: calc(50% - 5px);
+        left: 0;
+        display: block;
+        background: linear-gradient(90deg, transparent, #fff);
+        width: 40%;
+        height: 3px;
+        em {
+          position: absolute;
+          top: calc(50% - 5px);
+          right: 0;
+          display: block;
+          background-color: #fff;
+          border-radius: 50%;
+          width: 10px;
+          height: 10px;
+          box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.25);
+          &::before {
+            content: "";
+            position: absolute;
+            top: calc(50% - 5px);
+            display: block;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            box-shadow: 0 0px 20px 1px #57ffd7;
+          }
+        }
+      }
+    }
     .img-roket {
       position: absolute;
       top: 22.5%;
@@ -173,32 +211,27 @@
   .animate-logo {
     opacity: 1;
   }
-  .animate-logo .img-roket {
-    animation: type1-intro-roket 25s 1.5s ease-in-out infinite;
-    @keyframes type1-intro-roket {
+  .animate-logo .img-star span {
+    animation: type1-intro-star 8s cubic-bezier(0.4, 0.03, 0.65, 0.99) infinite;
+    @keyframes type1-intro-star {
       0% {
         opacity: 0;
-        transform: translate(-45px, 43px);
+        left: -100%;
       }
-      10% {
-        // 2.4
-        opacity: 1;
-        transform: translate(0, 0);
-      }
-      16% {
-        // 4
-        opacity: 1;
-        transform: translate(0, 0);
-      }
-      24% {
-        // 6.4
+      40% {
         opacity: 0;
-        transform: translate(45px, -43px);
+      }
+      70% {
+        opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translate(-45px, 43px);
+        left: 100%;
       }
+    }
+    @include mobile {
+      animation-duration: 4s;
+      animation-delay: 2s;
     }
   }
   .visual-desc {
@@ -231,9 +264,9 @@
     }
     .animate-logo {
       height: 41vmin;
-      .img-roket {
-        width: 9vmin;
-        height: 9vmin;
+      .img-star {
+        top: 17.5%;
+        left: -6.8%;
       }
     }
   }
@@ -249,13 +282,9 @@
     .visual-text {
       margin-top: 0;
     }
-    .animate-logo .img-roket {
-      top: 17.3vw;
-      left: 38.2vw;
-      width: 10vmin;
-      height: 11vmin;
-      min-width: 37px;
-      min-height: 40px;
+    .animate-logo .img-star {
+      top: 0;
+      left: 4%;
     }
     .visual-desc {
       margin-bottom: 0;

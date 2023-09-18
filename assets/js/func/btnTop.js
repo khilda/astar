@@ -26,6 +26,10 @@ export const btnTopAnimate = () => {
       left: 0,
       behavior: "smooth",
     });
+    document.querySelectorAll("[data-page]").forEach(item => {
+      item.classList.remove('isPageActive')
+    })
+    document.querySelector('.visual-area').classList.add('isPageActive')
     return false;
   });
 

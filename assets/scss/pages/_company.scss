@@ -9,7 +9,7 @@
   .animate-scroll {
     position: absolute;
     top: -200px;
-    bottom: 250px;
+    bottom: 180px;
     left: calc(50% - 590px);
     width: 1180px;
     transform-origin: 50% 100%;
@@ -118,7 +118,7 @@
 }
 .company {
   .isPageActive .animate-scroll .animate-content {
-    animation: scroll 16s linear 4s infinite;
+    animation: scroll 16s linear 1s infinite;
   }
   .join-group {
     .img-logo,

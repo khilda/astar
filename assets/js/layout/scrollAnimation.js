@@ -92,6 +92,7 @@ export class PageAnimation {
     idx -= this.wheelDir;
     if (idx < 0) {
       this._curDom = this._sections[0];
+      this._curDom.classList.add("isPageActive");
       return;
     } else if (idx < this._sections.length) {
       this._curDom = this._sections[idx];
@@ -142,7 +143,11 @@ export class PageAnimation {
       this._curDom = null;
       scrollTo = document.documentElement.getBoundingClientRect().height;
     }
-    window.scrollTo({ top: scrollTo, left: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: scrollTo,
+      left: 0,
+      behavior: this.isPC ? "smooth" : "auto",
+    });
   }
   scrollCallback(target, fn) {
     this.callback.push({ target, fn });

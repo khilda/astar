@@ -7,6 +7,10 @@
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.15);
   z-index: 100;
+  &.is-scroll {
+    transition: none;
+    background-color: #000;
+  }
   > .w-section {
     position: relative;
     height: 90px;
@@ -150,12 +154,14 @@
     line-height: 34px;
     font-size: 26px;
     font-weight: inherit;
+    transition: none;
   }
   .desc {
     display: block;
     min-height: 84px;
     margin-top: 34px;
     font-weight: inherit;
+    transition: none;
   }
   .icon {
     display: block;

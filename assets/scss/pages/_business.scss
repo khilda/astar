@@ -124,7 +124,7 @@
   }
 }
 //************************************
-//# circle type2
+//# circle glow
 //************************************
 .business-link {
   @include outline-circle(20px) {
@@ -136,22 +136,8 @@
     width: 320px;
     aspect-ratio: 1 / 1;
     margin: 0 -15px;
-  }
-}
-//************************************
-//# circle type2
-//************************************
-.business-link {
-  .btn-link-type2 {
-    @include gradient-circle(320px);
-    margin: 0 -15px;
-  }
-  @for $i from 1 through 4 {
-    .btn-link-type2:nth-child(#{$i}) {
-      &,
-      &::after {
-        animation-delay: $i * -0.3s;
-      }
+    &:nth-child(even) .outline-circle {
+      animation-direction: reverse;
     }
   }
 }
@@ -164,8 +150,7 @@
     max-width: 721px;
     width: 100%;
     gap: 80px;
-    .btn-link,
-    .btn-link-type2 {
+    .btn-link {
       margin: 0;
       width: calc(50% - 40px);
     }
@@ -177,8 +162,7 @@
     gap: 0px;
     max-width: 390px;
     width: 78vw;
-    .btn-link,
-    .btn-link-type2 {
+    .btn-link {
       width: 46vmin;
       max-width: 200px;
       margin: -35px 0;

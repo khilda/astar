@@ -73,13 +73,13 @@ export class VisualRotate {
 
   rotate() {
     this._carousel.classList.add("is-animate");
-    this.setBeforeRotate()
+    this.setBeforeRotate();
     this.rotateLayout()
       // .then(() => this.rotateLayout())
       .then(() => this.setAfterRotate())
       .then(() => {
         this._prev.querySelector(".menu").innerHTML =
-        this.names[this.calcIdx(-1)];
+          this.names[this.calcIdx(-1)];
         this._next.querySelector(".menu").innerHTML =
           this.names[this.calcIdx(1)];
         this._carousel.classList.remove("is-animate");
@@ -129,20 +129,20 @@ export class VisualRotate {
     this.rotate();
 
     this._next.addEventListener("click", () => {
-      this.toRotate({ direction: 'left'})
+      this.toRotate({ direction: "left" });
     });
     this._prev.addEventListener("click", () => {
-      this.toRotate({ direction: 'right'})
+      this.toRotate({ direction: "right" });
     });
   }
 
-  toRotate({ step = 1, direction = 'left' }) {
-    if (direction === 'left') {
+  toRotate({ step = 1, direction = "left" }) {
+    if (direction === "left") {
       this.index = this.calcIdx(step);
-      this.currdeg = this.currdeg + (-step * 90);
-    } else if (direction === 'right') {
+      this.currdeg = this.currdeg + -step * 90;
+    } else if (direction === "right") {
       this.index = this.calcIdx(-step);
-      this.currdeg = this.currdeg + (step * 90);
+      this.currdeg = this.currdeg + step * 90;
     }
     this.rotate();
   }
@@ -166,7 +166,9 @@ export class MobileDescRotate {
     this._planetCont.replaceChildren();
     let planet = "";
     for (let i = 0; i < 8; i++) {
-      planet += `<li class="planet ${this._planetCls[i % 4]}"></li>`;
+      planet += `<button type="button" class="planet ${
+        this._planetCls[i % 4]
+      }"></button>`;
     }
     this._planetCont.innerHTML = planet;
     this._planets = this._planetCont.querySelectorAll(".planet");
@@ -174,6 +176,7 @@ export class MobileDescRotate {
     this.index = this._planetCls.indexOf(this._curntPlanet);
     this.angle = this.index * -45;
     this.animatePlanet();
+    this.moveToPlanet();
   }
   moveToDir(target, step = 1) {
     const dir = target === "prev" ? -1 : 1;
@@ -183,12 +186,27 @@ export class MobileDescRotate {
   }
   animatePlanet(dir, step) {
     if (dir) {
-      this.angle = this.angle + (dir * step) * -45;
-      this.index = (this.index + (dir * step)) % 8 < 0 ? 7 : (this.index + (dir * step)) % 8;
+      this.angle = this.angle + dir * step * -45;
+      this.index =
+        (this.index + dir * step) % 8 < 0 ? 7 : (this.index + dir * step) % 8;
     }
     this._planetCont.style.transform = `rotateZ(${this.angle}deg)`;
     this._planets.forEach((el) => el.classList.remove("is-active"));
     this._curntPlanet = this._planets[this.index];
     this._curntPlanet.classList.add("is-active");
+  }
+  moveToPlanet(toRotate) {
+    this._planets.forEach((el, idx) => {
+      el.addEventListener("click", (e) => {
+        if (idx === this.index) return;
+
+        let i = (idx - this.index) % 4;
+        let arrow = i < 0 ? "prev" : "next";
+        if (Math.abs(i) === 3) {
+          arrow = i > 0 ? "prev" : "next";
+        }
+        document.querySelector(`.v-${arrow} .btn-link`).click();
+      });
+    });
   }
 }

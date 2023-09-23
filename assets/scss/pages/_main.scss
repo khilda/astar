@@ -108,6 +108,10 @@
         left: 98px;
         bottom: 68px;
       }
+      .cyl-ellipse::before,
+      .cyl-ellipse::after {
+        animation-direction: reverse;
+      }
     }
     .cyl-ellipse {
       @include gradient-circle(263px);
@@ -132,7 +136,8 @@
   }
 }
 .bg-business {
-  background: #000 url("../images/main_bg_business.png") no-repeat 50% 50% / 100%;
+  background: #000 url("../images/main_bg_business.png") no-repeat 50% 50% /
+    100%;
 }
 .main-business {
   display: flex;
@@ -477,24 +482,7 @@
       text-align: center;
     }
     .ctt-info {
-      flex-direction: column;
-      justify-content: center;
-      width: 235px;
-      margin: 50px auto 0;
-      gap: 0;
-      .info-item {
-        justify-content: center;
-        gap: 0 10px;
-      }
-      .info-item:first-child {
-        margin-bottom: 20px;
-      }
-      .info-title {
-        font-size: 14px;
-      }
-      .info-desc {
-        font-size: 12px;
-      }
+      display: none;
     }
     .contract-form {
       align-items: center;

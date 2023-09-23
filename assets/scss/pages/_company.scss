@@ -62,6 +62,11 @@
         font-size: 35px;
         font-weight: 600;
       }
+      &:first-child {
+        .t-desc {
+          font-weight: 800;
+        }
+      }
     }
   }
 }
@@ -155,6 +160,13 @@
 ///************************************
 //# Responsive
 //************************************
+@include desktop-only {
+  .company .animate-scroll {
+    top: -100px;
+    bottom: 60px;
+    zoom: 1.8;
+  }
+}
 @include tablet {
   .company .animate-scroll {
     left: calc(50% - 75vw);

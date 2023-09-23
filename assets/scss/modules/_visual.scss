@@ -151,6 +151,8 @@
   }
 }
 .m-desc {
+  position: fixed;
+  bottom: 0;
   display: none;
   align-items: flex-start;
   justify-content: center;
@@ -163,6 +165,7 @@
   padding-top: 65px;
   margin: auto;
   overflow: hidden;
+  z-index: 99;
   .desc-text {
     position: absolute;
     bottom: 24px;

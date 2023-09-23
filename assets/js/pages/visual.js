@@ -16,13 +16,13 @@ export const fnComm = () => {
   // common button
   fnGnb(classesRotate);
 
-  clickHeaderLogo()
+  clickHeaderLogo();
 };
 export const visualRotate = () => {
   if (!document.querySelector(".visual-area")) return;
-  if (window.location.href.split('/').at(-1) === 'spa.html') {
+  if (window.location.href.split("/").at(-1) === "spa.html") {
     const a = new PlanetsThree();
-    a.start()
+    a.start();
   } else {
     planetThree();
   }
@@ -45,7 +45,7 @@ export const visualRotate = () => {
     );
   });
 
-  return { visualRotate, mDesc }
+  return { visualRotate, mDesc };
 };
 
 /**
@@ -78,26 +78,39 @@ function gnbInteraction(_target) {
   }
 }
 const fnGnb = (classesRotate) => {
-  onClickBtn(".gnb-toggle-btn", (e, _target) => {
-    gnbInteraction(_target)
+  // header background
+  window.addEventListener("scroll", () => {
+    const _header = document.querySelector(".header");
+    if (document.documentElement.scrollTop > 0) {
+      _header.classList.add("is-scroll");
+    } else {
+      _header.classList.remove("is-scroll");
+    }
   });
-  if (window.location.href.split('/').at(-1) === 'spa.html') {
-    const { visualRotate, mDesc } = classesRotate
+  onClickBtn(".gnb-toggle-btn", (e, _target) => {
+    gnbInteraction(_target);
+  });
+  if (window.location.href.split("/").at(-1) === "spa.html") {
+    const { visualRotate, mDesc } = classesRotate;
     onClickBtn(".gnb-menu", (e, _target) => {
       const menu = _target.dataset.link;
       const _gnbToggleBtn = document.querySelector(".gnb-toggle-btn");
-      gnbInteraction(_gnbToggleBtn)
-      
-      const menus = [ 'main', 'about', 'business', 'company' ];
-      const [ selectedMenu ] = Array.from(document.querySelector('.v-crnt .is-active').classList).filter(className => {
-        return menus.find(menu => menu === className)
-      })
-      const toStep = menus.findIndex(item => item === menu) - menus.findIndex(item => item === selectedMenu)
-      visualRotate.toRotate({ step: Math.abs(toStep) })
+      gnbInteraction(_gnbToggleBtn);
+
+      const menus = ["main", "about", "business", "company"];
+      const [selectedMenu] = Array.from(
+        document.querySelector(".v-crnt .is-active").classList
+      ).filter((className) => {
+        return menus.find((menu) => menu === className);
+      });
+      const toStep =
+        menus.findIndex((item) => item === menu) -
+        menus.findIndex((item) => item === selectedMenu);
+      visualRotate.toRotate({ step: Math.abs(toStep) });
       mDesc.moveToDir("next", toStep);
 
-      const container = document.querySelector('.container');
-      fetchPage(container, null, menu)
+      const container = document.querySelector(".container");
+      fetchPage(container, null, menu);
     });
   } else {
     onClickBtn(".gnb-menu", (e, _target) => {

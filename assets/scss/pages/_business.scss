@@ -37,7 +37,7 @@
       font-size: 14px;
       color: #111;
       font-weight: 800;
-      box-shadow: 0px 0px 15px 0px #72FCE64D;
+      box-shadow: 0px 0px 15px 0px #72fce64d;
     }
   }
 
@@ -323,12 +323,11 @@
       opacity: 1;
       transform: none;
     }
-    @for $i from 1 through 3 {
-      &:nth-child(1) .logo-item:nth-child(#{$i}) {
-        transition-delay: ($i * 0.25s);
-      }
-      &:nth-child(2) .logo-item:nth-child(#{$i}) {
-        transition-delay: ($i * 0.25s) + 0.75s;
+    @for $row from 1 through 3 {
+      @for $i from 1 through 4 {
+        &:nth-child(#{$row}) .logo-item:nth-child(#{$i}) {
+          transition-delay: ($i * 0.25s) + (0.75s * $row);
+        }
       }
     }
   }
@@ -338,12 +337,11 @@
       opacity: 1;
       transform: none;
     }
-    @for $i from 1 through 4 {
-      &:nth-child(1) .logo-item:nth-child(#{$i}) {
-        transition-delay: ($i * 0.25s);
-      }
-      &:nth-child(2) .logo-item:nth-child(#{$i}) {
-        transition-delay: ($i * 0.25s) + 0.75s;
+    @for $row from 1 through 3 {
+      @for $i from 1 through 4 {
+        &:nth-child(#{$row}) .logo-item:nth-child(#{$i}) {
+          transition-delay: ($i * 0.25s) + (0.75s * $row);
+        }
       }
     }
   }

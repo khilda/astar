@@ -19,6 +19,30 @@ export class VisualRotate {
     this.index = 0;
     this.init();
   }
+  init() {
+    if (!this._carousel) return;
+    if (window.innerWidth > 1180) {
+      this.infoWidth = this._dom.info[0].getBoundingClientRect().width;
+    } else {
+      this.infoWidth = window.innerWidth;
+    }
+    // 각 페이지
+    let hasActive = this._dom.items.find((el) =>
+      el.classList.contains("is-active")
+    );
+    if (hasActive) {
+      this.index = this._dom.items.indexOf(hasActive);
+      this.currdeg = this.index * -90;
+    }
+    this.rotate();
+
+    this._next.addEventListener("click", () => {
+      this.toRotate({ direction: "left" });
+    });
+    this._prev.addEventListener("click", () => {
+      this.toRotate({ direction: "right" });
+    });
+  }
   rotateLayout() {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -119,23 +143,6 @@ export class VisualRotate {
     });
   }
 
-  init() {
-    if (!this._carousel) return;
-    if (window.innerWidth > 1180) {
-      this.infoWidth = this._dom.info[0].getBoundingClientRect().width;
-    } else {
-      this.infoWidth = window.innerWidth;
-    }
-    this.rotate();
-
-    this._next.addEventListener("click", () => {
-      this.toRotate({ direction: "left" });
-    });
-    this._prev.addEventListener("click", () => {
-      this.toRotate({ direction: "right" });
-    });
-  }
-
   toRotate({ step = 1, direction = "left" }) {
     if (direction === "left") {
       this.index = this.calcIdx(step);
@@ -175,6 +182,7 @@ export class MobileDescRotate {
     this._curntPlanet = document.querySelector(".container").classList[1];
     this.index = this._planetCls.indexOf(this._curntPlanet);
     this.angle = this.index * -45;
+
     this.animatePlanet();
     this.moveToPlanet();
   }

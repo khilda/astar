@@ -394,15 +394,20 @@
       order: 2;
       gap: 0 20px;
       width: 100vw;
-      padding-left: 21px;
-      padding-right: 21px;
+      padding-left: 200px;
+      padding-right: 200px;
       padding-bottom: 21px;
       margin-top: 0px;
       overflow-y: hidden;
       overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      &::-webkit-scrollbar {
+        display: none;
+      }
       .about {
         flex: none;
         width: 66vw;
+        scroll-snap-align: center;
       }
       .about:nth-child(odd) {
         top: 0;
@@ -452,14 +457,19 @@
     order: 2;
     gap: 20px;
     width: 100vw;
-    padding-left: 21px;
-    padding-right: 21px;
+    padding-left: 250px;
+    padding-right: 250px;
     padding-bottom: 21px;
     overflow-y: hidden;
     overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .business-card {
       flex: none;
       height: 250px;
+      scroll-snap-align: center;
     }
     .card-txt,
     .card-strong {

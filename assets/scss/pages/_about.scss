@@ -498,15 +498,20 @@
     overflow: visible;
     gap: 21px;
     width: 100vw;
-    padding-left: 21px;
-    padding-right: 21px;
+    padding-left: 200px;
+    padding-right: 200px;
     padding-bottom: 21px;
     margin-top: 0px;
     overflow-y: hidden;
     overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .icon-item {
       flex: none;
-      width: calc(100% - 42px);
+      width: 75vw;
+      scroll-snap-align: center;
       .desc-txt,
       .desc-txt-content {
         width: 100%;

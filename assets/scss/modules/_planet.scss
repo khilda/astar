@@ -1,0 +1,35 @@
+//************************************
+//# Planet
+//************************************
+.img-planet {
+  position: relative;
+  border-radius: 50%;
+  width: 320px;
+  height: 320px;
+  background: $c-primary url("../../assets/images/bg_planet.png") repeat 200%
+    100%;
+  box-shadow: inset -2em -2em 2em #000, -0.5em -0.5em 1em $c-primary;
+  position: relative;
+  animation: planet-rotate 60s linear infinite;
+  backdrop-filter: opacity(20%);
+  border-radius: 50%;
+  &::after {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $c-primary;
+    backdrop-filter: opacity(20%);
+    opacity: 0.5;
+  }
+}
+
+@keyframes planet-rotate {
+  to {
+    background-position: -200% 0;
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASTAR</title>
+    <link rel="stylesheet" href="./../../assets/css/styles.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #000;
+      }
+      .circle {
+        position: relative;
+        border-radius: 50%;
+        width: 320px;
+        height: 320px;
+      }
+      .background {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background: #54fad2 url("./../images/img_star_main.png") no-repeat 50% 50% /
+          480px;
+        z-index: 1;
+        transform-origin: 80% 50%;
+      }
+      .effect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .light {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background-image: radial-gradient(
+          closest-corner at 80% 60%,
+          rgba(255, 255, 255, 0.5) 10%,
+          rgba(255, 255, 255, 0) 120%
+        );
+        z-index: 1;
+        filter: blur(40px);
+        animation: spin 8s linear infinite;
+      }
+      .shdow {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background-image: radial-gradient(
+          farthest-corner at 40px 40px,
+          rgba(0, 0, 0, 0.67) 10%,
+          rgba(0, 0, 0, 0) 120%
+        );
+        z-index: 1;
+        transform-origin: 80% 50%;
+        filter: blur(40px);
+        animation: spin 8s linear infinite;
+      }
+      .luminor {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: linear-gradient(-225deg, #fff 0%, #50ffeb 52%, #fff 100%);
+        border-radius: 50%;
+        animation: spin 8s linear infinite;
+        opacity: 0.8;
+      }
+      .luminor span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background: inherit;
+      }
+      .luminor span:nth-child(1) {
+        filter: blur(5px);
+      }
+      .luminor span:nth-child(2) {
+        filter: blur(10px);
+      }
+      .luminor span:nth-child(3) {
+        filter: blur(25px);
+      }
+      .luminor span:nth-child(4) {
+        filter: blur(50px);
+      }
+      .luminor::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #222;
+        border-radius: inherit;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle">
+      <div class="luminor">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="background"></div>
+      <div class="effect">
+        <div class="light"></div>
+        <div class="shdow"></div>
+      </div>
+    </div>
+  </body>
+</html>

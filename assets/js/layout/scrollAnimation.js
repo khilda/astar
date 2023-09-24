@@ -4,6 +4,8 @@ export class PageAnimation {
     this._curDom = null; // 현재 활성화된 section
     this.wheelValue = 0; // 스크롤 범위
     this.wheelDir = 0; // 스크롤 방향 (-1: 위, 1: 아래)
+    this.touchStart = 0; // 터치시작좌표
+    this.touchEnd = 0; // 터치종료좌표
     this.isPC = true; // PC 여부
 
     this.callback = []; // 스크롤시 callback 이벤트
@@ -14,6 +16,7 @@ export class PageAnimation {
     window.addEventListener("resize", this.resizeHandler);
 
     this.scrollHandler = this.handleScroll.bind(this);
+
     this.handleResize();
 
     this.initFullPage();
@@ -35,7 +38,12 @@ export class PageAnimation {
   }
 
   handleScroll(e) {
-    this.wheelValue = e.wheelDelta ?? e.deltaY;
+    if (e.type === "touchend") {
+      this.touchEnd = e.changedTouches[0]?.clientY ?? 0;
+      this.wheelValue = this.touchEnd - this.touchStart;
+    } else {
+      this.wheelValue = e.wheelDelta ?? e.deltaY;
+    }
     this.wheelDir = Math.max(-1, Math.min(1, this.wheelValue));
     if (!(window.scrollY === 0 && e.deltaY < 0)) {
       // 페이지 전환
@@ -46,7 +54,6 @@ export class PageAnimation {
       }
     }
   }
-
   handleResize() {
     if (window.innerWidth >= 720) {
       this.isPC = true;
@@ -63,19 +70,25 @@ export class PageAnimation {
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     window.addEventListener("wheel", this.scrollHandler);
+    // tablet
+    window.addEventListener("touchstart", (e) => {
+      this.touchStart = e.changedTouches[0]?.clientY ?? 0;
+    });
+    window.addEventListener("touchend", this.scrollHandler);
   }
-
   removeScrollListener() {
     document.documentElement.removeAttribute("style");
     document.body.removeAttribute("style");
     window.removeEventListener("wheel", this.scrollHandler);
+    // tablet
+    window.removeEventListener("touchend", this.scrollHandler);
   }
+
   addTouchListener() {
     document.documentElement.removeAttribute("style");
     document.body.removeAttribute("style");
     window.addEventListener("scroll", this.scrollHandler);
   }
-
   removeTouchListener() {
     window.removeEventListener("scroll", this.scrollHandler);
   }

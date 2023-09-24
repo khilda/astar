@@ -377,7 +377,7 @@ $rotate: 50vw;
   }
   &.company .img-plant {
     background-color: $c-company;
-    box-shadow: inset -2em -2em 2em #000, 0 0 32px $c-company;
+    box-shadow: inset -32px -32px 32px #000, 0 0 32px $c-company;
     &::after {
       background-color: $c-company;
     }

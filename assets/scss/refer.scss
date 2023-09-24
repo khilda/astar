@@ -1,0 +1,136 @@
+$c-main: #00d5bc;
+$c-company: #e38900;
+$c-about: #b94d00;
+$c-business: #a71fb3;
+.v-crnt .img-plant {
+  background: none;
+  animation: none;
+  .effect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .light {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background-image: radial-gradient(
+      closest-corner at 80% 60%,
+      rgba(255, 255, 255, 0.5) 10%,
+      rgba(255, 255, 255, 0) 120%
+    );
+    z-index: 1;
+    filter: blur(40px);
+    animation: spin 8s linear infinite;
+  }
+  .shdow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background-image: radial-gradient(
+      farthest-corner at 40px 40px,
+      rgba(0, 0, 0, 0.67) 10%,
+      rgba(0, 0, 0, 0) 120%
+    );
+    z-index: 1;
+    transform-origin: 80% 50%;
+    filter: blur(40px);
+    animation: spin 8s linear infinite;
+  }
+  .luminor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    animation: spin 8s linear infinite;
+    opacity: 0.8;
+  }
+  .luminor span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: inherit;
+  }
+  .luminor span:nth-child(1) {
+    filter: blur(5px);
+  }
+  .luminor span:nth-child(2) {
+    filter: blur(10px);
+  }
+  .luminor span:nth-child(3) {
+    filter: blur(25px);
+  }
+  .luminor span:nth-child(4) {
+    filter: blur(50px);
+  }
+  .luminor::after {
+    content: none;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #222;
+    border-radius: inherit;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+.c-item {
+  &.main .img-plant {
+    background-color: $c-main;
+    box-shadow: none;
+    .luminor {
+      background: linear-gradient(-225deg, #fff 0%, $c-main 52%, #fff 100%);
+    }
+    &::after {
+      content: none;
+    }
+  }
+  &.about .img-plant {
+    background-color: $c-about;
+    box-shadow: none;
+    .luminor {
+      background: linear-gradient(-225deg, #fff 0%, $c-about 52%, #fff 100%);
+    }
+    &::after {
+      content: none;
+    }
+  }
+  &.business .img-plant {
+    background-color: $c-business;
+    box-shadow: none;
+    .luminor {
+      background: linear-gradient(-225deg, #fff 0%, $c-business 52%, #fff 100%);
+    }
+    &::after {
+      content: none;
+    }
+  }
+  &.company .img-plant {
+    background-color: $c-company;
+    box-shadow: none;
+    .luminor {
+      background: linear-gradient(-225deg, #fff 0%, $c-company 52%, #fff 100%);
+    }
+    &::after {
+      content: none;
+    }
+  }
+}

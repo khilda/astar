@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>background</title>
+    <title>layout</title>
     <link rel="stylesheet" href="./../../assets/css/styles.css" />
+    <link rel="stylesheet" href="./../../assets/css/refer.css" />
   </head>
   <body>
     <div class="wrap">
@@ -71,20 +72,13 @@
                       <div class="img-plant"></div>
                       <div class="v-info">
                         <hgroup class="title-group">
-                          <h5 class="t-summary">INTRO</h5>
+                          <h5 class="t-summary">WELCOME</h5>
                           <h3 class="t-title">Anyone can be a STAR</h3>
                         </hgroup>
                         <p class="v-info-text">
-                          <strong
-                            >우리는 누구나 별이 될 수 있도록 돕는 <br />AI 기술
-                            기반의 스타트업</strong
-                          >
-                          입니다.<br />자사만의 Thinking AI는 다양한 분야에서
-                          적용되어
-                          <br />
-                          꿈꾸는 별이 될 수 있도록 돕고 있습니다.
+                          자사만의 3AI는 다양한 분야에 적용되어<br />
+                          <strong>고객이 꿈꾸는 별이 될 수 있도록 돕고 있습니다</strong>
                         </p>
-                      </div>
                     </div>
                   </li>
                   <li class="c-item about">
@@ -169,9 +163,8 @@
           <div class="footer-info">
             <h1 class="logo">ASTAR</h1>
             <div class="info-group">
-              <a href="https://mocateam.notion.site/e61695d27267411ea89d2f5baa637b77" class="btn-txt">이용약관</a>
-              <a href="https://mocateam.notion.site/319b3aa358914f9ba7242cf48dbf8aa4" class="btn-txt">개인정보처리방침</a>
-              
+              <a href="https://mocateam.notion.site/e61695d27267411ea89d2f5baa637b77" target="_blank" class="btn-txt">이용약관</a>
+              <a href="https://mocateam.notion.site/319b3aa358914f9ba7242cf48dbf8aa4" target="_blank" class="btn-txt">개인정보처리방침</a>
               <button type="button" class="btn-fill">사업자등록정보</button>
             </div>
           </div>
@@ -196,8 +189,23 @@
         </svg>
       </button>
     </div>
-
-    <script src="./../../assets/js/lib/three.min.js"></script>
+    <script>
+      const _solar = `
+      <div class="luminor">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="background"></div>
+      <div class="effect">
+        <div class="light"></div>
+        <div class="shdow"></div>
+      </div>`
+      document.querySelectorAll('.c-item .img-plant').forEach(el =>{
+        el.innerHTML = _solar
+      })
+    </script>
     <script type="module" src="./../../assets/js/main.js"></script>
     <!-- <script type="module" src="./../../assets/js/SPA.js"></script> -->
   </body>

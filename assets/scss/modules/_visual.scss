@@ -95,17 +95,24 @@
   .img-plant {
     position: relative;
     display: block;
-    background: transparent no-repeat 50% 50% / contain;
-    width: 240px;
-    height: 240px;
-    canvas {
+    border-radius: 50%;
+    background: url("../../assets/images/bg_planet.png") repeat 200% 100%;
+    width: 180px;
+    aspect-ratio: 1 / 1;
+    backdrop-filter: opacity(20%);
+    animation: planet-rotate 100s linear infinite;
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 200%;
-      aspect-ratio: 1/1;
-      transform: translate(-50%, -50%);
-      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $c-primary;
+      backdrop-filter: opacity(20%);
+      opacity: 0.5;
     }
   }
   .v-info {
@@ -151,12 +158,10 @@
   }
 }
 .m-desc {
-  position: fixed;
-  bottom: 0;
   display: none;
   align-items: flex-start;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -334,8 +339,7 @@ $rotate: 50vw;
       transition: opacity 0.5s 0s;
     }
     .img-plant {
-      width: 280px;
-      height: 280px;
+      width: 200px;
     }
   }
   .c-item-container {
@@ -351,16 +355,32 @@ $rotate: 50vw;
     transform-style: preserve-3d;
   }
   &.main .img-plant {
-    background-image: url("./../images/img_star_main.png");
+    background-color: $c-main;
+    box-shadow: inset -32px -32px 32px #000, 0 0 32px $c-main;
+    &::after {
+      background-color: $c-main;
+    }
   }
   &.about .img-plant {
-    background-image: url("./../images/img_star_about.png");
+    background-color: $c-about;
+    box-shadow: inset -32px -32px 32px #000, 0 0 32px $c-about;
+    &::after {
+      background-color: $c-about;
+    }
   }
   &.business .img-plant {
-    background-image: url("./../images/img_star_business.png");
+    background-color: $c-business;
+    box-shadow: inset -32px -32px 32px #000, 0 0 32px $c-business;
+    &::after {
+      background-color: $c-business;
+    }
   }
   &.company .img-plant {
-    background-image: url("./../images/img_star_company.png");
+    background-color: $c-company;
+    box-shadow: inset -2em -2em 2em #000, 0 0 32px $c-company;
+    &::after {
+      background-color: $c-company;
+    }
   }
 }
 ///************************************
@@ -444,17 +464,7 @@ $rotate: 50vw;
     .img-plant {
       position: relative;
       width: 220px;
-      height: 220px;
     }
-    // &.is-animate .c-item {
-    //   opacity: 1;
-    // }
-    // &:not(.is-animate) .c-item:not(.is-active) {
-    //   opacity: 0;
-    // }
-    // .c-item {
-    //   transition: opacity 0.3s linear;
-    // }
     .v-info {
       top: calc(16vmin + 240px); // visual-section 기준
       left: 50%;

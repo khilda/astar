@@ -20,12 +20,12 @@ export const fnComm = () => {
 };
 export const visualRotate = () => {
   if (!document.querySelector(".visual-area")) return;
-  if (window.location.href.split("/").at(-1) === "spa.html") {
-    const a = new PlanetsThree();
-    a.start();
-  } else {
-    planetThree();
-  }
+  // if (window.location.href.split("/").at(-1) === "spa.html") {
+  //   const a = new PlanetsThree();
+  //   a.start();
+  // } else {
+  //   planetThree();
+  // }
 
   const visualRotate = new VisualRotate();
 

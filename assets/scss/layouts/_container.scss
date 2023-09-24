@@ -81,4 +81,8 @@
 //# Responsive - mobile
 //************************************
 @include mobile {
+  .btn-top {
+    right: 20px;
+    bottom: 100px;
+  }
 }

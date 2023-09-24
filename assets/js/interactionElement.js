@@ -106,7 +106,6 @@ export class InteractionElement {
         ]
         break;
       case 'skew':
-        console.log(startValue, endValue)
         return [
           {
             offset: 0,

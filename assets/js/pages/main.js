@@ -2,7 +2,6 @@ import { setLogoRollingClone } from "../func/logoRolling.js";
 import { contentsBounce } from "../func/contentsBounce.js";
 
 export const fnMain = () => {
-  console.log(document.querySelector(".container.main"))
   if (!document.querySelector(".container.main")) return;
   setLogoRollingClone();
   iptEvt();

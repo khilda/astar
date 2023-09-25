@@ -240,7 +240,7 @@
     transform: none;
     @for $i from 1 through 4 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.05s + 0.05s;
+        transition-delay: $i * 0.05s + 0.15s;
         z-index: 2;
       }
     }

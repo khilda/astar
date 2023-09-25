@@ -546,9 +546,9 @@
     transition: all 0.5s;
     opacity: 1;
     transform: none;
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        transition-delay: $i * 0.05s + 0.05s;
+    @for $i from 0 through 2 {
+      &:nth-child(#{$i + 1}) {
+        transition-delay: $i * 0.15s;
       }
     }
   }
@@ -601,9 +601,9 @@
     transition: all 0.5s;
     opacity: 1;
     transform: none;
-    @for $i from 1 through 3 {
-      &:nth-child(#{$i}) {
-        transition-delay: $i * 0.05s;
+    @for $i from 0 through 2 {
+      &:nth-child(#{$i + 1}) {
+        transition-delay: $i * 0.15s;
       }
     }
   }

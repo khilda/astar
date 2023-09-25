@@ -652,7 +652,7 @@
         transform: none;
         @for $i from 1 through 4 {
           &:nth-child(#{$i}) {
-            transition-delay: $i * 0.15s;
+            transition-delay: $i * 0.05s;
           }
         }
       }

@@ -548,7 +548,7 @@
     transform: none;
     @for $i from 1 through 3 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.15s + 0.05s;
+        transition-delay: $i * 0.05s + 0.05s;
       }
     }
   }
@@ -603,7 +603,7 @@
     transform: none;
     @for $i from 1 through 3 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.15s;
+        transition-delay: $i * 0.05s;
       }
     }
   }

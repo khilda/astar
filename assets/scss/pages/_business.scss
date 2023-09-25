@@ -240,7 +240,7 @@
     transform: none;
     @for $i from 1 through 4 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.25s + 0.15s;
+        transition-delay: $i * 0.05s + 0.15s;
         z-index: 2;
       }
     }
@@ -327,7 +327,7 @@
     @for $row from 1 through 3 {
       @for $i from 1 through 4 {
         &:nth-child(#{$row}) .logo-item:nth-child(#{$i}) {
-          transition-delay: ($i * 0.15s) + (0.3s * $row);
+          transition-delay: ($i * 0.05s) + (0.05s * $row);
         }
       }
     }
@@ -341,7 +341,7 @@
     @for $row from 1 through 3 {
       @for $i from 1 through 4 {
         &:nth-child(#{$row}) .logo-item:nth-child(#{$i}) {
-          transition-delay: ($i * 0.25s) + (0.75s * $row);
+          transition-delay: ($i * 0.05s) + (0.05s * $row);
         }
       }
     }

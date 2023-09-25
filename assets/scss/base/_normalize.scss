@@ -35,6 +35,9 @@ table {
 a,
 button {
   cursor: pointer;
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+  }
   &:disabled {
     pointer-events: none;
     cursor: default;
@@ -51,6 +54,7 @@ input:autofill {
   font-size: inherit;
   font-weight: 400;
 }
+
 * {
   transition: all 0.15s;
   transition-delay: 0s;

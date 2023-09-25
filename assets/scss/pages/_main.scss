@@ -526,7 +526,7 @@
   .isPageActive .section-desc {
     transition: all 1.5s;
     opacity: 1;
-    transition-delay: 0.5s;
+    transition-delay: 0.25s;
   }
   .main-about .logo-about {
     opacity: 0;
@@ -536,7 +536,7 @@
     transition: all 1.2s;
     opacity: 1;
     transform: none;
-    transition-delay: 0.5s;
+    transition-delay: 0.25s;
   }
   .main-about .about-wrap .about {
     opacity: 0;
@@ -548,7 +548,7 @@
     transform: none;
     @for $i from 1 through 3 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.5s + 0.3s;
+        transition-delay: $i * 0.25s + 0.15s;
       }
     }
   }
@@ -577,12 +577,12 @@
   .isPageActive .main-vision .logo-vision {
     transition: all 0.5s;
     opacity: 1;
-    transition-delay: 1.5s;
+    transition-delay: 0.75s;
   }
   .isPageActive .main-vision .cylinder {
     &::before {
       opacity: 1;
-      transition-delay: 0.7s;
+      transition-delay: 0.25s;
     }
     &:nth-child(1) .cyl-ellipse,
     &:nth-child(2) .cyl-ellipse {
@@ -590,7 +590,7 @@
     }
     .cyl-txt {
       opacity: 1;
-      transition-delay: 1.2s;
+      transition-delay: 1s;
     }
   }
   .main-business .business-card {
@@ -603,7 +603,7 @@
     transform: none;
     @for $i from 1 through 3 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.5s;
+        transition-delay: $i * 0.25s;
       }
     }
   }

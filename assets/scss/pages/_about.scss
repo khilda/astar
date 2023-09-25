@@ -583,10 +583,10 @@
     opacity: 1;
     transform: none;
     &:nth-child(1) {
-      transition-delay: 0.5s;
+      transition-delay: 0.25s;
     }
     &:nth-child(2) {
-      transition-delay: 1s;
+      transition-delay: 0.5s;
     }
   }
   .timeline-group {
@@ -617,10 +617,10 @@
     }
     @for $i from 1 through 13 {
       .timeline.is-animate:nth-child(#{$i}) {
-        transition-delay: 0.5s;
+        transition-delay: 0.25s;
         .tl-date::before,
         .tl-date::after {
-          transition-delay: 0.8s;
+          transition-delay: 0.5s;
         }
       }
     }
@@ -652,7 +652,7 @@
         transform: none;
         @for $i from 1 through 4 {
           &:nth-child(#{$i}) {
-            transition-delay: $i * 0.5s;
+            transition-delay: $i * 0.25s;
           }
         }
       }

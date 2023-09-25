@@ -106,7 +106,7 @@ const fnGnb = (classesRotate) => {
       const toStep =
         menus.findIndex((item) => item === menu) -
         menus.findIndex((item) => item === selectedMenu);
-      visualRotate.toRotate({ step: Math.abs(toStep) });
+      visualRotate.toRotate({ step: toStep });
       mDesc.moveToDir("next", toStep);
 
       const container = document.querySelector(".container");

@@ -240,7 +240,7 @@
     transform: none;
     @for $i from 1 through 4 {
       &:nth-child(#{$i}) {
-        transition-delay: $i * 0.5s + 0.3s;
+        transition-delay: $i * 0.25s + 0.15s;
         z-index: 2;
       }
     }
@@ -267,22 +267,22 @@
       transition: all 1.5s;
       opacity: 1;
       transform: none;
-      transition-delay: 0.5s;
+      transition-delay: 0.25s;
     }
     .vision-text h3 {
       transition: all 1.5s;
       opacity: 1;
-      transition-delay: 1.2s;
+      transition-delay: 0.5s;
     }
     .vision-text p {
       transition: all 1.5s;
       opacity: 1;
-      transition-delay: 1.5s;
+      transition-delay: 0.75s;
     }
     .vision-text .btn-move {
       transition: all 1.5s;
       opacity: 1;
-      transition-delay: 1.8s;
+      transition-delay: 1s;
     }
   }
 
@@ -296,22 +296,22 @@
       transition: all 1.5s;
       opacity: 1;
       transform: none;
-      transition-delay: 0.5s;
+      transition-delay: 0.25s;
     }
     .vision-text h3 {
       transition: all 1.5s;
       opacity: 1;
-      transition-delay: 1.2s;
+      transition-delay: 0.5s;
     }
     .vision-text p {
       transition: all 1.5s;
       opacity: 1;
-      transition-delay: 1.5s;
+      transition-delay: 0.75s;
     }
     .vision-text .btn-move {
       transition: all 1.5s;
       opacity: 1;
-      transition-delay: 1.8s;
+      transition-delay: 1s;
     }
   }
   .logo-group .logo-item {
@@ -327,7 +327,7 @@
     @for $row from 1 through 3 {
       @for $i from 1 through 4 {
         &:nth-child(#{$row}) .logo-item:nth-child(#{$i}) {
-          transition-delay: ($i * 0.25s) + (0.75s * $row);
+          transition-delay: ($i * 0.15s) + (0.3s * $row);
         }
       }
     }

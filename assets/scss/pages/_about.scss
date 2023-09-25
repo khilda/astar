@@ -286,10 +286,10 @@
       }
     }
     &:hover .tl-date::before {
-      animation: timeline-bounce 1.6s 0.4s infinite;
+      animation: timeline-bounce 1.6s 0.15s infinite;
     }
     &:hover .tl-dot .before {
-      animation: timeline-bounce 1.6s 0.4s infinite;
+      animation: timeline-bounce 1.6s 0.25s infinite;
     }
   }
   .tl-date {
@@ -652,7 +652,7 @@
         transform: none;
         @for $i from 1 through 4 {
           &:nth-child(#{$i}) {
-            transition-delay: $i * 0.25s;
+            transition-delay: $i * 0.15s;
           }
         }
       }

@@ -1,5 +1,6 @@
 import { setLogoRollingClone } from "../func/logoRolling.js";
 import { contentsBounce } from "../func/contentsBounce.js";
+import { mouseScrolling } from "../func/mouseScrolling.js";
 
 export const fnBusiness = () => {
   if (!document.querySelector(".container.business")) return;
@@ -17,7 +18,7 @@ export const fnBusiness = () => {
   });
 
   slide()
-
+  mouseScrolling(".slide-wrap")
   contentsBounce("[class^=business]", ".slide-view", ".img-desc-group:not(.slide .img-desc-group)", ".logo-group");
 };
 
@@ -47,3 +48,4 @@ function slide() {
     });
   });
 }
+

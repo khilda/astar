@@ -1,9 +1,11 @@
 import { contentsBounce } from "../func/contentsBounce.js";
+import { mouseScrolling } from "../func/mouseScrolling.js";
 
 export const fnAbout = () => {
   if (!document.querySelector(".container.about")) return;
   fnTimeline();
   fnCrew();
+  mouseScrolling(".vision-icon-group")
   contentsBounce('.img-desc-group', '.vision-icon-group', '.timeline-wrap', '.crew-group');
 };
 function fnTimeline() {

@@ -1,10 +1,12 @@
 import { setLogoRollingClone } from "../func/logoRolling.js";
 import { contentsBounce } from "../func/contentsBounce.js";
+import { mouseScrolling } from "../func/mouseScrolling.js";
 
 export const fnMain = () => {
   if (!document.querySelector(".container.main")) return;
   setLogoRollingClone();
   iptEvt();
+  mouseScrolling(".about-wrap", ".main-business")
   contentsBounce("[class^=main]");
 };
 
